@@ -22,6 +22,43 @@ html[lang="ko"] .ko{display:inline}
 html[lang="ko"] .ptext>.ko,html[lang="ko"] .about-body>.ko{display:block}
 .ptext>.en,.about-body>.en{display:block}
 </style>
+<script>
+/* image resolver — tries extension & case variants, then data-remote, then hides */
+window.awImg=function(el){
+  var dbg=/[?#]imgdebug/.test(location.href);
+  var q=el.getAttribute("data-try");
+  if(q===null){
+    var base=el.src.split("?")[0].replace(/\.[A-Za-z]+$/,"");
+    q=["jpeg","png","JPG","jpg","JPEG","PNG","webp"].map(function(e){return base+"."+e}).join("|");
+  }
+  var list=q.split("|").filter(Boolean);
+  var cur=el.src.split("?")[0];
+  list=list.filter(function(u){return u!==cur});
+  if(list.length){
+    el.setAttribute("data-try",list.slice(1).join("|"));
+    el.src=list[0]+"?v=8";
+    return;
+  }
+  if(el.dataset.remote&&el.src!==el.dataset.remote){
+    el.setAttribute("data-try","");
+    el.src=el.dataset.remote;
+    return;
+  }
+  el.onerror=null;
+  if(dbg){
+    var p=el.parentNode;
+    p.classList.add("img-missing");
+    p.setAttribute("data-missing",el.getAttribute("data-base")||cur);
+  }
+  el.style.display="none";
+};
+</script>
+<style>
+.img-missing{display:flex;align-items:center;justify-content:center;min-height:180px;
+  background:repeating-linear-gradient(45deg,#f4f4f4,#f4f4f4 8px,#ebebeb 8px,#ebebeb 16px)}
+.img-missing::after{content:attr(data-missing);font:500 11px/1.5 monospace;color:#b00;
+  padding:6px 10px;background:#fff;border-radius:4px;max-width:90%;word-break:break-all;text-align:center}
+</style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -39,7 +76,7 @@ html[lang="ko"] .ptext>.ko,html[lang="ko"] .about-body>.ko{display:block}
 <main id="main">
 <section class="hero">
   <figure class="hero-fig">
-    <img src="assets/img/hero.jpg" alt="Chasing Rabbits campaign — IT’S HANBUL" fetchpriority="high" decoding="async">
+    <img src="assets/img/hero.jpg?v=8" data-base="assets/img/hero.jpg" alt="Chasing Rabbits campaign — IT’S HANBUL" fetchpriority="high" decoding="async" onerror="awImg(this)">
     <figcaption><a href="work/chasinrabbits.html">Chasing Rabbits — IT’S HANBUL</a></figcaption>
   </figure>
   <div class="hero-foot">
@@ -60,31 +97,31 @@ html[lang="ko"] .ptext>.ko,html[lang="ko"] .about-body>.ko{display:block}
     <p class="group-note"><span class="en">Leading the creative team behind monthly campaign themes, original IP and specialty store branding.</span><span class="ko">월간 캠페인 테마, 오리지널 IP, 특화매장 브랜딩을 맡는 크리에이티브 팀을 이끕니다.</span></p>
   </div>
   <ul class="cards"><li class="card reveal"><a href="work/br-onepiece.html">
-          <span class="card-img"><img src="assets/img/br-onepiece/01.jpg" alt="One Piece × Baskin-Robbins" loading="lazy" decoding="async" onerror="this.style.display='none'"></span>
+          <span class="card-img"><img src="assets/img/br-onepiece/01.jpg?v=8" data-base="assets/img/br-onepiece/01.jpg" alt="One Piece × Baskin-Robbins" loading="lazy" decoding="async" onerror="awImg(this)"></span>
           <span class="card-body">
             <span class="card-title">One Piece × Baskin-Robbins</span>
             <span class="card-place">Seoul, Korea · July 2026</span>
             <ul class="tags"><li>Brand</li><li>Campaign</li><li>Product</li></ul>
           </span></a></li><li class="card reveal"><a href="work/br-toystory.html">
-          <span class="card-img"><img src="assets/img/br-toystory/01.jpg" alt="Toy Story 5 × Baskin-Robbins" loading="lazy" decoding="async" onerror="this.style.display='none'"></span>
+          <span class="card-img"><img src="assets/img/br-toystory/01.jpg?v=8" data-base="assets/img/br-toystory/01.jpg" alt="Toy Story 5 × Baskin-Robbins" loading="lazy" decoding="async" onerror="awImg(this)"></span>
           <span class="card-body">
             <span class="card-title">Toy Story 5 × Baskin-Robbins</span>
             <span class="card-place">Seoul, Korea · June 2026</span>
             <ul class="tags"><li>Brand</li><li>Campaign</li><li>Product</li></ul>
           </span></a></li><li class="card reveal"><a href="work/br-pokemon.html">
-          <span class="card-img"><img src="assets/img/br-pokemon/01.jpg" alt="Pokémon × Baskin-Robbins" loading="lazy" decoding="async" onerror="this.style.display='none'"></span>
+          <span class="card-img"><img src="assets/img/br-pokemon/01.jpg?v=8" data-base="assets/img/br-pokemon/01.jpg" alt="Pokémon × Baskin-Robbins" loading="lazy" decoding="async" onerror="awImg(this)"></span>
           <span class="card-body">
             <span class="card-title">Pokémon × Baskin-Robbins</span>
             <span class="card-place">Seoul, Korea · May 2026</span>
             <ul class="tags"><li>Brand</li><li>Campaign</li><li>Product</li></ul>
           </span></a></li><li class="card reveal"><a href="work/bonjour-paris.html">
-          <span class="card-img"><img src="assets/img/bonjour-paris/01.jpg" alt="Bonjour! Paris — Robin" loading="lazy" decoding="async"></span>
+          <span class="card-img"><img src="assets/img/bonjour-paris/01.jpg?v=8" data-base="assets/img/bonjour-paris/01.jpg" alt="Bonjour! Paris — Robin" loading="lazy" decoding="async" onerror="awImg(this)"></span>
           <span class="card-body">
             <span class="card-title">Bonjour! Paris — Robin</span>
             <span class="card-place">Seoul, Korea · 2025</span>
             <ul class="tags"><li>Brand</li><li>Campaign</li><li>Space</li><li>Product</li></ul>
           </span></a></li><li class="card reveal"><a href="work/baskin-robbins-popup.html">
-          <span class="card-img"><img src="assets/img/baskin-robbins-popup/01.png" alt="Mangbingo Gacha Shop" loading="lazy" decoding="async" data-remote="https://images.squarespace-cdn.com/content/v1/65e9632ac8470e399ffd06d9/873355fd-6566-4a1a-8e37-2b9ee3b1448c/Screen+Shot+2025-07-22+at+7.36.10+AM.png?format=original" onerror="this.onerror=null;this.src=this.dataset.remote"></span>
+          <span class="card-img"><img src="assets/img/baskin-robbins-popup/01.png?v=8" data-base="assets/img/baskin-robbins-popup/01.png" alt="Mangbingo Gacha Shop" loading="lazy" decoding="async" data-remote="https://images.squarespace-cdn.com/content/v1/65e9632ac8470e399ffd06d9/873355fd-6566-4a1a-8e37-2b9ee3b1448c/Screen+Shot+2025-07-22+at+7.36.10+AM.png?format=original" onerror="awImg(this)"></span>
           <span class="card-body">
             <span class="card-title">Mangbingo Gacha Shop</span>
             <span class="card-place">Seongsu, Seoul · 2025</span>
@@ -97,49 +134,49 @@ html[lang="ko"] .ptext>.ko,html[lang="ko"] .about-body>.ko{display:block}
     <p class="group-note"><span class="en">Led a three-team creative division across store design, merchandise, packaging and campaign — including the brand’s first US location.</span><span class="ko">3개 크리에이티브 팀을 총괄하며 매장·굿즈·패키지·캠페인을 담당했습니다. 미국 1호점 포함.</span></p>
   </div>
   <ul class="cards"><li class="card reveal"><a href="work/knotted.html">
-          <span class="card-img"><img src="assets/img/knotted/01.jpeg" alt="Knotted Gwangju Sangmu" loading="lazy" decoding="async" data-remote="https://images.squarespace-cdn.com/content/v1/65e9632ac8470e399ffd06d9/c5d198be-7a77-4ce5-a7ce-bb500fed8007/KakaoTalk_Photo_2025-07-05-21-10-02+023.jpeg?format=original" onerror="this.onerror=null;this.src=this.dataset.remote"></span>
+          <span class="card-img"><img src="assets/img/knotted/01.jpeg?v=8" data-base="assets/img/knotted/01.jpeg" alt="Knotted Gwangju Sangmu" loading="lazy" decoding="async" data-remote="https://images.squarespace-cdn.com/content/v1/65e9632ac8470e399ffd06d9/c5d198be-7a77-4ce5-a7ce-bb500fed8007/KakaoTalk_Photo_2025-07-05-21-10-02+023.jpeg?format=original" onerror="awImg(this)"></span>
           <span class="card-body">
             <span class="card-title">Knotted Gwangju Sangmu</span>
             <span class="card-place">Gwangju, Korea · 2024</span>
             <ul class="tags"><li>Space</li><li>VMD</li></ul>
           </span></a></li><li class="card reveal"><a href="work/knotted-store-la.html">
-          <span class="card-img"><img src="assets/img/knotted-store-la/01.png" alt="Knotted Westfield Century City" loading="lazy" decoding="async" data-remote="https://images.squarespace-cdn.com/content/v1/65e9632ac8470e399ffd06d9/15226841-a3f8-4593-b1e9-a79dff2b8c24/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA+2025-04-11+230245.png?format=original" onerror="this.onerror=null;this.src=this.dataset.remote"></span>
+          <span class="card-img"><img src="assets/img/knotted-store-la/01.png?v=8" data-base="assets/img/knotted-store-la/01.png" alt="Knotted Westfield Century City" loading="lazy" decoding="async" data-remote="https://images.squarespace-cdn.com/content/v1/65e9632ac8470e399ffd06d9/15226841-a3f8-4593-b1e9-a79dff2b8c24/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA+2025-04-11+230245.png?format=original" onerror="awImg(this)"></span>
           <span class="card-body">
             <span class="card-title">Knotted Westfield Century City</span>
             <span class="card-place">Los Angeles, United States · 2024</span>
             <ul class="tags"><li>Space</li><li>VMD</li></ul>
           </span></a></li><li class="card reveal"><a href="work/retail-design-knotted-seoullo.html">
-          <span class="card-img"><img src="assets/img/retail-design-knotted-seoullo/01.png" alt="Knotted Seoullo" loading="lazy" decoding="async" data-remote="https://images.squarespace-cdn.com/content/v1/65e9632ac8470e399ffd06d9/69956793-a9b4-4597-9317-c743ad17bcce/IMG_8072.PNG?format=original" onerror="this.onerror=null;this.src=this.dataset.remote"></span>
+          <span class="card-img"><img src="assets/img/retail-design-knotted-seoullo/01.png?v=8" data-base="assets/img/retail-design-knotted-seoullo/01.png" alt="Knotted Seoullo" loading="lazy" decoding="async" data-remote="https://images.squarespace-cdn.com/content/v1/65e9632ac8470e399ffd06d9/69956793-a9b4-4597-9317-c743ad17bcce/IMG_8072.PNG?format=original" onerror="awImg(this)"></span>
           <span class="card-body">
             <span class="card-title">Knotted Seoullo</span>
             <span class="card-place">Seoul Station · 2024</span>
             <ul class="tags"><li>Space</li></ul>
           </span></a></li><li class="card reveal"><a href="work/retail-design-knotted-guui.html">
-          <span class="card-img"><img src="assets/img/retail-design-knotted-guui/01.png" alt="Knotted Guui" loading="lazy" decoding="async" data-remote="https://images.squarespace-cdn.com/content/v1/65e9632ac8470e399ffd06d9/2bb2a480-9c96-45db-ab96-3dd4e68b9bf9/Enscape_2025-03-18-18-30-21.png?format=original" onerror="this.onerror=null;this.src=this.dataset.remote"></span>
+          <span class="card-img"><img src="assets/img/retail-design-knotted-guui/01.png?v=8" data-base="assets/img/retail-design-knotted-guui/01.png" alt="Knotted Guui" loading="lazy" decoding="async" data-remote="https://images.squarespace-cdn.com/content/v1/65e9632ac8470e399ffd06d9/2bb2a480-9c96-45db-ab96-3dd4e68b9bf9/Enscape_2025-03-18-18-30-21.png?format=original" onerror="awImg(this)"></span>
           <span class="card-body">
             <span class="card-title">Knotted Guui</span>
             <span class="card-place">Guui, Seoul · 2024</span>
             <ul class="tags"><li>Space</li><li>VMD</li></ul>
           </span></a></li><li class="card reveal"><a href="work/clap-pizza.html">
-          <span class="card-img"><img src="assets/img/clap-pizza/01.jpeg" alt="Clap Pizza Gwangju" loading="lazy" decoding="async" data-remote="https://images.squarespace-cdn.com/content/v1/65e9632ac8470e399ffd06d9/aa6b24d2-9cef-445d-9369-0da9cfabb2c8/KakaoTalk_Photo_2025-07-05-21-09-26+010.jpeg?format=original" onerror="this.onerror=null;this.src=this.dataset.remote"></span>
+          <span class="card-img"><img src="assets/img/clap-pizza/01.jpeg?v=8" data-base="assets/img/clap-pizza/01.jpeg" alt="Clap Pizza Gwangju" loading="lazy" decoding="async" data-remote="https://images.squarespace-cdn.com/content/v1/65e9632ac8470e399ffd06d9/aa6b24d2-9cef-445d-9369-0da9cfabb2c8/KakaoTalk_Photo_2025-07-05-21-09-26+010.jpeg?format=original" onerror="awImg(this)"></span>
           <span class="card-body">
             <span class="card-title">Clap Pizza Gwangju</span>
             <span class="card-place">Gwangju, Korea · 2024</span>
             <ul class="tags"><li>Space</li><li>Graphic</li></ul>
           </span></a></li><li class="card reveal"><a href="work/gffg-graphic-works.html">
-          <span class="card-img"><img src="assets/img/gffg-graphic-works/01.png" alt="Knotted 2025 Campaigns" loading="lazy" decoding="async" data-remote="https://images.squarespace-cdn.com/content/v1/65e9632ac8470e399ffd06d9/f9c6d6aa-9d9e-4527-97b0-3f84559d2482/Screen+Shot+2025-08-26+at+7.35.57+AM.png?format=original" onerror="this.onerror=null;this.src=this.dataset.remote"></span>
+          <span class="card-img"><img src="assets/img/gffg-graphic-works/01.png?v=8" data-base="assets/img/gffg-graphic-works/01.png" alt="Knotted 2025 Campaigns" loading="lazy" decoding="async" data-remote="https://images.squarespace-cdn.com/content/v1/65e9632ac8470e399ffd06d9/f9c6d6aa-9d9e-4527-97b0-3f84559d2482/Screen+Shot+2025-08-26+at+7.35.57+AM.png?format=original" onerror="awImg(this)"></span>
           <span class="card-body">
             <span class="card-title">Knotted 2025 Campaigns</span>
             <span class="card-place">Seoul, Korea · 2025</span>
             <ul class="tags"><li>Campaign</li><li>Graphic</li></ul>
           </span></a></li><li class="card reveal"><a href="work/knotted-goods-proposal.html">
-          <span class="card-img"><img src="assets/img/knotted-goods-proposal/01.jpg" alt="Knotted Lifestyle Expansion" loading="lazy" decoding="async" data-remote="https://images.squarespace-cdn.com/content/v1/65e9632ac8470e399ffd06d9/7096683f-61f7-4705-b827-4075cc8b3423/KN_%E1%84%80%E1%85%AE%E1%86%BA%E1%84%8C%E1%85%B3+%E1%84%8C%E1%85%A6%E1%84%8B%E1%85%A1%E1%86%AB%E1%84%89%E1%85%A5_250317+%281%29_Page_01.jpg?format=original" onerror="this.onerror=null;this.src=this.dataset.remote"></span>
+          <span class="card-img"><img src="assets/img/knotted-goods-proposal/01.jpg?v=8" data-base="assets/img/knotted-goods-proposal/01.jpg" alt="Knotted Lifestyle Expansion" loading="lazy" decoding="async" data-remote="https://images.squarespace-cdn.com/content/v1/65e9632ac8470e399ffd06d9/7096683f-61f7-4705-b827-4075cc8b3423/KN_%E1%84%80%E1%85%AE%E1%86%BA%E1%84%8C%E1%85%B3+%E1%84%8C%E1%85%A6%E1%84%8B%E1%85%A1%E1%86%AB%E1%84%89%E1%85%A5_250317+%281%29_Page_01.jpg?format=original" onerror="awImg(this)"></span>
           <span class="card-body">
             <span class="card-title">Knotted Lifestyle Expansion</span>
             <span class="card-place">Seoul, Korea · 2024</span>
             <ul class="tags"><li>Product</li><li>Graphic</li><li>Brand</li></ul>
           </span></a></li><li class="card reveal"><a href="work/project-three.html">
-          <span class="card-img"><img src="assets/img/project-three/01.png" alt="Knotted Merchandise Collection" loading="lazy" decoding="async" data-remote="https://images.squarespace-cdn.com/content/v1/65e9632ac8470e399ffd06d9/021b2ef0-d8cf-40af-8b97-1ce4cd01965d/Screen+Shot+2025-08-30+at+8.46.18+AM.png?format=original" onerror="this.onerror=null;this.src=this.dataset.remote"></span>
+          <span class="card-img"><img src="assets/img/project-three/01.png?v=8" data-base="assets/img/project-three/01.png" alt="Knotted Merchandise Collection" loading="lazy" decoding="async" data-remote="https://images.squarespace-cdn.com/content/v1/65e9632ac8470e399ffd06d9/021b2ef0-d8cf-40af-8b97-1ce4cd01965d/Screen+Shot+2025-08-30+at+8.46.18+AM.png?format=original" onerror="awImg(this)"></span>
           <span class="card-body">
             <span class="card-title">Knotted Merchandise Collection</span>
             <span class="card-place">Seoul, Korea · 2024–2025</span>
@@ -152,25 +189,25 @@ html[lang="ko"] .ptext>.ko,html[lang="ko"] .about-body>.ko{display:block}
     <p class="group-note"><span class="en">Retail and experiential design across Asia-Pacific, from schematic design through on-site supervision.</span><span class="ko">아시아태평양 전역의 리테일·체험 디자인을 기본설계부터 현장 감리까지 담당했습니다.</span></p>
   </div>
   <ul class="cards"><li class="card reveal"><a href="work/toysrus.html">
-          <span class="card-img"><img src="assets/img/toysrus/01.jpeg" alt="Disney at Toys “R” Us" loading="lazy" decoding="async" data-remote="https://images.squarespace-cdn.com/content/v1/65e9632ac8470e399ffd06d9/026c42c8-6df2-42e8-9812-c8721d825f5a/mickey2.jpeg?format=original" onerror="this.onerror=null;this.src=this.dataset.remote"></span>
+          <span class="card-img"><img src="assets/img/toysrus/01.jpeg?v=8" data-base="assets/img/toysrus/01.jpeg" alt="Disney at Toys “R” Us" loading="lazy" decoding="async" data-remote="https://images.squarespace-cdn.com/content/v1/65e9632ac8470e399ffd06d9/026c42c8-6df2-42e8-9812-c8721d825f5a/mickey2.jpeg?format=original" onerror="awImg(this)"></span>
           <span class="card-body">
             <span class="card-title">Disney at Toys “R” Us</span>
             <span class="card-place">Seoul, Korea · 2022–2023</span>
             <ul class="tags"><li>Space</li><li>VMD</li></ul>
           </span></a></li><li class="card reveal"><a href="work/d100-hyundai.html">
-          <span class="card-img"><img src="assets/img/d100-hyundai/01.jpeg" alt="Disney D100 — Hyundai Pangyo" loading="lazy" decoding="async" data-remote="https://images.squarespace-cdn.com/content/v1/65e9632ac8470e399ffd06d9/6f34ec5a-5a9b-4b98-a567-f66a7b3fe7e7/KakaoTalk_Photo_2024-02-21-19-44-20+025.jpeg?format=original" onerror="this.onerror=null;this.src=this.dataset.remote"></span>
+          <span class="card-img"><img src="assets/img/d100-hyundai/01.jpeg?v=8" data-base="assets/img/d100-hyundai/01.jpeg" alt="Disney D100 — Hyundai Pangyo" loading="lazy" decoding="async" data-remote="https://images.squarespace-cdn.com/content/v1/65e9632ac8470e399ffd06d9/6f34ec5a-5a9b-4b98-a567-f66a7b3fe7e7/KakaoTalk_Photo_2024-02-21-19-44-20+025.jpeg?format=original" onerror="awImg(this)"></span>
           <span class="card-body">
             <span class="card-title">Disney D100 — Hyundai Pangyo</span>
             <span class="card-place">Pangyo, Korea · 2023</span>
             <ul class="tags"><li>Space</li></ul>
           </span></a></li><li class="card reveal"><a href="work/korea-kickoff.html">
-          <span class="card-img"><img src="assets/img/korea-kickoff/01.jpeg" alt="Disney CPGP Korea Kickoff" loading="lazy" decoding="async" data-remote="https://images.squarespace-cdn.com/content/v1/65e9632ac8470e399ffd06d9/86743b4a-2abd-4c38-8520-e3a8b7457a30/WechatIMG610.jpeg?format=original" onerror="this.onerror=null;this.src=this.dataset.remote"></span>
+          <span class="card-img"><img src="assets/img/korea-kickoff/01.jpeg?v=8" data-base="assets/img/korea-kickoff/01.jpeg" alt="Disney CPGP Korea Kickoff" loading="lazy" decoding="async" data-remote="https://images.squarespace-cdn.com/content/v1/65e9632ac8470e399ffd06d9/86743b4a-2abd-4c38-8520-e3a8b7457a30/WechatIMG610.jpeg?format=original" onerror="awImg(this)"></span>
           <span class="card-body">
             <span class="card-title">Disney CPGP Korea Kickoff</span>
             <span class="card-place">Seoul, Korea · 2022</span>
             <ul class="tags"><li>Space</li><li>Graphic</li></ul>
           </span></a></li><li class="card reveal"><a href="work/graphic.html">
-          <span class="card-img"><img src="assets/img/graphic/01.jpg" alt="National Geographic Retail Toolkit" loading="lazy" decoding="async" data-remote="https://images.squarespace-cdn.com/content/v1/65e9632ac8470e399ffd06d9/b4b6c2da-6c97-483c-8b20-f370b66f3fcc/Winterwonderland.jpg?format=original" onerror="this.onerror=null;this.src=this.dataset.remote"></span>
+          <span class="card-img"><img src="assets/img/graphic/01.jpg?v=8" data-base="assets/img/graphic/01.jpg" alt="National Geographic Retail Toolkit" loading="lazy" decoding="async" data-remote="https://images.squarespace-cdn.com/content/v1/65e9632ac8470e399ffd06d9/b4b6c2da-6c97-483c-8b20-f370b66f3fcc/Winterwonderland.jpg?format=original" onerror="awImg(this)"></span>
           <span class="card-body">
             <span class="card-title">National Geographic Retail Toolkit</span>
             <span class="card-place">APAC region · 2022–2023</span>
@@ -183,13 +220,13 @@ html[lang="ko"] .ptext>.ko,html[lang="ko"] .about-body>.ko{display:block}
     <p class="group-note"><span class="en">Built one cosmetics brand from a blank page and rebuilt another.</span><span class="ko">화장품 브랜드 하나를 무에서 만들고, 다른 하나를 다시 지었습니다.</span></p>
   </div>
   <ul class="cards"><li class="card reveal"><a href="work/chasinrabbits.html">
-          <span class="card-img"><img src="assets/img/chasinrabbits/01.jpg" alt="Chasin’ Rabbits" loading="lazy" decoding="async" data-remote="https://images.squarespace-cdn.com/content/v1/65e9632ac8470e399ffd06d9/f1b24b9d-ab76-4505-842d-a0f7c972f371/14.jpg?format=original" onerror="this.onerror=null;this.src=this.dataset.remote"></span>
+          <span class="card-img"><img src="assets/img/chasinrabbits/01.jpg?v=8" data-base="assets/img/chasinrabbits/01.jpg" alt="Chasin’ Rabbits" loading="lazy" decoding="async" data-remote="https://images.squarespace-cdn.com/content/v1/65e9632ac8470e399ffd06d9/f1b24b9d-ab76-4505-842d-a0f7c972f371/14.jpg?format=original" onerror="awImg(this)"></span>
           <span class="card-body">
             <span class="card-title">Chasin’ Rabbits</span>
             <span class="card-place">Seoul, Korea · 2020–2022</span>
             <ul class="tags"><li>Brand</li><li>Package</li><li>Campaign</li><li>Graphic</li></ul>
           </span></a></li><li class="card reveal"><a href="work/enature.html">
-          <span class="card-img"><img src="assets/img/enature/01.png" alt="enature" loading="lazy" decoding="async" data-remote="https://images.squarespace-cdn.com/content/v1/65e9632ac8470e399ffd06d9/39dfec82-c9bc-4e06-a8b8-b71644689057/Screen+Shot+2024-03-07+at+6.06.09+PM.png?format=original" onerror="this.onerror=null;this.src=this.dataset.remote"></span>
+          <span class="card-img"><img src="assets/img/enature/01.png?v=8" data-base="assets/img/enature/01.png" alt="enature" loading="lazy" decoding="async" data-remote="https://images.squarespace-cdn.com/content/v1/65e9632ac8470e399ffd06d9/39dfec82-c9bc-4e06-a8b8-b71644689057/Screen+Shot+2024-03-07+at+6.06.09+PM.png?format=original" onerror="awImg(this)"></span>
           <span class="card-body">
             <span class="card-title">enature</span>
             <span class="card-place">Seoul, Korea · 2020–2022</span>
@@ -202,19 +239,19 @@ html[lang="ko"] .ptext>.ko,html[lang="ko"] .about-body>.ko{display:block}
     <p class="group-note"><span class="en">Visual merchandising and workplace design for a zero-waste skincare brand.</span><span class="ko">제로웨이스트 스킨케어 브랜드의 VMD와 업무 공간 설계.</span></p>
   </div>
   <ul class="cards"><li class="card reveal"><a href="work/toun28.html">
-          <span class="card-img"><img src="assets/img/toun28/01.png" alt="Toun28 Main VMD" loading="lazy" decoding="async" data-remote="https://images.squarespace-cdn.com/content/v1/65e9632ac8470e399ffd06d9/f5c0bad0-dd41-4c90-8315-65851cbaca97/%E1%84%8B%E1%85%A1%E1%84%89%E1%85%A6%E1%84%8B%E1%85%A1%E1%86%AB+K+%E1%84%87%E1%85%B2%E1%84%90%E1%85%B5_02.png?format=original" onerror="this.onerror=null;this.src=this.dataset.remote"></span>
+          <span class="card-img"><img src="assets/img/toun28/01.png?v=8" data-base="assets/img/toun28/01.png" alt="Toun28 Main VMD" loading="lazy" decoding="async" data-remote="https://images.squarespace-cdn.com/content/v1/65e9632ac8470e399ffd06d9/f5c0bad0-dd41-4c90-8315-65851cbaca97/%E1%84%8B%E1%85%A1%E1%84%89%E1%85%A6%E1%84%8B%E1%85%A1%E1%86%AB+K+%E1%84%87%E1%85%B2%E1%84%90%E1%85%B5_02.png?format=original" onerror="awImg(this)"></span>
           <span class="card-body">
             <span class="card-title">Toun28 Main VMD</span>
             <span class="card-place">Seoul, Korea · 2019–2020</span>
             <ul class="tags"><li>VMD</li><li>Graphic</li></ul>
           </span></a></li><li class="card reveal"><a href="work/toun28-small-vmds.html">
-          <span class="card-img"><img src="assets/img/toun28-small-vmds/01.jpg" alt="Toun28 Retail VMD Stands" loading="lazy" decoding="async" data-remote="https://images.squarespace-cdn.com/content/v1/65e9632ac8470e399ffd06d9/d6bf836a-5f60-4f91-92dc-c950959c07e8/IMG_9349.JPG?format=original" onerror="this.onerror=null;this.src=this.dataset.remote"></span>
+          <span class="card-img"><img src="assets/img/toun28-small-vmds/01.jpg?v=8" data-base="assets/img/toun28-small-vmds/01.jpg" alt="Toun28 Retail VMD Stands" loading="lazy" decoding="async" data-remote="https://images.squarespace-cdn.com/content/v1/65e9632ac8470e399ffd06d9/d6bf836a-5f60-4f91-92dc-c950959c07e8/IMG_9349.JPG?format=original" onerror="awImg(this)"></span>
           <span class="card-body">
             <span class="card-title">Toun28 Retail VMD Stands</span>
             <span class="card-place">Aritaum, Starfield, Thingool · 2019–2020</span>
             <ul class="tags"><li>VMD</li><li>Product</li></ul>
           </span></a></li><li class="card reveal"><a href="work/officedesign.html">
-          <span class="card-img"><img src="assets/img/officedesign/01.jpg" alt="Toun28 Office" loading="lazy" decoding="async" data-remote="https://images.squarespace-cdn.com/content/v1/65e9632ac8470e399ffd06d9/16629ac9-ad1c-4726-a815-70ef5890679f/IMG_0505.JPG?format=original" onerror="this.onerror=null;this.src=this.dataset.remote"></span>
+          <span class="card-img"><img src="assets/img/officedesign/01.jpg?v=8" data-base="assets/img/officedesign/01.jpg" alt="Toun28 Office" loading="lazy" decoding="async" data-remote="https://images.squarespace-cdn.com/content/v1/65e9632ac8470e399ffd06d9/16629ac9-ad1c-4726-a815-70ef5890679f/IMG_0505.JPG?format=original" onerror="awImg(this)"></span>
           <span class="card-body">
             <span class="card-title">Toun28 Office</span>
             <span class="card-place">Seoul, Korea · 2019–2020</span>
@@ -227,19 +264,19 @@ html[lang="ko"] .ptext>.ko,html[lang="ko"] .about-body>.ko{display:block}
     <p class="group-note"><span class="en">Award-winning furniture, landscape architecture and identity work.</span><span class="ko">수상 가구, 조경 설계, 그리고 아이덴티티 작업.</span></p>
   </div>
   <ul class="cards"><li class="card reveal"><a href="work/moving-capsule.html">
-          <span class="card-img"><img src="assets/img/moving-capsule/01.png" alt="Moving Capsule" loading="lazy" decoding="async" data-remote="https://images.squarespace-cdn.com/content/v1/65e9632ac8470e399ffd06d9/7a3f98a3-9135-4a81-904b-8742bda5a42b/Screen+Shot+2024-03-11+at+11.50.10+AM.png?format=original" onerror="this.onerror=null;this.src=this.dataset.remote"></span>
+          <span class="card-img"><img src="assets/img/moving-capsule/01.png?v=8" data-base="assets/img/moving-capsule/01.png" alt="Moving Capsule" loading="lazy" decoding="async" data-remote="https://images.squarespace-cdn.com/content/v1/65e9632ac8470e399ffd06d9/7a3f98a3-9135-4a81-904b-8742bda5a42b/Screen+Shot+2024-03-11+at+11.50.10+AM.png?format=original" onerror="awImg(this)"></span>
           <span class="card-body">
             <span class="card-title">Moving Capsule</span>
             <span class="card-place">La Triennale di Milano · 2017</span>
             <ul class="tags"><li>Product</li><li>Space</li></ul>
           </span></a></li><li class="card reveal"><a href="work/landscape.html">
-          <span class="card-img"><img src="assets/img/landscape/00-key.jpg" alt="Transbay Transit Center Roof Garden" loading="lazy" decoding="async"></span>
+          <span class="card-img"><img src="assets/img/landscape/00-key.jpg?v=8" data-base="assets/img/landscape/00-key.jpg" alt="Transbay Transit Center Roof Garden" loading="lazy" decoding="async" onerror="awImg(this)"></span>
           <span class="card-body">
             <span class="card-title">Transbay Transit Center Roof Garden</span>
             <span class="card-place">San Francisco, California · 2016</span>
             <ul class="tags"><li>Space</li></ul>
           </span></a></li><li class="card reveal"><a href="work/harvard-passport.html">
-          <span class="card-img"><img src="assets/img/harvard-passport/01.jpeg" alt="Passport to the Harvard Libraries" loading="lazy" decoding="async" data-remote="https://images.squarespace-cdn.com/content/v1/65e9632ac8470e399ffd06d9/f17e3c11-a5ee-4e3e-9c87-d9a3a9476594/passports1.jpeg?format=original" onerror="this.onerror=null;this.src=this.dataset.remote"></span>
+          <span class="card-img"><img src="assets/img/harvard-passport/01.jpeg?v=8" data-base="assets/img/harvard-passport/01.jpeg" alt="Passport to the Harvard Libraries" loading="lazy" decoding="async" data-remote="https://images.squarespace-cdn.com/content/v1/65e9632ac8470e399ffd06d9/f17e3c11-a5ee-4e3e-9c87-d9a3a9476594/passports1.jpeg?format=original" onerror="awImg(this)"></span>
           <span class="card-body">
             <span class="card-title">Passport to the Harvard Libraries</span>
             <span class="card-place">Cambridge, Massachusetts · 2017</span>

@@ -1,0 +1,43 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>이미지 경로 점검</title>
+<style>
+body{font:14px/1.6 -apple-system,"Apple SD Gothic Neo",sans-serif;margin:0;padding:32px 24px;background:#fafafa;color:#111}
+h1{font-size:20px;margin:0 0 4px}p.sub{color:#666;margin:0 0 24px}
+#sum{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+#sum div{background:#fff;border:1px solid #e3e3e3;border-radius:8px;padding:10px 16px;min-width:96px}
+#sum b{font-size:22px;display:block}
+table{border-collapse:collapse;width:100%;background:#fff;border:1px solid #e3e3e3;border-radius:8px;overflow:hidden}
+td,th{padding:9px 12px;border-bottom:1px solid #f0f0f0;text-align:left;font-size:13px;vertical-align:top}
+th{background:#f6f6f6;font-weight:600}
+code{font:12px/1.5 ui-monospace,monospace;word-break:break-all}
+.ok{color:#0a7f3f;font-weight:600}.bad{color:#c00;font-weight:600}.alt{color:#b56b00;font-weight:600}
+tr.bad-row{background:#fff6f6}tr.alt-row{background:#fffaf0}
+</style></head><body>
+<h1>이미지 경로 점검</h1>
+<p class="sub">index.html이 참조하는 로컬 이미지 26개를 실제 서버에서 하나씩 불러봅니다.</p>
+<div id="sum"></div>
+<table><thead><tr><th style="width:38%">HTML이 찾는 경로</th><th style="width:16%">결과</th><th>실제로 열리는 파일</th></tr></thead><tbody id="t"></tbody></table>
+<script>
+var PATHS=["assets/img/hero.jpg", "assets/img/br-onepiece/01.jpg", "assets/img/br-toystory/01.jpg", "assets/img/br-pokemon/01.jpg", "assets/img/bonjour-paris/01.jpg", "assets/img/baskin-robbins-popup/01.png", "assets/img/knotted/01.jpeg", "assets/img/knotted-store-la/01.png", "assets/img/retail-design-knotted-seoullo/01.png", "assets/img/retail-design-knotted-guui/01.png", "assets/img/clap-pizza/01.jpeg", "assets/img/gffg-graphic-works/01.png", "assets/img/knotted-goods-proposal/01.jpg", "assets/img/project-three/01.png", "assets/img/toysrus/01.jpeg", "assets/img/d100-hyundai/01.jpeg", "assets/img/korea-kickoff/01.jpeg", "assets/img/graphic/01.jpg", "assets/img/chasinrabbits/01.jpg", "assets/img/enature/01.png", "assets/img/toun28/01.png", "assets/img/toun28-small-vmds/01.jpg", "assets/img/officedesign/01.jpg", "assets/img/moving-capsule/01.png", "assets/img/landscape/00-key.jpg", "assets/img/harvard-passport/01.jpeg"];
+var EXT=["jpg","jpeg","png","JPG","JPEG","PNG","webp"];
+function probe(u){return new Promise(function(r){var i=new Image();i.onload=function(){r(true)};i.onerror=function(){r(false)};i.src=u+"?t="+Date.now()})}
+(async function(){
+  var tb=document.getElementById("t"),ok=0,alt=0,bad=0;
+  for(var k=0;k<PATHS.length;k++){
+    var p=PATHS[k],tr=document.createElement("tr");
+    var found=await probe(p),note="",cls="ok",label="정상";
+    if(found){ok++;note="\u2014"}
+    else{
+      var base=p.replace(/\.[A-Za-z]+$/,""),hit=null;
+      for(var j=0;j<EXT.length;j++){var c=base+"."+EXT[j];if(c===p)continue;if(await probe(c)){hit=c;break}}
+      if(hit){alt++;cls="alt";label="이름 불일치";note="<code>"+hit+"</code> \uB294 열립니다";tr.className="alt-row"}
+      else{bad++;cls="bad";label="파일 없음";note="\uC774 \uACBD\uB85C\uC5D0 \uD30C\uC77C\uC774 \uC5C6\uC2B5\uB2C8\uB2E4";tr.className="bad-row"}
+    }
+    tr.innerHTML="<td><code>"+p+"</code></td><td class='"+cls+"'>"+label+"</td><td>"+note+"</td>";
+    tb.appendChild(tr);
+    document.getElementById("sum").innerHTML=
+      "<div><b class='ok'>"+ok+"</b>\uC815\uC0C1</div><div><b class='alt'>"+alt+"</b>\uC774\uB984 \uBD88\uC77C\uCE58</div><div><b class='bad'>"+bad+"</b>\uD30C\uC77C \uC5C6\uC74C</div>";
+  }
+})();
+</script></body></html>
