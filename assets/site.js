@@ -31,3 +31,14 @@
   }, { threshold: 0.25 });
   mo.observe(mx);
 })();
+
+/* language toggle */
+(function () {
+  var btn = document.querySelector(".lang");
+  if (!btn) return;
+  btn.addEventListener("click", function () {
+    var next = document.documentElement.lang === "ko" ? "en" : "ko";
+    document.documentElement.lang = next;
+    localStorage.setItem("aw_lang", next);
+  });
+})();
