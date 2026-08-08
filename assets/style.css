@@ -383,20 +383,26 @@ html.gated, html.gated body { overflow: hidden; }
 .gate-foot a { color: var(--print); }
 
 
-/* ---------- korean + language toggle ---------- */
-html[lang="ko"] body { font-family: "Noto Sans KR", var(--body); font-weight: 300; }
-html[lang="ko"] .thesis, html[lang="ko"] .about-title, html[lang="ko"] .ptitle,
-html[lang="ko"] .group-client, html[lang="ko"] .cta-link, html[lang="ko"] .pend {
-  font-family: "Noto Sans KR", var(--display); font-weight: 700; letter-spacing: -0.03em;
-}
-html[lang="ko"] .thesis-em { font-style: normal; font-weight: 300; }
-html[lang="ko"] .lede { font-style: normal; }
-
+/* ---------- language ---------- */
+/* Titles, names, roles and metadata stay English in BOTH languages.
+   Only body copy switches: .en holds the English, .ko holds the Korean. */
 .ko { display: none; }
 html[lang="ko"] .en { display: none; }
 html[lang="ko"] .ko { display: inline; }
-html[lang="ko"] .ptext .ko, html[lang="ko"] .about-body .ko { display: block; }
-.ptext .en, .about-body .en { display: block; }
+html[lang="ko"] .ptext > .ko, html[lang="ko"] .about-body > .ko { display: block; }
+.ptext > .en, .about-body > .en { display: block; }
+
+/* Korean copy gets a Korean face. English display type is left alone. */
+.ko {
+  font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; font-weight: 300;
+  letter-spacing: -0.01em; font-style: normal;
+}
+.lede .ko { font-size: 0.95em; line-height: 1.6; }
+.pend .ko { font-family: "Noto Sans KR", var(--display); font-weight: 500; letter-spacing: -0.02em; }
+.lang .en, .lang .ko {
+  font-family: "DM Mono", "Noto Sans KR", ui-monospace, monospace; font-weight: 400;
+  letter-spacing: 0.08em; font-size: 1em;
+}
 
 .lang {
   cursor: pointer; background: transparent; border: 1px solid var(--rule);
@@ -438,7 +444,6 @@ html[lang="ko"] .ptext .ko, html[lang="ko"] .about-body .ko { display: block; }
   border-bottom: 1px solid rgba(255,255,255,.6); padding-bottom: 4px;
 }
 .hero-down:hover { border-bottom-color: #fff; }
-html[lang="ko"] .hero .thesis-em { font-weight: 300; }
 
 .work { padding-top: 0; }
 .work .group:first-child { border-top: 0; margin-top: 0; padding-top: 0; }

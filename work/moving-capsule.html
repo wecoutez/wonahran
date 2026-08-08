@@ -8,20 +8,29 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&family=DM+Mono:wght@400;500&family=Noto+Sans+KR:wght@300;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="../assets/style.css?v=4">
 <script>
 if(!localStorage.getItem("aw_unlocked"))document.documentElement.className+=" gated";
 document.documentElement.lang=localStorage.getItem("aw_lang")||"en";
 </script>
+<!-- lang-critical -->
+<style>
+/* language switch — inlined so it can never be broken by a stale stylesheet */
+.ko{display:none}
+html[lang="ko"] .en{display:none}
+html[lang="ko"] .ko{display:inline}
+html[lang="ko"] .ptext>.ko,html[lang="ko"] .about-body>.ko{display:block}
+.ptext>.en,.about-body>.en{display:block}
+</style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="bar">
-  <a class="bar-name" href="../index.html"><span class="en">Ahran Won</span><span class="ko">원아란</span></a>
+  <a class="bar-name" href="../index.html">Ahran Won</a>
   <nav class="bar-nav">
-    <a href="../index.html#work"><span class="en">Work</span><span class="ko">작업</span></a>
-    <a href="../about.html"><span class="en">About</span><span class="ko">소개</span></a>
-    <a href="mailto:awonjs@gmail.com"><span class="en">Contact</span><span class="ko">연락</span></a>
+    <a href="../index.html#work">Work</a>
+    <a href="../about.html">About</a>
+    <a href="mailto:awonjs@gmail.com">Contact</a>
     <button class="lang" type="button" aria-label="Language">
       <span class="en">한국어</span><span class="ko">English</span>
     </button>
@@ -30,31 +39,31 @@ document.documentElement.lang=localStorage.getItem("aw_lang")||"en";
 <main id="main">
 <article class="project">
   <header class="phead">
-    <p class="eyebrow"><a href="../index.html#independent"><span class="en">Lexus Design Award</span><span class="ko">렉서스 디자인 어워드</span></a></p>
-    <h1 class="ptitle"><span class="en">Moving Capsule</span><span class="ko">무빙 캡슐</span></h1>
+    <p class="eyebrow"><a href="../index.html#independent">Lexus Design Award</a></p>
+    <h1 class="ptitle">Moving Capsule</h1>
     <p class="lede"><span class="en">“What you own is not who you are.”</span><span class="ko">“당신이 가진 것이 당신은 아닙니다.”</span></p>
   </header>
   <figure class="phero"><img src="../assets/img/moving-capsule/01.png" alt="Moving Capsule — Lexus Design Award" loading="eager" decoding="async" data-remote="https://images.squarespace-cdn.com/content/v1/65e9632ac8470e399ffd06d9/7a3f98a3-9135-4a81-904b-8742bda5a42b/Screen+Shot+2024-03-11+at+11.50.10+AM.png?format=original" onerror="this.onerror=null;this.src=this.dataset.remote"></figure>
   <div class="gallery"><figure class="fig full"><img src="../assets/img/moving-capsule/02.jpg" alt="Moving Capsule — Lexus Design Award" loading="lazy" decoding="async" data-remote="https://images.squarespace-cdn.com/content/v1/65e9632ac8470e399ffd06d9/bf6dc98f-2040-4d91-ac44-634e8bf40d10/IMG_4222.JPG?format=original" onerror="this.onerror=null;this.src=this.dataset.remote"></figure></div>
   
   <div class="pgrid">
-    <dl class="titleblock"><div class="tb-row"><dt><span class="en">Client</span><span class="ko">클라이언트</span></dt><dd><span class="en">Lexus Design Award</span><span class="ko">렉서스 디자인 어워드</span></dd></div><div class="tb-row"><dt><span class="en">Location</span><span class="ko">장소</span></dt><dd><span class="en">La Triennale di Milano</span><span class="ko">밀라노 트리에날레</span></dd></div><div class="tb-row"><dt><span class="en">Year</span><span class="ko">연도</span></dt><dd><span class="en">2017</span><span class="ko">2017</span></dd></div><div class="tb-row"><dt><span class="en">Role</span><span class="ko">역할</span></dt><dd><span class="en">Designer</span><span class="ko">디자이너</span></dd></div><div class="tb-row"><dt><span class="en">Scope</span><span class="ko">범위</span></dt><dd><span class="en">Concept, prototype design and fabrication</span><span class="ko">컨셉, 프로토타입 설계 및 제작</span></dd></div></dl>
+    <dl class="titleblock"><div class="tb-row"><dt>Client</dt><dd>Lexus Design Award</dd></div><div class="tb-row"><dt>Location</dt><dd>La Triennale di Milano</dd></div><div class="tb-row"><dt>Year</dt><dd>2017</dd></div><div class="tb-row"><dt>Role</dt><dd>Designer</dd></div><div class="tb-row"><dt>Scope</dt><dd>Concept, prototype design and fabrication</dd></div></dl>
     <div class="ptext"><span class="en"><p>Furniture that packs into its own container — for people whose homes are temporary by circumstance rather than choice. Prototype Winner, 2017 Lexus Design Award (jury: Paola Antonelli, Toyo Ito).</p></span><span class="ko"><p>자기 자신의 컨테이너로 접히는 가구. 선택이 아닌 상황으로 집이 임시적인 사람들을 위해. 2017 렉서스 디자인 어워드 프로토타입 수상 (심사: 파올라 안토넬리, 이토 도요).</p></span></div>
   </div>
   
   <p class="pend"><span class="en">A proposal for living lightly.</span><span class="ko">가볍게 사는 것에 대한 제안.</span></p>
   <nav class="pnav">
-    <a class="pnav-prev" href="officedesign.html"><span class="mono"><span class="en">Previous</span><span class="ko">이전</span></span><span><span class="en">Toun28 Office</span><span class="ko">툴에28 오피스</span></span></a>
-    <a class="pnav-next" href="landscape.html"><span class="mono"><span class="en">Next</span><span class="ko">다음</span></span><span><span class="en">Transbay Transit Center Roof Garden</span><span class="ko">트랜스베이 루프가든</span></span></a>
+    <a class="pnav-prev" href="officedesign.html"><span class="mono">Previous</span><span>Toun28 Office</span></a>
+    <a class="pnav-next" href="landscape.html"><span class="mono">Next</span><span>Transbay Transit Center Roof Garden</span></a>
   </nav>
 </article>
 </main>
 <footer class="foot">
-  <div class="foot-name"><span class="en">Ahran Won</span><span class="ko">원아란</span></div>
+  <div class="foot-name">Ahran Won</div>
   <div class="foot-links">
     <a href="mailto:awonjs@gmail.com">awonjs@gmail.com</a>
-    <a href="../about.html"><span class="en">About</span><span class="ko">소개</span></a>
-    <a href="../index.html#work"><span class="en">Work</span><span class="ko">작업</span></a>
+    <a href="../about.html">About</a>
+    <a href="../index.html#work">Work</a>
   </div>
   <div class="foot-meta"><span class="en">Creative direction across brand, product and built space. Seoul.</span><span class="ko">브랜드·제품·공간의 크리에이티브 디렉션. 서울.</span></div>
 </footer>
