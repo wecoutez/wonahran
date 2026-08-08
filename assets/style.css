@@ -145,7 +145,44 @@ a { color: inherit; }
 }
 .sec-note { max-width: 44ch; margin: 0; color: var(--ink-2); font-size: 0.95rem; line-height: 1.55; }
 
-/* ---------- signature: discipline matrix ---------- */
+/* ---------- signature: the chain ---------- */
+.span {
+  max-width: var(--max); margin: 0 auto;
+  padding: clamp(3rem, 8vh, 5.5rem) var(--pad);
+  border-top: 1px solid var(--rule);
+}
+.span-head { margin-bottom: clamp(1.75rem, 4vw, 2.75rem); max-width: 62ch; }
+.chain {
+  margin: 0 0 clamp(2.25rem, 5vw, 3.25rem);
+  display: flex; flex-wrap: wrap; align-items: baseline;
+  gap: 0.22em 0.34em;
+  font-family: var(--display); font-weight: 800;
+  font-size: clamp(1.45rem, 0.85rem + 2.5vw, 3rem);
+  line-height: 1.2; letter-spacing: -0.038em;
+}
+.chain .link { white-space: nowrap; }
+.chain .arrow {
+  color: var(--print); font-family: var(--body); font-weight: 300;
+  font-size: 0.72em; transform: translateY(-0.04em);
+}
+.span-stats {
+  list-style: none; margin: 0;
+  padding: clamp(1.6rem, 3.5vw, 2.4rem) 0 0;
+  border-top: 1px solid var(--rule);
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem clamp(1rem, 3vw, 2.5rem);
+}
+.span-stats li { display: flex; flex-direction: column; gap: 0.45rem; }
+.span-stats .n {
+  font-family: var(--display); font-weight: 800; line-height: 1;
+  font-size: clamp(1.7rem, 1.1rem + 1.7vw, 2.7rem); letter-spacing: -0.045em;
+}
+.span-stats .l {
+  font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.13em;
+  text-transform: uppercase; color: var(--ink-2);
+}
+
+/* ---------- legacy: discipline matrix (unused) ---------- */
 .matrix {
   max-width: var(--max); margin: 0 auto;
   padding: clamp(2.5rem, 6vh, 4.5rem) var(--pad);
@@ -381,6 +418,7 @@ a { color: inherit; }
 }
 @media (max-width: 600px) {
   .pair { grid-template-columns: 1fr; }
+  .span-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.75rem; }
   .bar-nav { gap: 1rem; }
   .foot-meta { margin-left: 0; flex-basis: 100%; }
   .cards { grid-template-columns: 1fr; }
@@ -470,7 +508,7 @@ html[lang="ko"] .ptext > .ko, html[lang="ko"] .about-body > .ko { display: block
 
 .work { padding-top: 0; }
 .work .group:first-child { border-top: 0; margin-top: 0; padding-top: 0; }
-.matrix { border-top: 1px solid var(--rule); }
+.span { border-top: 1px solid var(--rule); }
 
 /* ---------- project pacing ---------- */
 .gallery + .pgrid, .pvideo + .pgrid { padding-top: clamp(2.5rem, 6vh, 4.5rem); }
