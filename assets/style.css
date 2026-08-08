@@ -246,6 +246,7 @@ a { color: inherit; }
 }
 .phero { margin: 0 0 clamp(2.5rem, 6vh, 4.5rem); padding: 0 var(--pad); }
 .phero img {
+  display: block; width: 100%; height: auto;
   max-width: var(--max); margin: 0 auto; border: 1px solid var(--rule);
   aspect-ratio: var(--plate); object-fit: contain; background: var(--paper-2);
 }
@@ -278,6 +279,7 @@ a { color: inherit; }
 .gallery { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); display: grid; gap: var(--plate-gap); }
 .fig { margin: 0; }
 .fig img {
+  display: block; width: 100%; height: auto;
   border: 1px solid var(--rule);
   aspect-ratio: var(--plate); object-fit: contain; background: var(--paper-2);
 }
@@ -288,6 +290,16 @@ a { color: inherit; }
 /* One plate per row: no neighbour to line up with, so the image keeps its
    own proportions and fills the column edge to edge. */
 .gallery.stack { gap: clamp(1.5rem, 3.5vw, 3rem); }
+
+/* Set label — separates drawn work from built work inside one project. */
+.set-label {
+  max-width: var(--max); margin: 0 auto;
+  padding: clamp(2rem, 5vh, 3.25rem) var(--pad) 0.9rem;
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--ink-2);
+}
+.set-label span { display: inline-block; border-bottom: 1px solid var(--rule); padding-bottom: 0.45rem; }
+.phero + .set-label, .set-label:first-child { padding-top: 0; }
 .gallery.stack .fig img { aspect-ratio: auto; background: transparent; }
 
 .pnav {
@@ -465,14 +477,16 @@ html[lang="ko"] .ptext > .ko, html[lang="ko"] .about-body > .ko { display: block
 .pgrid + .gallery { padding-top: 0; }
 .gallery { padding-bottom: var(--plate-gap); }
 .pend {
-  max-width: var(--max); margin: 0 auto; padding: clamp(2.5rem, 6vh, 4.5rem) var(--pad) 0;
+  max-width: calc(46ch + var(--pad) * 2); margin: 0 auto;
+  padding: clamp(3rem, 7vh, 5.5rem) var(--pad) 0;
   font-family: var(--display); font-weight: 800;
-  font-size: clamp(1.5rem, 1rem + 2.6vw, 3rem);
-  line-height: 1.08; letter-spacing: -0.035em; text-wrap: balance; max-width: 22ch;
+  font-size: clamp(1.55rem, 1rem + 2.4vw, 2.9rem);
+  line-height: 1.1; letter-spacing: -0.035em;
+  text-align: center; text-wrap: balance;
 }
 
 @media (max-width: 860px) {
   .hero-fig img { aspect-ratio: 4 / 5; max-height: 70svh; object-position: 62% 45%; }
   .hero-foot { grid-template-columns: 1fr; gap: 1.5rem; }
-  .pend { max-width: 90%; }
+  .pend { max-width: 100%; }
 }
