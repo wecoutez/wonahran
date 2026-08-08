@@ -17,6 +17,8 @@
   --pad: clamp(1.25rem, 4vw, 4.5rem);
   --max: 1280px;
   --gap: clamp(2.5rem, 6vw, 6rem);
+  --plate: 4 / 3;              /* one ratio for every project image plate */
+  --plate-gap: clamp(1rem, 2.5vw, 2rem);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -89,8 +91,8 @@ a { color: inherit; }
 .hero { margin: 0 0 clamp(3rem, 9vh, 6rem); }
 .hero-fig { margin: 0; }
 .hero-fig img {
-  width: 100%; aspect-ratio: 1620 / 1124; max-height: 78svh;
-  object-fit: cover; object-position: 50% 50%;
+  width: 100%; aspect-ratio: 3 / 2; max-height: 80svh;
+  object-fit: cover; object-position: 50% 42%;
 }
 .hero-fig figcaption {
   max-width: var(--max); margin: 0 auto;
@@ -122,13 +124,18 @@ a { color: inherit; }
   font-size: clamp(1.08rem, 1rem + 0.5vw, 1.4rem);
   line-height: 1.5; color: var(--ink-2);
 }
-.hero-down {
-  display: inline-block; margin-top: clamp(1.5rem, 3vw, 2.25rem);
+.hero-cta {
+  display: inline-flex; align-items: center; gap: 0.75rem;
+  margin-top: clamp(1.5rem, 3vw, 2.25rem);
+  padding: 0.7rem 1.15rem;
   font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.14em;
-  text-transform: uppercase; text-decoration: none; color: var(--ink);
-  border-bottom: 1px solid var(--rule); padding-bottom: 4px;
+  text-transform: uppercase; text-decoration: none;
+  color: var(--ink); border: 1px solid var(--ink);
+  transition: background-color .25s ease, color .25s ease, border-color .25s ease;
 }
-.hero-down:hover { border-bottom-color: var(--print); }
+.hero-cta-arrow { transition: transform .25s cubic-bezier(.2,.8,.2,1); }
+.hero-cta:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.hero-cta:hover .hero-cta-arrow { transform: translateX(4px); }
 
 /* ---------- section furniture ---------- */
 .sec-title {
@@ -238,7 +245,10 @@ a { color: inherit; }
   line-height: 1.5; font-style: italic; color: var(--ink-2);
 }
 .phero { margin: 0 0 clamp(2.5rem, 6vh, 4.5rem); padding: 0 var(--pad); }
-.phero img { max-width: var(--max); margin: 0 auto; border: 1px solid var(--rule); }
+.phero img {
+  max-width: var(--max); margin: 0 auto; border: 1px solid var(--rule);
+  aspect-ratio: var(--plate); object-fit: contain; background: var(--paper-2);
+}
 
 .pgrid {
   max-width: var(--max); margin: 0 auto;
@@ -262,10 +272,23 @@ a { color: inherit; }
   padding-top: 1rem; border-top: 1px solid var(--rule);
 }
 
-.gallery { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); display: grid; gap: clamp(1rem, 2.5vw, 2rem); }
+/* Every plate in a project shares one ratio, so rows line up top and bottom
+   whatever each source image happens to be. contain, not cover — nothing
+   inside a plate gets cropped away. */
+.gallery { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); display: grid; gap: var(--plate-gap); }
 .fig { margin: 0; }
-.fig img { border: 1px solid var(--rule); }
-.pair { display: grid; gap: clamp(1rem, 2.5vw, 2rem); grid-template-columns: 1fr 1fr; }
+.fig img {
+  border: 1px solid var(--rule);
+  aspect-ratio: var(--plate); object-fit: contain; background: var(--paper-2);
+}
+.pair {
+  display: grid; gap: var(--plate-gap);
+  grid-template-columns: 1fr 1fr; align-items: start;
+}
+/* One plate per row: no neighbour to line up with, so the image keeps its
+   own proportions and fills the column edge to edge. */
+.gallery.stack { gap: clamp(1.5rem, 3.5vw, 3rem); }
+.gallery.stack .fig img { aspect-ratio: auto; background: transparent; }
 
 .pnav {
   max-width: var(--max); margin: clamp(3rem, 7vh, 5rem) auto 0;
@@ -361,7 +384,7 @@ a { color: inherit; }
 /* ---------- project film ---------- */
 .pvideo { max-width: var(--max); margin: 0 auto clamp(1rem, 2.5vw, 2rem); padding: 0 var(--pad); }
 .pvideo video {
-  display: block; width: 100%; height: auto;
+  display: block; width: 100%; aspect-ratio: 16 / 9;
   border: 1px solid var(--rule); background: var(--ink);
 }
 .pvideo figcaption {
@@ -440,7 +463,7 @@ html[lang="ko"] .ptext > .ko, html[lang="ko"] .about-body > .ko { display: block
 /* ---------- project pacing ---------- */
 .gallery + .pgrid, .pvideo + .pgrid { padding-top: clamp(2.5rem, 6vh, 4.5rem); }
 .pgrid + .gallery { padding-top: 0; }
-.gallery { padding-bottom: clamp(1rem, 2.5vw, 2rem); }
+.gallery { padding-bottom: var(--plate-gap); }
 .pend {
   max-width: var(--max); margin: 0 auto; padding: clamp(2.5rem, 6vh, 4.5rem) var(--pad) 0;
   font-family: var(--display); font-weight: 800;
@@ -449,7 +472,7 @@ html[lang="ko"] .ptext > .ko, html[lang="ko"] .about-body > .ko { display: block
 }
 
 @media (max-width: 860px) {
-  .hero-fig img { aspect-ratio: 4 / 3; max-height: 62svh; object-position: 58% 50%; }
+  .hero-fig img { aspect-ratio: 4 / 5; max-height: 70svh; object-position: 62% 45%; }
   .hero-foot { grid-template-columns: 1fr; gap: 1.5rem; }
   .pend { max-width: 90%; }
 }
