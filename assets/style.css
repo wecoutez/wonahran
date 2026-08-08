@@ -335,3 +335,49 @@ a { color: inherit; }
   .reveal { opacity: 1; transform: none; }
   .mx.anim .on .dot { transform: scale(1); }
 }
+
+/* ---------- project film ---------- */
+.pvideo { max-width: var(--max); margin: 0 auto clamp(1rem, 2.5vw, 2rem); padding: 0 var(--pad); }
+.pvideo video {
+  display: block; width: 100%; height: auto;
+  border: 1px solid var(--rule); background: var(--ink);
+}
+.pvideo figcaption {
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.07em;
+  text-transform: uppercase; color: var(--ink-2); padding-top: 0.7rem;
+}
+
+/* ---------- password gate ---------- */
+html.gated body > *:not(.gate) { visibility: hidden; }
+html.gated, html.gated body { overflow: hidden; }
+
+.gate {
+  position: fixed; inset: 0; z-index: 200;
+  display: grid; place-items: center;
+  background: var(--paper); padding: var(--pad);
+}
+.gate-box { width: min(30rem, 100%); }
+.gate-name {
+  font-family: var(--display); font-weight: 800;
+  font-size: clamp(2rem, 1.4rem + 2.6vw, 3.2rem);
+  letter-spacing: -0.04em; margin: 0 0 1rem;
+}
+.gate-note { margin: 0 0 1.75rem; color: var(--ink-2); font-size: 0.98rem; line-height: 1.55; }
+.gate-row { display: flex; gap: 0.6rem; }
+.gate-input {
+  flex: 1 1 auto; min-width: 0;
+  font-family: var(--body); font-size: 1rem; color: var(--ink);
+  background: transparent; border: 1px solid var(--rule); border-radius: 0;
+  padding: 0.75rem 0.9rem;
+}
+.gate-input:focus { outline: 2px solid var(--print); outline-offset: 1px; }
+.gate-btn {
+  flex: 0 0 auto; cursor: pointer;
+  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--paper); background: var(--ink); border: 1px solid var(--ink);
+  padding: 0.75rem 1.4rem;
+}
+.gate-btn:hover { background: var(--print); border-color: var(--print); }
+.gate-err { margin: 0.9rem 0 0; color: var(--print); font-size: 0.9rem; }
+.gate-foot { margin: 1.75rem 0 0; font-size: 0.85rem; color: var(--ink-2); }
+.gate-foot a { color: var(--print); }
