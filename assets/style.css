@@ -891,3 +891,4 @@ html[lang="ko"] .about-body, html[lang="ko"] .band-note, html[lang="ko"] .lede {
 .cap { padding-top: 0.7rem; max-width: 62ch; font-size: 0.82rem; line-height: 1.5; color: var(--ink-2); }
 .phero .cap { padding-left: 0; }
 html[lang="ko"] .cap { word-break: keep-all; }
+.conf-tag { font-family: var(--body); text-transform: uppercase; font-size: 0.68rem; letter-spacing: 0.02em; }
