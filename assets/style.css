@@ -829,3 +829,33 @@ body { font-weight: 300; letter-spacing: -0.005em; }
 .band-logo { opacity: .92; }
 .band-logo.tall { height: clamp(1.5rem, 2.2vw, 2rem); }
 .band-logo.flat { height: clamp(0.9rem, 1.25vw, 1.15rem); }
+/* project cards ~20% wider (10% each side); height follows the 3:4 ratio */
+.group .card { flex-basis: clamp(16.2rem, 22.2vw, 24rem); }
+@media (max-width: 700px) { .group .card { flex-basis: 76vw; } }
+/* about: the thesis is the headline */
+.about-title { font-size: clamp(2.6rem, 7vw, 7rem); margin: 0; }
+html[lang="ko"] .about-title .ko { font-family: "Noto Sans KR", var(--display); font-weight: 300; letter-spacing: -0.04em; line-height: 1.05; }
+.about-sub { margin-top: 1.25rem; }
+html[lang="ko"] .about-body, html[lang="ko"] .band-note, html[lang="ko"] .lede { word-break: keep-all; }
+
+/* ---------- hero v3: film + name scale with the window and sit centred ---------- */
+:root {
+  --reel-w: clamp(9.5rem, min(22vw, 32svh), 21rem);
+  --hf: clamp(3.4rem, min(13.5vw, 16svh), 15rem);
+  --compose-h: calc(var(--reel-w) * 0.95 + var(--hf) * 2.6);
+}
+.hero { min-height: min(calc(100svh - 3.2rem), calc(var(--compose-h) + 16rem)); }
+.hero-stage {
+  min-height: 0; flex: 1;
+  display: flex; align-items: center;
+  padding: clamp(2rem, 6svh, 4rem) 0;
+}
+.compose { position: relative; width: 100%; height: var(--compose-h); }
+.compose .fan { top: 0; }
+.compose .hello { top: calc(var(--reel-w) * 0.95); bottom: auto; font-size: var(--hf); }
+@media (max-width: 700px) {
+  :root { --reel-w: 46vw; --hf: 17vw; }
+  .hero-stage { min-height: 0; }
+  .compose .fan { top: 0; left: 30%; }
+  .compose .hello { top: calc(var(--reel-w) * 0.95); font-size: var(--hf); }
+}
