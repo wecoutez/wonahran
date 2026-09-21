@@ -69,7 +69,7 @@
         '</p>' +
         '<div class="gate-fields">' +
           '<input class="gate-input" type="text" name="name" autocomplete="name" ' +
-            'aria-label="Name" placeholder="Name (optional)">' +
+            'aria-label="Name" placeholder="Name">' +
           '<input class="gate-input gate-email" type="email" name="email" ' +
             'autocomplete="email" inputmode="email" aria-label="Email" placeholder="Email">' +
           (REQUIRE_PASSWORD

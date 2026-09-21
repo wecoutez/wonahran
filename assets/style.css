@@ -892,3 +892,55 @@ html[lang="ko"] .about-body, html[lang="ko"] .band-note, html[lang="ko"] .lede {
 .phero .cap { padding-left: 0; }
 html[lang="ko"] .cap { word-break: keep-all; }
 .conf-tag { font-family: var(--body); text-transform: uppercase; font-size: 0.68rem; letter-spacing: 0.02em; }
+
+/* ---------- lightbox ---------- */
+.zoomable { cursor: zoom-in; }
+.lb-on, .lb-on body { overflow: hidden; }
+.lb {
+  position: fixed; inset: 0; z-index: 100;
+  display: grid; grid-template-columns: 4rem minmax(0, 1fr) 4rem; align-items: center;
+  padding: calc(3.5rem + env(safe-area-inset-top, 0px)) 1rem calc(3rem + env(safe-area-inset-bottom, 0px));
+  background: rgba(0, 0, 0, .96);
+}
+.lb[hidden] { display: none; }
+.lb-fig { margin: 0; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.8rem; min-height: 0; }
+.lb-fig img { width: auto; height: auto; max-width: 100%; max-height: calc(100% - 3rem); object-fit: contain; background: none; }
+.lb-cap { max-width: 62ch; text-align: center; font-size: 0.82rem; line-height: 1.5; color: var(--ink-2); }
+.lb button { background: none; border: 0; color: #fff; cursor: pointer; }
+.lb-close {
+  position: absolute; top: calc(1rem + env(safe-area-inset-top, 0px)); right: 1.25rem;
+  font: 400 0.78rem/1 var(--body); text-transform: uppercase; padding: 0.5rem;
+}
+.lb-prev, .lb-next {
+  width: 2.8rem; height: 2.8rem; border-radius: 50%; border: 1px solid #6b6b6b !important;
+  display: grid; place-items: center; justify-self: center;
+}
+.lb-prev svg, .lb-next svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 1.5; }
+.lb-prev:hover, .lb-next:hover { background: #fff; color: #000; }
+.lb-count {
+  position: absolute; left: 0; right: 0; bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+  margin: 0; text-align: center; font-size: 0.72rem; color: var(--ink-2);
+}
+.lb.single .lb-prev, .lb.single .lb-next, .lb.single .lb-count { visibility: hidden; }
+@media (max-width: 700px) {
+  .lb { grid-template-columns: 1fr; padding-left: 0.5rem; padding-right: 0.5rem; }
+  .lb-prev, .lb-next { position: absolute; bottom: calc(0.6rem + env(safe-area-inset-bottom, 0px)); }
+  .lb-prev { left: 1rem; } .lb-next { right: 1rem; }
+}
+
+/* entry form: soft corners on the fields and the button */
+.gate-input { border-radius: 10px; padding-left: 0.95rem; padding-right: 0.95rem; }
+.gate-input:focus { outline-offset: 2px; }
+.gate-btn { border-radius: 10px; }
+/* stack the fields so each one has room, with a full-width button underneath */
+.gate-row { flex-direction: column; align-items: stretch; gap: 0.65rem; }
+.gate-input { width: 100%; font-size: 1rem; padding-top: 0.85rem; padding-bottom: 0.85rem; }
+.gate-btn { width: 100%; padding: 0.95rem 1.4rem; margin-top: 0.25rem; }
+
+/* rounded corners on every project's main image: homepage cards and the top image on each project page */
+:root { --radius-img: 12px; }
+.group .card-img { border-radius: var(--radius-img); overflow: hidden; isolation: isolate; }
+.phero img { width: auto; max-width: 100%; margin: 0 auto; display: block; border-radius: var(--radius-img); }
+.conf-tag.on-card { border-radius: 6px; }
+/* the fanned project cards and the film at the top of the homepage match */
+.sc img, .reel-video { border-radius: var(--radius-img); }
