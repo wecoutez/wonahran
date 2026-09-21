@@ -859,3 +859,35 @@ html[lang="ko"] .about-body, html[lang="ko"] .band-note, html[lang="ko"] .lede {
   .compose .fan { top: 0; left: 30%; }
   .compose .hello { top: calc(var(--reel-w) * 0.95); font-size: var(--hf); }
 }
+
+/* ---------- confidential marker ---------- */
+.conf-tag {
+  display: inline-block; padding: 0.28rem 0.6rem 0.24rem;
+  font-family: "Noto Sans KR", var(--body); font-size: 0.74rem; font-weight: 500; line-height: 1;
+  color: #000; background: #fff; letter-spacing: 0;
+}
+.conf { display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap; margin: 0 0 1.5rem; font-size: 0.86rem; color: var(--ink-2); }
+.conf-text .ko { font-family: "Noto Sans KR", var(--body); }
+.card-img { position: relative; }
+.conf-tag.on-card { position: absolute; top: 0.6rem; left: 0.6rem; z-index: 1; }
+
+/* vertical film on a project page: keep it to the screen height */
+.pvideo.vertical { text-align: center; }
+.pvideo.vertical video { width: auto; max-width: 100%; max-height: 82svh; margin: 0 auto; aspect-ratio: 9 / 16; }
+.pvideo.vertical figcaption { text-align: center; }
+/* portrait character sheets side by side */
+.pair.tall .fig img { aspect-ratio: 3 / 4; object-fit: cover; }
+
+/* the hero film is a link to its project; the sound button stays on top */
+.reel-link { position: absolute; inset: 0; z-index: 2; }
+.reel .reel-sound { z-index: 3; }
+
+/* keep hero-only ".stack" rules off the project galleries that also use class "stack" */
+.gallery.stack { position: static; left: auto; top: auto; width: auto; aspect-ratio: auto; max-width: var(--max); margin: 0 auto; }
+.gallery.stack .fig img { position: static; inset: auto; width: 100%; height: auto; transform: none; animation: none; transform-origin: 50% 50%; }
+/* project hero: show the whole image at its own shape, no letterbox frame */
+.phero img { aspect-ratio: auto; height: auto; max-height: 88svh; object-fit: contain; border: 0; background: transparent; }
+/* image captions on project pages */
+.cap { padding-top: 0.7rem; max-width: 62ch; font-size: 0.82rem; line-height: 1.5; color: var(--ink-2); }
+.phero .cap { padding-left: 0; }
+html[lang="ko"] .cap { word-break: keep-all; }
