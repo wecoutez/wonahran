@@ -766,3 +766,66 @@ body { font-weight: 300; letter-spacing: -0.005em; }
 @media (max-width: 700px) {
   .band-lead { flex-direction: row; align-items: flex-end; justify-content: space-between; }
 }
+
+/* ---------- hero v2: clickable fan + name set over the film ---------- */
+:root { --reel-w: clamp(9.5rem, 17vw, 17rem); }
+.fan {
+  position: absolute; left: 44%; top: 6%; z-index: 1;
+  width: var(--reel-w); aspect-ratio: 9 / 16;
+}
+.fan .stack, .fan .reel { position: absolute; inset: 0; left: 0; top: 0; width: 100%; height: auto; aspect-ratio: auto; margin: 0; }
+.fan .stack { z-index: 0; }
+.fan .reel { z-index: 1; }
+.sc {
+  position: absolute; inset: 0; display: block; color: #fff; text-decoration: none;
+  transform-origin: 50% 90%;
+  transition: transform .7s cubic-bezier(.2,.8,.2,1), filter .3s ease;
+}
+.sc img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: var(--paper-2); transform: none; animation: none; }
+.sc-1 { transform: translate(12%, -4%) rotate(6deg); }
+.sc-2 { transform: translate(24%, -7%) rotate(12deg); }
+.sc-3 { transform: translate(-13%, 3%) rotate(-7deg); }
+.sc-label {
+  position: absolute; left: 0; bottom: -1.9rem; white-space: nowrap;
+  font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0;
+  opacity: 0; transition: opacity .25s ease;
+}
+/* open the fan when the pointer is on it, or a card has keyboard focus */
+.fan:hover .sc-1, .fan:focus-within .sc-1 { transform: translate(64%, 1%) rotate(7deg); }
+.fan:hover .sc-2, .fan:focus-within .sc-2 { transform: translate(122%, 8%) rotate(13deg); }
+.fan:hover .sc-3, .fan:focus-within .sc-3 { transform: translate(-72%, 7%) rotate(-9deg); }
+.fan:hover .sc-label, .fan:focus-within .sc-label { opacity: 1; }
+.fan:hover .sc { filter: brightness(.55); }
+.fan .sc:hover, .fan .sc:focus-visible { filter: none; }
+.sc:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+
+/* the name crosses the lower half of the film, as in the reference */
+.hello { inset: auto 0 auto 0; top: calc(6% + var(--reel-w) * 0.95); bottom: auto; }
+
+/* touch screens have no hover: keep the fan half-open so every card can be tapped */
+@media (hover: none) {
+  .sc-1 { transform: translate(40%, -2%) rotate(7deg); }
+  .sc-2 { transform: translate(78%, 3%) rotate(13deg); }
+  .sc-3 { transform: translate(-44%, 5%) rotate(-8deg); }
+}
+@media (prefers-reduced-motion: reduce) { .sc { transition: none; } }
+@media (max-width: 700px) {
+  :root { --reel-w: 40vw; }
+  .fan { left: 34%; top: 5%; }
+  .hero-stage { min-height: 30rem; }
+  .sc-label { display: none; }
+}
+/* hero v2 tuning: sit the group lower, one label at a time */
+.fan { top: 13%; }
+.hello { top: calc(13% + var(--reel-w) * 0.95); }
+.fan:hover .sc-label, .fan:focus-within .sc-label { opacity: 0; }
+.fan .sc:hover .sc-label, .fan .sc:focus-visible .sc-label { opacity: 1; }
+@media (max-width: 700px) {
+  :root { --reel-w: 46vw; }
+  .fan { left: 30%; top: 14%; }
+  .hello { top: calc(14% + var(--reel-w) * 0.95); font-size: 17vw; }
+}
+/* traced vector logos: one optical size for every mark */
+.band-logo { opacity: .92; }
+.band-logo.tall { height: clamp(1.5rem, 2.2vw, 2rem); }
+.band-logo.flat { height: clamp(0.9rem, 1.25vw, 1.15rem); }
