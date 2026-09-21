@@ -42,3 +42,43 @@
     localStorage.setItem("aw_lang", next);
   });
 })();
+
+/* gallery rails: arrows scroll one card; hidden when everything fits */
+(function () {
+  document.querySelectorAll(".rail").forEach(function (rail) {
+    var list = rail.querySelector(".cards");
+    var prev = rail.querySelector(".prev"), next = rail.querySelector(".next");
+    if (!list || !prev || !next) return;
+    function step() {
+      var c = list.querySelector(".card");
+      return c ? c.getBoundingClientRect().width + parseFloat(getComputedStyle(list).columnGap || 16) : 300;
+    }
+    function sync() {
+      var max = list.scrollWidth - list.clientWidth;
+      rail.classList.toggle("fits", max <= 2);
+      prev.disabled = list.scrollLeft <= 2;
+      next.disabled = list.scrollLeft >= max - 2;
+    }
+    prev.addEventListener("click", function () { list.scrollBy({ left: -step(), behavior: "smooth" }); });
+    next.addEventListener("click", function () { list.scrollBy({ left: step(), behavior: "smooth" }); });
+    list.addEventListener("scroll", sync, { passive: true });
+    window.addEventListener("resize", sync);
+    sync();
+  });
+})();
+
+/* hero film: sound toggle; stays paused for reduced motion */
+(function () {
+  var v = document.querySelector(".reel-video"), b = document.querySelector(".reel-sound");
+  if (!v) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { v.removeAttribute("autoplay"); v.pause(); }
+  if (!b) return;
+  b.addEventListener("click", function () {
+    var on = v.muted;
+    v.muted = !on;
+    if (on) v.play();
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+    b.innerHTML = on ? '<span class="en">Sound off</span><span class="ko">소리 끄기</span>'
+                     : '<span class="en">Sound on</span><span class="ko">소리 켜기</span>';
+  });
+})();

@@ -528,3 +528,241 @@ html[lang="ko"] .ptext > .ko, html[lang="ko"] .about-body > .ko { display: block
   .hero-foot { grid-template-columns: 1fr; gap: 1.5rem; }
   .pend { max-width: 100%; }
 }
+
+/* ======================================================================
+   NOIR — 2026-09 redesign
+   True black ground, one neo-grotesque, type set big and tight.
+   The work supplies all colour; the page supplies none.
+   ====================================================================== */
+:root {
+  --paper:   #000000;
+  --paper-2: #141414;
+  --ink:     #ffffff;
+  --ink-2:   #9a9a9a;
+  --rule:    #2e2e2e;
+  --print:   #ffffff;
+  --display: "Inter Tight", "Helvetica Neue", Helvetica, Arial, "Noto Sans KR", sans-serif;
+  --body:    "Inter Tight", "Helvetica Neue", Helvetica, Arial, "Noto Sans KR", sans-serif;
+  --mono:    "Inter Tight", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --pad: clamp(1rem, 2.2vw, 2rem);
+  --max: 1560px;
+  color-scheme: dark;
+}
+body { font-weight: 300; letter-spacing: -0.005em; }
+.ko { font-family: "Noto Sans KR", var(--body); }
+::selection { background: #fff; color: #000; }
+
+/* small caps-style labels, as in the reference: plain uppercase, no tracking tricks */
+.mono, .eyebrow, .bar-nav a, .lang, .sec-title, .pnav a, .credit, .tb-row dt,
+.set-label, .pvideo figcaption, .about-sub {
+  font-family: var(--mono); font-weight: 400; letter-spacing: 0; font-size: 0.78rem;
+}
+
+/* ---------- bar ---------- */
+.bar {
+  align-items: center; padding: 1.1rem var(--pad);
+  background: #000; border-bottom: 0; backdrop-filter: none;
+}
+.bar-name { font-weight: 400; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0; }
+.bar-nav { align-items: center; gap: clamp(1.1rem, 2.6vw, 2.25rem); }
+.bar-nav a, .lang { color: var(--ink); border: 0; padding: 0; }
+.bar-nav a:hover, .lang:hover { color: var(--ink-2); border: 0; }
+.lang { background: none; cursor: pointer; }
+
+/* ---------- hero ---------- */
+.hero {
+  margin: 0; min-height: calc(100svh - 3.2rem);
+  display: flex; flex-direction: column; overflow: hidden;
+  padding: 0 var(--pad) 1.1rem;
+}
+.hero-stage {
+  position: relative; flex: 1;
+  min-height: clamp(26rem, 78svh, 62rem);
+}
+.stack, .reel {
+  position: absolute; left: 44%; top: 8%;
+  width: clamp(9.5rem, 17vw, 17rem); aspect-ratio: 9 / 16; margin: 0;
+}
+.stack img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; background: var(--paper-2); transform-origin: 30% 100%;
+}
+.stack-back { transform: translate(14%, -6%) rotate(11deg); }
+.stack-mid  { transform: translate(7%, -3%) rotate(5deg); }
+.reel { z-index: 1; }
+.reel-video { position: relative; z-index: 0; }
+.reel-video {
+  display: block; width: 100%; height: 100%; object-fit: cover; background: var(--paper-2);
+}
+.reel-sound {
+  position: absolute; left: 0; bottom: auto; top: 0.6rem; left: 0.6rem; z-index: 3; text-shadow: 0 1px 6px rgba(0,0,0,.6);
+  background: none; border: 0; padding: 0; cursor: pointer;
+  font: 400 0.78rem/1 var(--mono); text-transform: uppercase; color: var(--ink);
+}
+.reel-sound:hover { color: var(--ink-2); }
+
+.hello {
+  position: absolute; inset: auto 0 6% 0; z-index: 2; margin: 0;
+  display: flex; flex-direction: column;
+  font-family: var(--display); font-weight: 300;
+  font-size: clamp(3.4rem, 10.6vw, 13rem);
+  line-height: 0.84; letter-spacing: -0.055em; text-transform: uppercase;
+  pointer-events: none;
+}
+.hl { display: block; white-space: nowrap; }
+.hl-1 { padding-left: 14%; }
+.hl-2 { padding-left: 29%; }
+.hl-3 { padding-left: 45%; }
+
+.hero-base {
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: end; gap: 1rem;
+  font-size: 0.78rem; text-transform: uppercase; line-height: 1.15;
+}
+.hero-base > :last-child { text-align: right; }
+.hero-role { text-align: center; }
+
+/* one orchestrated entrance: the cards fan out, then the name rises */
+@media (prefers-reduced-motion: no-preference) {
+  .stack-back { animation: fanB 1.1s cubic-bezier(.2,.8,.2,1) both .15s; }
+  .stack-mid  { animation: fanM 1.1s cubic-bezier(.2,.8,.2,1) both .05s; }
+  .hl { animation: rise .9s cubic-bezier(.2,.8,.2,1) both; }
+  .hl-1 { animation-delay: .35s; } .hl-2 { animation-delay: .45s; } .hl-3 { animation-delay: .55s; }
+  @keyframes fanB { from { transform: none; } }
+  @keyframes fanM { from { transform: none; } }
+  @keyframes rise { from { opacity: 0; transform: translateY(35%); } }
+}
+
+/* ---------- work: one rail + one band per client ---------- */
+.work { padding: clamp(3rem, 10vh, 7rem) 0 0; }
+.work .group, .group {
+  max-width: none; margin: 0 0 clamp(4rem, 12vh, 8rem); padding: 0; border: 0;
+  display: block;
+}
+.rail { position: relative; }
+.group .cards {
+  display: flex; gap: clamp(0.9rem, 1.6vw, 1.4rem);
+  margin: 0; padding: 0 var(--pad) 0.25rem; list-style: none;
+  overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding: 0 var(--pad);
+  scrollbar-width: none; overscroll-behavior-x: contain;
+  grid-template-columns: none;
+}
+.group .cards::-webkit-scrollbar { display: none; }
+.group .card {
+  flex: 0 0 clamp(13.5rem, 18.5vw, 20rem); scroll-snap-align: start;
+  opacity: 1; transform: none;
+}
+.group .card a { display: block; text-decoration: none; color: var(--ink); }
+.group .card-img {
+  display: block; aspect-ratio: 3 / 4; overflow: hidden; background: var(--paper-2);
+  border: 0; padding: 0;
+}
+.group .card-img img {
+  width: 100%; height: 100%; object-fit: cover; aspect-ratio: auto;
+  transition: transform .6s cubic-bezier(.2,.8,.2,1);
+}
+.group .card a:hover .card-img img { transform: scale(1.035); }
+.group .card-body {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  gap: 0.2rem; padding: 0.95rem 0.5rem 0;
+}
+.group .card-title {
+  font-family: var(--display); font-weight: 400; font-size: 0.82rem;
+  text-transform: uppercase; letter-spacing: 0; line-height: 1.2;
+}
+.group .card-place { letter-spacing: 0; font-size: 0.66rem; text-transform: uppercase; color: var(--ink-2); }
+
+.rail-nav {
+  display: flex; justify-content: flex-end; gap: 0.6rem;
+  padding: 1.25rem var(--pad) 0;
+}
+.rail-btn {
+  width: 2.6rem; height: 2.6rem; border-radius: 50%;
+  display: grid; place-items: center; cursor: pointer;
+  background: none; color: var(--ink); border: 1px solid #6b6b6b;
+  transition: background-color .2s ease, color .2s ease, opacity .2s ease;
+}
+.rail-btn svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 1.5; }
+.rail-btn:hover:not(:disabled) { background: #fff; color: #000; border-color: #fff; }
+.rail-btn:disabled { opacity: .25; cursor: default; }
+.rail.fits .rail-nav { visibility: hidden; }
+
+.band {
+  display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem;
+  margin: clamp(1.25rem, 3vh, 2rem) var(--pad) 0; padding-top: 0.6rem;
+  border-top: 1px solid #3a3a3a;
+}
+.band-n, .band-client {
+  font-family: var(--display); font-weight: 300; line-height: 0.9;
+  letter-spacing: -0.05em; text-transform: uppercase; margin: 0;
+}
+.band-n { font-size: clamp(3.2rem, 7.5vw, 8.5rem); font-variant-numeric: tabular-nums; }
+.band-client { font-size: clamp(2.2rem, 7.5vw, 8.5rem); text-align: right; max-width: 14ch; }
+.band-meta {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2rem;
+  padding: 1rem var(--pad) 0; font-size: 0.86rem; color: var(--ink-2);
+}
+.band-meta p { margin: 0; }
+.band-role .mono { color: var(--ink); margin-right: 0.5rem; font-size: inherit; }
+.band-note { max-width: 44ch; justify-self: end; text-align: right; }
+
+/* ---------- the chain / cta / footer on black ---------- */
+.span, .cta { max-width: none; padding-left: var(--pad); padding-right: var(--pad); }
+.span { border-top: 1px solid #3a3a3a; }
+.chain { font-family: var(--display); font-weight: 300; letter-spacing: -0.03em; }
+.chain .arrow { color: var(--ink-2); }
+.span-stats .n { font-family: var(--display); font-weight: 300; letter-spacing: -0.05em; }
+.cta-link { font-family: var(--display); font-weight: 300; letter-spacing: -0.03em; border-bottom-color: #555; }
+.cta-link:hover { border-bottom-color: #fff; }
+.foot { border-top: 1px solid #3a3a3a; font-size: 0.78rem; text-transform: uppercase; }
+.foot-name { font-weight: 400; letter-spacing: 0; }
+.foot-links a:hover { color: var(--ink-2); }
+.foot-meta { text-transform: none; }
+
+/* ---------- project + about pages on black ---------- */
+.ptitle, .about-title {
+  font-family: var(--display); font-weight: 300; text-transform: uppercase;
+  letter-spacing: -0.05em; line-height: 0.88;
+}
+.titleblock { border-top-color: #fff; }
+.tb-row { border-color: var(--rule); }
+.eyebrow a, .gate-err, .gate-foot a { color: var(--ink); }
+.pnav a:hover { color: var(--ink-2); }
+.fig img, .phero img { background: var(--paper-2); }
+.cv-org { font-weight: 400; }
+.reveal, .reveal.in { opacity: 1; transform: none; }
+
+/* ---------- small screens ---------- */
+@media (max-width: 700px) {
+  .bar-nav a[href$="#work"] { display: none; }
+  .hero { min-height: calc(100svh - 3rem); }
+  .hero-stage { min-height: 34rem; }
+  .stack, .reel { left: 38%; top: 6%; width: 44vw; }
+  .hello { font-size: 16.5vw; bottom: 9%; }
+  .hl-1 { padding-left: 0; } .hl-2 { padding-left: 10%; } .hl-3 { padding-left: 30%; }
+  .hero-base { grid-template-columns: 1fr 1fr; }
+  .hero-base > :first-child { display: none; }
+  .hero-role { text-align: left; }
+  .group .card { flex-basis: 64vw; }
+  .band { flex-direction: column; align-items: stretch; gap: 0.4rem; }
+  .band-client { max-width: none; font-size: 12vw; }
+  .band-n { font-size: 12vw; }
+  .band-meta { grid-template-columns: 1fr; gap: 0.5rem; }
+  .band-note { justify-self: start; text-align: left; }
+}
+.phero img { background: transparent; }
+@media (max-width: 700px) {
+  .hero-stage { min-height: 31rem; }
+  .hello { bottom: 3%; }
+}
+/* heading leads its own work: line, number + client, meta, then the rail */
+.band { margin-top: 0; }
+.group .rail { margin-top: clamp(1.75rem, 4.5vh, 3rem); }
+.work .group, .group { margin-bottom: clamp(5rem, 14vh, 9rem); }
+/* client logos, white on black, under the section number */
+.band-lead { display: flex; flex-direction: column; gap: clamp(0.9rem, 2vw, 1.4rem); align-self: stretch; justify-content: space-between; }
+.band-logo { display: block; width: auto; max-width: 11rem; background: none; }
+.band-logo.tall { height: clamp(1.9rem, 3vw, 2.8rem); }
+.band-logo.flat { height: clamp(0.85rem, 1.3vw, 1.2rem); }
+@media (max-width: 700px) {
+  .band-lead { flex-direction: row; align-items: flex-end; justify-content: space-between; }
+}
