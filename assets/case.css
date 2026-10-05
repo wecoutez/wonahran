@@ -547,3 +547,20 @@ html[lang="ko"] .cv-h .ko, .cv-h .ko { font-family: "Gothic A1", "Noto Sans KR",
 .cs-final-shot { margin-top: clamp(1.4rem, 3vw, 2.4rem) !important; }
 .cs .cs-final-shot img { border-radius: calc(var(--win-r) * .8); }
 @media (max-width: 700px) { .ts-built { grid-template-columns: 1fr; } }
+
+/* Monchhichi: deck cover — pink, dolls bottom-left, brown title card top-right */
+.cs-mon { --sky-2: #fde3ea; }
+.cs-mon .cs-stats li { background: #fde3ea; }
+.cv-mon { background: #E77A91; }
+.cv-mon .cv-art img { object-position: left bottom; }
+.cs-cover.cv-mon .cv-title { left: auto !important; right: 5%; top: 9% !important; bottom: auto; max-width: 40%; display: flex; flex-direction: column; align-items: flex-start; text-align: left;
+  padding: clamp(1rem, 2.4vw, 2rem) clamp(1.1rem, 2.6vw, 2.2rem); background: #5b3a3c; border-radius: 10px; text-shadow: none; }
+.cv-mon .cv-k { order: 1; }
+.cs-cover.cv-mon .cv-logo { order: 2; width: min(30rem, 100%); margin: .7rem 0 .6rem; filter: none; }
+.cv-mon .cv-d { order: 3; }
+@media (max-width: 700px) { .cs-cover.cv-mon .cv-title { left: 5% !important; right: 5%; top: 5% !important; bottom: auto; max-width: none; } }
+.cs-mon-end { background: linear-gradient(180deg, #E77A91 0%, #c98a52 100%) !important; color: #fff; text-align: center; }
+.cs-mon-end .ms-logo { display: block; width: min(30rem, 80%); height: auto; margin: .6rem auto; background: none; }
+.cs-mon-end .cs-kick { color: #fff; font-size: clamp(1rem, 1.6vw, 1.3rem); text-transform: none; }
+.cs .mon-end-kv { margin: clamp(1.4rem, 3vw, 2.4rem) auto 0; max-width: 34rem; }
+.cs .mon-end-kv img { border-radius: 14px; border: 0; box-shadow: 0 30px 60px -30px rgba(60,20,10,.6); }
