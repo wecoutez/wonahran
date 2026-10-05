@@ -532,3 +532,11 @@ html[lang="ko"] .cv-h .ko, .cv-h .ko { font-family: "Gothic A1", "Noto Sans KR",
 .cs-cover.cv-right .cv-logo { margin: 0 0 0.6rem auto; }
 .cs-cover.cv-right .cv-h, .cs-cover.cv-right .cv-h .en, .cs-cover.cv-right .cv-h .ko { font-size: clamp(2rem, 4.4vw, 4.4rem); }
 @media (max-width: 700px) { .cs-cover.cv-right .cv-title { right: 5%; left: 5% !important; max-width: none; } }
+
+/* One Piece: as-built store photos (2 landscape over 3 portrait, no crops) */
+.op-space { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: clamp(0.8rem, 2vw, 1.4rem); }
+.op-space figure { margin: 0; border-radius: 14px; overflow: hidden; }
+.op-space img { display: block; width: 100%; height: auto; }
+.op-space .os-a, .op-space .os-b { grid-column: span 3; }
+.op-space .os-c, .op-space .os-d, .op-space .os-e { grid-column: span 2; }
+@media (max-width: 700px) { .op-space { grid-template-columns: 1fr; } .op-space figure { grid-column: auto !important; } }
