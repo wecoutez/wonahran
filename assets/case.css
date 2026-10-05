@@ -472,3 +472,5 @@ html[lang="ko"] .it figcaption { word-break: keep-all; }
 .cs-space-grid img { aspect-ratio: auto; }
 .cs-space:not(:has(img)) { display: none; }
 @media (max-width: 700px) { .cs-space-grid { grid-template-columns: 1fr; } }
+.cs-space-grid .sp-1 { grid-column: 1 / -1; }
+.cs-space-grid .sp-2 { grid-column: 1 / -1; }
