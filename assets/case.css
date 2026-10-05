@@ -586,3 +586,23 @@ html[lang="ko"] .cv-h .ko, .cv-h .ko { font-family: "Gothic A1", "Noto Sans KR",
   .cs-cover.cv-ts .cv-poster { position: relative; inset: auto; width: 78%; height: auto; margin: 0 auto; order: 1; }
   .cs-cover.cv-ts .cv-title { position: relative; inset: auto !important; left: auto !important; right: auto; top: auto !important; bottom: auto; max-width: none; order: 2; }
 }
+
+/* cover lockup: Baskin-Robbins logo × the IP logo, in place of a typed title */
+.cs-cover .cv-title:has(.cv-lock) { display: flex; flex-direction: column; }
+.cs-cover .cv-title:has(.cv-lock) .cv-k { order: 1; }
+.cs-cover .cv-title:has(.cv-lock) .cv-lock { order: 2; }
+.cs-cover .cv-title:has(.cv-lock) .cv-d { order: 3; }
+.cv-lock { display: flex; align-items: center; gap: clamp(.6rem, 1.4vw, 1.2rem); margin: clamp(.7rem, 1.6vw, 1.2rem) 0; }
+.cv-lock img { display: block; height: auto; background: transparent !important; border: 0 !important; border-radius: 0 !important; }
+.cv-lock .cv-br { width: clamp(11rem, 24vw, 22rem); filter: drop-shadow(0 3px 8px rgba(0,0,0,.25)); }
+.cv-lock .cv-ip { width: clamp(12rem, 30vw, 28rem); filter: drop-shadow(0 6px 12px rgba(0,0,0,.3)); }
+.cv-lock .cv-x { color: #fff; font: 300 clamp(1.6rem, 3vw, 2.6rem)/1 "Inter Tight", sans-serif; text-shadow: 0 2px 10px rgba(0,0,0,.3); }
+.cs-cover.cv-right .cv-title:has(.cv-lock) { align-items: flex-end; }
+.cs-cover.cv-mon .cv-title { align-items: flex-start !important; }
+.cs-cover.cv-mon .cv-lock .cv-ip { width: clamp(12rem, 28vw, 26rem); filter: none; }
+.cs-cover .cv-title:has(.cv-lock) { max-width: 62% !important; }
+@media (max-width: 700px) {
+  .cs-cover.cv-right .cv-title:has(.cv-lock) { align-items: flex-start; }
+  .cv-lock .cv-br { width: 38vw; } .cv-lock .cv-ip { width: 40vw; }
+}
+
