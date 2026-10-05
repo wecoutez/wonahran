@@ -155,3 +155,49 @@
     if (Math.abs(dx) > 40) show(i + (dx < 0 ? 1 : -1));
   });
 })();
+
+/* Contact: a small card with the address, copy, Gmail and mail-app options
+   (a bare mailto does nothing on machines without a mail app) */
+(function () {
+  var EMAIL = "awonjs@gmail.com";
+  var links = document.querySelectorAll('.bar-nav a[href^="mailto:"]');
+  if (!links.length) return;
+  var ko = function () { return document.documentElement.lang === "ko"; };
+  var card = document.createElement("div");
+  card.className = "contact-card"; card.setAttribute("role", "dialog"); card.setAttribute("aria-label", "Contact"); card.hidden = true;
+  card.innerHTML =
+    '<p class="cc-k"><span class="en">Say hello</span><span class="ko">연락하기</span></p>' +
+    '<p class="cc-mail">' + EMAIL + '</p>' +
+    '<div class="cc-row">' +
+      '<button type="button" class="cc-btn cc-copy"><span class="en">Copy</span><span class="ko">복사</span></button>' +
+      '<a class="cc-btn" target="_blank" rel="noopener" href="https://mail.google.com/mail/?view=cm&fs=1&to=' + EMAIL + '">Gmail</a>' +
+      '<a class="cc-btn" href="mailto:' + EMAIL + '"><span class="en">Mail app</span><span class="ko">메일 앱</span></a>' +
+    '</div>' +
+    '<button type="button" class="cc-x" aria-label="Close">×</button>';
+  document.body.appendChild(card);
+  var copyBtn = card.querySelector(".cc-copy");
+  function close() { card.hidden = true; }
+  function open(a) {
+    var r = a.getBoundingClientRect();
+    card.hidden = false;
+    var w = card.offsetWidth;
+    card.style.top = (r.bottom + 12) + "px";
+    card.style.left = Math.max(12, Math.min(window.innerWidth - w - 12, r.right - w)) + "px";
+    copyBtn.focus();
+  }
+  links.forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      e.preventDefault(); e.stopPropagation();
+      if (card.hidden) open(a); else close();
+    });
+  });
+  copyBtn.addEventListener("click", function () {
+    var done = function () { copyBtn.innerHTML = ko() ? "복사됨 ✓" : "Copied ✓"; setTimeout(function () { copyBtn.innerHTML = '<span class="en">Copy</span><span class="ko">복사</span>'; }, 1800); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(EMAIL).then(done, done);
+    else { var t = document.createElement("textarea"); t.value = EMAIL; document.body.appendChild(t); t.select(); try { document.execCommand("copy"); } catch (x) {} t.remove(); done(); }
+  });
+  card.querySelector(".cc-x").addEventListener("click", close);
+  document.addEventListener("click", function (e) { if (!card.hidden && !card.contains(e.target)) close(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
+  window.addEventListener("scroll", close, { passive: true });
+})();
