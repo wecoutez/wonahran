@@ -369,3 +369,6 @@ html[lang="ko"] .flow-k .ko { letter-spacing: -0.02em; font-weight: 600; }
   .js .flow.on .flow-pill { opacity: 1; transform: rotate(-2deg); }
   @keyframes flowdash { to { stroke-dashoffset: -18; } }
 }
+
+/* closing main-scene photo on project pages: portrait shots stay a sensible size */
+.gallery .fig-final { width: min(100%, 980px); margin-left: auto; margin-right: auto; }
