@@ -132,3 +132,14 @@
     });
   }
 })();
+
+/* side-by-side images share one height: each takes width in proportion to its ratio */
+(function () {
+  function fit(img) {
+    var f = img.closest(".pair > .fig");
+    if (f && img.naturalWidth) f.style.setProperty("--ar", (img.naturalWidth / img.naturalHeight).toFixed(4));
+  }
+  document.querySelectorAll(".pair > .fig img").forEach(function (img) {
+    if (img.complete) fit(img); else img.addEventListener("load", function () { fit(img); });
+  });
+})();

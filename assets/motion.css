@@ -312,3 +312,10 @@ html:not([lang="ko"]) .bar .lang .lang-en, html[lang="ko"] .bar .lang .lang-ko {
 .group .card-title { display: block; font-family: "Inter Tight", var(--display); font-weight: 700; font-size: clamp(1.05rem, 0.95rem + 0.5vw, 1.35rem); line-height: 1.2; letter-spacing: -0.02em; color: var(--ink); }
 .group .card-place { display: block; margin-top: 0.35rem; font-size: 0.78rem; letter-spacing: 0.01em; }
 @media (max-width: 700px) { .group .card-title { font-size: 1.1rem; } }
+
+/* ---------- no letterboxing: images at their own proportions ---------- */
+.fig img, .phero img { aspect-ratio: auto !important; height: auto; object-fit: initial; background: transparent !important; }
+.pair { display: flex !important; gap: var(--plate-gap); align-items: flex-start; }
+.pair > .fig { flex: var(--ar, 1) 1 0; min-width: 0; }
+.pair.tall .fig img { aspect-ratio: auto !important; object-fit: initial; }
+@media (max-width: 700px) { .pair { flex-direction: column; } .pair > .fig { flex: none; width: 100%; } }

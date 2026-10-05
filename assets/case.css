@@ -503,3 +503,26 @@ html[lang="ko"] .cv-h .ko, .cv-h .ko { font-family: "Gothic A1", "Noto Sans KR",
 .cv-logo { width: min(26rem, 100%); }
 .cv-ts .cv-title { background: rgba(70,110,150,.6); }
 .cv-ts .cv-h { font-size: clamp(2rem, 4.6vw, 4.4rem); }
+
+/* ---------- no white padding around images ---------- */
+.cs-good { padding: 0; overflow: hidden; }
+.cs-good img, .cs .cs-good img { aspect-ratio: auto !important; height: auto; object-fit: initial; padding: 0 !important; border-radius: 0 !important; }
+.cs-good figcaption { padding: 0 0.9rem 0.9rem; }
+.cs-collage-4 figure img { aspect-ratio: auto; object-fit: initial; padding: 0; }
+.mb-renders figure:nth-child(4) img, .mb-renders figure:nth-of-type(4) img { object-fit: cover; }
+.cs-board img { background: transparent !important; }
+
+/* no numbers: cover numerals and chapter numbers are gone */
+.cv-num, .cs-n { display: none !important; }
+.cs-head { grid-template-columns: 1fr; }
+.cv-h .en, .cv-h .ko { white-space: normal; }
+.cv-lockup { display: block; width: min(26rem, 92%); height: auto; margin-top: 1rem; background: transparent !important; border: 0 !important; filter: drop-shadow(0 4px 10px rgba(0,0,0,.25)); }
+.cv-ts .cv-art img { height: 100% !important; object-position: 50% 50%; }
+.cs-cover.cv-ts .cv-h { font-size: clamp(1.7rem, 3.5vw, 3.3rem); }
+.cs-cover.cv-ts .cv-title { max-width: 42%; }
+.cs-cover.cv-ts .cv-poster { width: 37%; right: 5%; }
+.cs-cover.cv-ts .cv-poster { width: auto; height: 92%; top: 4%; bottom: auto; right: 4%; }
+.cs-cover.cv-ts .cv-h { font-size: clamp(1.6rem, 3.1vw, 3rem); }
+.cs-cover.cv-ts .cv-title { max-width: 46%; }
+.cs-cover.cv-ts .cv-h, .cs-cover.cv-ts .cv-h .en, .cs-cover.cv-ts .cv-h .ko { font-size: clamp(1.6rem, 3vw, 2.9rem); }
+.cs-cover.cv-ts .cv-h, .cs-cover.cv-ts .cv-h .en, .cs-cover.cv-ts .cv-h .ko { font-size: clamp(2rem, 3.4vw, 3.2rem); }
