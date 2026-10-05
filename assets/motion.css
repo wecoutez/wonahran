@@ -1,16 +1,16 @@
 /* ======================================================================
    POP — 2026-10 redesign
    Framed white "windows" on a soft, drifting blue/coral ground.
-   Oxblood ink, one chunky display face, a collage that moves.
+   Black ink, one chunky display face, a collage that moves.
    Loaded after style.css; everything here overrides the NOIR layer.
    ====================================================================== */
 :root {
   --paper:   #ffffff;
   --paper-2: #f1efec;
-  --ink:     #3b0f0d;
-  --ink-2:   #8a6a66;
-  --rule:    #e6dcda;
-  --print:   #3b0f0d;
+  --ink:     #111111;
+  --ink-2:   #5f5f5f;
+  --rule:    #e2e2e2;
+  --print:   #111111;
   --sky:     #d3dee8;
   --coral:   #e9826e;
   --rose:    #d9545a;
@@ -55,7 +55,7 @@ body {
   position: relative; background: #fff; color: var(--ink);
   border: 1.5px solid var(--ink); border-radius: var(--win-r);
   margin: 0 var(--win-m) var(--win-m); overflow: hidden;
-  box-shadow: 0 30px 60px -40px rgba(59,15,13,.45);
+  box-shadow: 0 30px 60px -40px rgba(17,17,17,.45);
 }
 
 /* ---------- bar: a floating pill ---------- */
@@ -130,7 +130,7 @@ body {
 .tl-in {
   display: block; position: relative; transform: rotate(var(--r, 0deg));
   transition: transform .5s var(--spring), box-shadow .4s ease;
-  box-shadow: 0 18px 30px -18px rgba(59,15,13,.45);
+  box-shadow: 0 18px 30px -18px rgba(17,17,17,.45);
 }
 .tl-in > img, .tl-in > video {
   display: block; width: 100%; aspect-ratio: var(--ar, 16/9); object-fit: cover; background: var(--paper-2);
@@ -142,7 +142,7 @@ body {
   transition: opacity .25s ease, transform .35s var(--spring); pointer-events: none;
 }
 .tl:hover, .tl:focus-visible { z-index: 20; }
-.tl:hover .tl-in, .tl:focus-visible .tl-in { transform: rotate(0deg) scale(1.08); box-shadow: 0 30px 50px -20px rgba(59,15,13,.55); }
+.tl:hover .tl-in, .tl:focus-visible .tl-in { transform: rotate(0deg) scale(1.08); box-shadow: 0 30px 50px -20px rgba(17,17,17,.55); }
 .tl:hover .tl-tag, .tl:focus-visible .tl-tag { opacity: 1; transform: translate(-50%, 0) rotate(-2deg); }
 .tl:focus-visible { outline: none; }
 .tl:focus-visible .tl-in { outline: 2px solid var(--ink); outline-offset: 4px; }
@@ -188,7 +188,7 @@ body {
   background: #fff; border: 1.5px solid var(--ink) !important; border-radius: var(--win-r);
   margin: 0 var(--win-m) var(--win-m) !important;
   padding: clamp(1.1rem, 2.6vw, 2.4rem) !important; overflow: hidden;
-  box-shadow: 0 30px 60px -40px rgba(59,15,13,.45);
+  box-shadow: 0 30px 60px -40px rgba(17,17,17,.45);
 }
 .band { align-items: flex-end; }
 .band-n, .band-client { font-family: var(--chunk); font-weight: 400; color: var(--ink); text-transform: uppercase; letter-spacing: -0.02em; line-height: .86; }
@@ -206,7 +206,7 @@ body {
   transform: perspective(900px) rotateX(var(--tx, 0deg)) rotateY(var(--ty, 0deg));
   transition: transform .4s var(--ease), box-shadow .4s ease;
 }
-.group .card a:hover .card-img { box-shadow: 0 24px 40px -24px rgba(59,15,13,.6); }
+.group .card a:hover .card-img { box-shadow: 0 24px 40px -24px rgba(17,17,17,.6); }
 .group .card a:hover .card-img img { transform: scale(1.06); }
 .group .card-title { font-weight: 500; }
 .group .card a:hover .card-title { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
