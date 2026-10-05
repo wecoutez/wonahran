@@ -273,3 +273,60 @@ html[lang="ko"] .cs-h .ko { font-family: "Noto Sans KR", var(--body); font-weigh
   .mb-journey { grid-template-columns: 1fr; }
   .mb-goods { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+
+/* ---------- breathing room on case-study pages ---------- */
+.cs-hero, .cs-sec { padding-left: clamp(1.25rem, 7vw, 8rem); padding-right: clamp(1.25rem, 7vw, 8rem); }
+.cs-hero > :not(.cs-clouds), .cs-sec > * { max-width: 1240px; margin-left: auto; margin-right: auto; }
+.cs-in { padding-left: clamp(1rem, 3vw, 2.5rem); padding-right: clamp(1rem, 3vw, 2.5rem); border-radius: calc(var(--win-r) * .8); border: 1.5px solid var(--ink); }
+
+/* store panels: three photos at their own proportions, same height */
+.cs-store { display: flex; gap: clamp(0.6rem, 1.6vw, 1.2rem); margin-top: clamp(1.4rem, 3vw, 2.4rem); }
+.cs-store figure { flex: var(--f, 1) 1 0; }
+.cs-store figure:nth-child(1) { --f: 0.553; }
+.cs-store figure:nth-child(2) { --f: 0.677; }
+.cs-store figure:nth-child(3) { --f: 1.307; }
+.cs-store img { height: 100%; object-fit: cover; }
+.cs-cap { margin: 0.6rem 0 0; font-size: 0.86rem; color: var(--ink-2); max-width: 60ch; }
+@media (max-width: 600px) { .cs-store { flex-wrap: wrap; } .cs-store figure:nth-child(3) { flex-basis: 100%; } }
+/* goods: show the whole product */
+.cs-good img { aspect-ratio: 4 / 3; object-fit: contain; padding: 0.4rem; }
+
+/* research boards and collages */
+.cs-board img { background: #fff; }
+.cs-gap { margin-top: clamp(1.4rem, 3vw, 2.4rem); }
+.cs-mb { margin-bottom: clamp(1.4rem, 3vw, 2.4rem); }
+.cs-sub-h { margin: clamp(2rem, 5vw, 3.4rem) 0 0.6rem; font-family: var(--chunk); font-weight: 400; text-transform: uppercase; font-size: clamp(1.1rem, 2.2vw, 1.7rem); line-height: 1.05; }
+html[lang="ko"] .cs-sub-h .ko { font-family: "Noto Sans KR", var(--body); font-weight: 500; letter-spacing: -0.03em; }
+.cs-collage { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(0.5rem, 1.4vw, 1rem); }
+.cs-collage figure img { aspect-ratio: 1 / 1; object-fit: cover; }
+.cs-collage-4 figure img { object-fit: contain; background: #fff; padding: 0.4rem; }
+.cs-collage figure:nth-child(odd) { transform: rotate(-1.2deg); }
+.cs-collage figure:nth-child(even) { transform: rotate(1deg); }
+.cs-collage figure { transition: transform .45s var(--spring); }
+.cs-collage figure:hover { transform: scale(1.05) rotate(0); position: relative; z-index: 2; }
+.cs-stats-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-bottom: clamp(1.4rem, 3vw, 2.4rem); }
+@media (max-width: 860px) { .cs-collage { grid-template-columns: repeat(2, minmax(0, 1fr)); } .cs-stats-3 { grid-template-columns: 1fr; } }
+
+/* hero with the main poster */
+.cs-hero-grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: clamp(1rem, 4vw, 3.5rem); align-items: center; margin: clamp(0.6rem, 2vw, 1.4rem) 0 clamp(1rem, 2.4vw, 1.6rem); }
+.cs-hero-grid .cs-title { font-size: clamp(4rem, 12vw, 12rem); margin: 0; }
+.cs-hero-grid .cs-sub { margin-left: 0; margin-right: 0; text-align: left; }
+.cs-poster-main { margin: 0; transform: rotate(2.5deg); }
+.cs-poster-main img { display: block; width: 100%; height: auto; border: 1.5px solid var(--ink); border-radius: calc(var(--win-r) * .6); box-shadow: 10px 12px 0 var(--ink); }
+@media (prefers-reduced-motion: no-preference) {
+  .cs-poster-main { animation: posterIn 1s var(--spring) both .3s; }
+  @keyframes posterIn { from { opacity: 0; transform: translateY(40px) rotate(9deg); } }
+}
+@media (max-width: 760px) { .cs-hero-grid { grid-template-columns: 1fr; } .cs-poster-main { max-width: 26rem; margin: 0 auto; } }
+
+/* board grids (plan slides shown whole) */
+.cs-boards { display: grid; gap: clamp(0.8rem, 2vw, 1.6rem); margin-top: clamp(1.2rem, 3vw, 2.2rem); }
+.cs-boards.cols-1 { grid-template-columns: 1fr; }
+.cs-boards.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.cs-boards.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.cs-boards .cs-board img { cursor: zoom-in; transition: transform .4s var(--spring), box-shadow .3s; }
+.cs-boards .cs-board img:hover { transform: translateY(-4px); box-shadow: 0 20px 30px -18px rgba(59,15,13,.55); }
+.cs-stats + .cs-boards, .cs-lead + .cs-boards { margin-top: clamp(1.2rem, 3vw, 2rem); }
+.cs-lead.narrow + .cs-stats { margin-top: 0; }
+@media (max-width: 700px) { .cs-boards.cols-2, .cs-boards.cols-3 { grid-template-columns: 1fr; } }
+.cs-title-long { font-size: clamp(3rem, 11vw, 11rem); }
