@@ -361,3 +361,12 @@ html[lang="ko"] .cs-sub-h .ko { font-family: "Noto Sans KR", var(--body); font-w
 }
 .cs-ditto .cs-t1 { color: #b48cf5; } .cs-ditto .cs-t2 { color: #f6d21c; }
 .cs-ditto .cs-stats li { background: #efe4ff; }
+
+/* title with an official logo */
+.cs-logo-title { display: flex; flex-direction: column; align-items: center; gap: clamp(0.2rem, 1vw, 0.8rem); }
+.cs-logo { background: transparent !important; display: block; width: min(44rem, 88%); height: auto; filter: drop-shadow(0 10px 0 rgba(0,0,0,.25)); }
+.cs-logo-title .cs-t2 { font-size: clamp(3rem, 10vw, 9.5rem); }
+@media (prefers-reduced-motion: no-preference) {
+  .cs-logo { animation: logoIn 1s var(--spring) both, bob 4s ease-in-out 1s infinite alternate; }
+  @keyframes logoIn { from { opacity: 0; transform: translateY(-30px) scale(.85) rotate(-3deg); } }
+}
