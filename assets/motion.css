@@ -300,3 +300,9 @@ body {
 }
 .project .phero { max-width: calc(var(--max) + var(--pad) * 2); margin-left: auto; margin-right: auto; }
 .project .ptext p, .project .lede { max-width: 62ch; }
+
+/* language switch: an obvious EN | 한국어 pill */
+.bar .lang { display: inline-flex; padding: 3px; gap: 2px; border: 1.5px solid var(--ink) !important; border-radius: 999px; background: #fff; cursor: pointer; }
+.bar .lang .lang-opt { display: inline-block !important; padding: 0.25rem 0.6rem; border-radius: 999px; font-size: 0.74rem; line-height: 1; color: var(--ink); font-family: "Noto Sans KR", var(--body); }
+html:not([lang="ko"]) .bar .lang .lang-en, html[lang="ko"] .bar .lang .lang-ko { background: var(--ink); color: #fff; }
+.bar .lang:hover .lang-opt { opacity: .85; }
