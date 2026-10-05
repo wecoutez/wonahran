@@ -325,3 +325,13 @@ html:not([lang="ko"]) .bar .lang .lang-en, html[lang="ko"] .bar .lang .lang-ko {
 #br .card { flex: none !important; width: auto !important; }
 #br .rail-nav { display: none; }
 @media (max-width: 700px) { #br .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* project chapters on regular project pages */
+.cr-sec { max-width: var(--max); margin: clamp(3rem, 8vw, 6rem) auto 0; }
+.cr-head { padding: 0 var(--pad); margin-bottom: clamp(1.2rem, 3vw, 2rem); border-top: 1.5px solid var(--ink); padding-top: 1.2rem; }
+.cr-kick { margin: 0; font-size: 0.78rem; text-transform: uppercase; color: var(--ink-2); }
+.cr-h { margin: 0.3rem 0 0.5rem; font-family: var(--chunk); font-weight: 400; text-transform: uppercase; font-size: clamp(1.6rem, 4vw, 3.2rem); line-height: .95; color: var(--ink); }
+html[lang="ko"] .cr-h .ko { font-family: "Gothic A1", "Noto Sans KR", sans-serif; font-weight: 800; letter-spacing: -0.04em; }
+.cr-d { margin: 0; max-width: 60ch; color: var(--ink-2); font-size: 1rem; line-height: 1.5; }
+html[lang="ko"] .cr-d { word-break: keep-all; }
+.ptext strong { font-weight: 600; color: var(--ink); }
