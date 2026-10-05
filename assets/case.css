@@ -333,16 +333,20 @@ html[lang="ko"] .cs-sub-h .ko { font-family: "Noto Sans KR", var(--body); font-w
 
 /* per-IP hero backdrops (Toy Story keeps the clouds) */
 .cs-sea .cs-clouds {
-  background-color: #1f7fc4;
+  background-color: #0b4f7d;
   background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='40' viewBox='0 0 160 40'%3E%3Cpath d='M0 20 Q20 4 40 20 T80 20 T120 20 T160 20' fill='none' stroke='%23ffffff' stroke-opacity='.55' stroke-width='3'/%3E%3C/svg%3E"),
-    linear-gradient(180deg, #7fd0f5 0%, #2a8fd4 55%, #135c9c 100%);
-  background-size: 160px 46px, 100% 100%;
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='60' viewBox='0 0 200 60'%3E%3Cpath d='M0 30 Q25 12 50 30 T100 30 T150 30 T200 30' fill='none' stroke='%23e9f8ff' stroke-opacity='.5' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40'%3E%3Cpath d='M0 20 Q15 9 30 20 T60 20 T90 20 T120 20' fill='none' stroke='%237fd6ff' stroke-opacity='.35' stroke-width='2'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse 60% 40% at 70% 0%, rgba(120,220,255,.35), transparent 70%),
+    linear-gradient(180deg, #1683b8 0%, #0b5a8f 45%, #06304f 100%);
+  background-size: 200px 64px, 120px 34px, 100% 100%, 100% 100%;
+  background-position: 0 0, 60px 18px, 0 0, 0 0;
 }
 @media (prefers-reduced-motion: no-preference) {
-  .cs-sea .cs-clouds { animation: waves 14s linear infinite; }
-  @keyframes waves { to { background-position: 160px 0, 0 0; } }
+  .cs-sea .cs-clouds { animation: waves 16s linear infinite; }
+  @keyframes waves { to { background-position: 200px 0, -60px 18px, 0 0, 0 0; } }
 }
+.cs-sea .cs-hero .eyebrow, .cs-sea .cs-hero .eyebrow a { color: #fff; }
 .cs-sea .cs-t1 { color: #e8412f; } .cs-sea .cs-t2 { color: #f6c21c; }
 .cs-ditto .cs-clouds {
   background-color: #b48cf5;
