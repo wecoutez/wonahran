@@ -27,6 +27,16 @@ assets/site.js      Scroll reveals and the matrix animation
 assets/images.tsv   Image manifest used by fetch-images.sh
 ```
 
+## Motion layer (POP, 2026-10)
+
+`assets/motion.css` and `assets/motion.js` load after `style.css` on every page and
+override the NOIR look: framed white windows on a drifting blue/coral ground, Bowlby One
+display type, and a moving collage on the home and About pages.
+
+The four looping clips in the home collage were generated with Higgsfield (Kling 3.0,
+image-to-video, start frame = end frame so they loop) and live in
+`assets/video/loop-*.mp4`, re-encoded to 960px H.264 without audio.
+
 ## Editing
 
 **Text** — edit the HTML directly. Each project page has a `<h1 class="ptitle">`, a
