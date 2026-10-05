@@ -397,3 +397,13 @@ html[lang="ko"] .flow-k .ko { letter-spacing: -0.02em; font-weight: 600; }
 .cc-btn:hover, .cc-btn:focus-visible { background: var(--ink); color: #fff; }
 .cc-copy { background: var(--ink); color: #fff; }
 .cc-x { position: absolute; top: .45rem; right: .6rem; appearance: none; border: 0; background: none; font-size: 1.3rem; line-height: 1; cursor: pointer; color: var(--ink-2); }
+
+/* project headers: the client's logo, not just its name */
+.eyebrow-logo { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
+.eyebrow-logo .brand-logo { transform: scale(1.6); transform-origin: left center; margin-right: calc(var(--lh) * var(--ar) * .6); }
+.eyebrow-logo a { display: inline-flex; align-items: center; gap: .7rem; text-decoration: none; }
+.brand-logo { display: inline-block; height: var(--lh, 1.6rem); aspect-ratio: var(--ar); background: var(--ink);
+  -webkit-mask: var(--logo) center / contain no-repeat; mask: var(--logo) center / contain no-repeat; }
+.eyebrow-logo .lx { font: 300 1.8rem/1 "Inter Tight", sans-serif; color: var(--ink-2); }
+.eyebrow-logo img.ip-logo { height: 3.4rem; width: auto; background: none; display: block; }
+.eyebrow-logo .lx-name { font: 800 1.9rem/1 "Inter Tight", sans-serif; letter-spacing: .02em; color: var(--ink); }
