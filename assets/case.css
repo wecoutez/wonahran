@@ -526,3 +526,9 @@ html[lang="ko"] .cv-h .ko, .cv-h .ko { font-family: "Gothic A1", "Noto Sans KR",
 .cs-cover.cv-ts .cv-title { max-width: 46%; }
 .cs-cover.cv-ts .cv-h, .cs-cover.cv-ts .cv-h .en, .cs-cover.cv-ts .cv-h .ko { font-size: clamp(1.6rem, 3vw, 2.9rem); }
 .cs-cover.cv-ts .cv-h, .cs-cover.cv-ts .cv-h .en, .cs-cover.cv-ts .cv-h .ko { font-size: clamp(2rem, 3.4vw, 3.2rem); }
+
+/* Pokemon cover: title block on the right, clear of the characters */
+.cs-cover.cv-right .cv-title { left: auto !important; right: 5%; top: auto !important; bottom: 10%; max-width: 46%; text-align: right; }
+.cs-cover.cv-right .cv-logo { margin: 0 0 0.6rem auto; }
+.cs-cover.cv-right .cv-h, .cs-cover.cv-right .cv-h .en, .cs-cover.cv-right .cv-h .ko { font-size: clamp(2rem, 4.4vw, 4.4rem); }
+@media (max-width: 700px) { .cs-cover.cv-right .cv-title { right: 5%; left: 5% !important; max-width: none; } }
