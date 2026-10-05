@@ -373,3 +373,34 @@ html[lang="ko"] .cs-sub-h .ko { font-family: "Noto Sans KR", var(--body); font-w
 
 /* titles stay still */
 .cs-title, .cs-title span, .cs-logo { animation: none !important; translate: none !important; }
+
+/* ---------- finale: the whole line-up lands at once ---------- */
+.cs-finale { background: radial-gradient(ellipse 80% 60% at 50% 40%, #1d6fa8, #082a45 75%); color: #fff; overflow: hidden; }
+.cs-finale .ms-head { text-align: center; max-width: 52rem; margin: 0 auto clamp(0.6rem, 2vw, 1.4rem); }
+.cs-finale .cs-kick { color: rgba(255,255,255,.7); }
+.cs-finale .cs-h { color: #fff; }
+.cs-finale .ms-logo { display: block; width: min(24rem, 60%); height: auto; margin: 0.6rem auto 0.4rem; background: transparent !important; }
+.ms-sub { margin: 0.8rem auto 0; max-width: 46ch; color: rgba(255,255,255,.8); font-size: clamp(0.95rem, 0.9rem + 0.3vw, 1.15rem); line-height: 1.5; }
+.ms-stage { position: relative; width: 100%; max-width: 1240px; margin: 0 auto; aspect-ratio: 100 / 64; }
+.ms-i {
+  position: absolute; left: var(--x); top: var(--y); width: var(--w); height: auto;
+  background: transparent !important; border: 0 !important; border-radius: 0 !important;
+  transform: rotate(var(--r)); filter: drop-shadow(0 14px 18px rgba(0,0,0,.45));
+  transition: transform .45s var(--spring), filter .3s;
+}
+.ms-i:hover { transform: rotate(0deg) scale(1.12); z-index: 5; filter: drop-shadow(0 22px 26px rgba(0,0,0,.55)); }
+@media (prefers-reduced-motion: no-preference) {
+  .js .cs-finale .ms-i { opacity: 0; transform: translate(calc(50vw * 0 + (50% - var(--x)) * 4), 40%) scale(.2) rotate(calc(var(--r) * 6)); }
+  .js .cs-finale.in .ms-i {
+    opacity: 1; transform: rotate(var(--r));
+    transition: opacity .35s ease, transform .9s var(--spring);
+    transition-delay: calc(var(--k) * 55ms + 250ms);
+  }
+  .js .cs-finale.in .ms-i:hover { transform: rotate(0deg) scale(1.12); transition-delay: 0s; }
+}
+@media (max-width: 700px) {
+  .ms-stage { aspect-ratio: auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; align-items: center; }
+  .ms-i { position: static; width: 100%; }
+}
+.cs-ditto .cs-finale { background: radial-gradient(ellipse 80% 60% at 50% 40%, #b48cf5, #3d1f6e 78%); }
+.cs-finale.ms-ts { background: radial-gradient(ellipse 80% 60% at 50% 40%, #7fcbe8, #1d4f7a 78%); }
