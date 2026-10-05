@@ -289,3 +289,14 @@ body {
   .bar { top: 0.4rem; margin-top: 0.4rem; }
   .mq { transform: none; border-radius: 22px; }
 }
+
+/* ---------- breathing room on project pages ---------- */
+.project {
+  --pad: clamp(1.25rem, 7vw, 8rem);
+  --max: 1240px;
+}
+.project .phead, .project .pgrid, .project .pnav, .project .pvideo {
+  max-width: var(--max); margin-left: auto; margin-right: auto;
+}
+.project .phero { max-width: calc(var(--max) + var(--pad) * 2); margin-left: auto; margin-right: auto; }
+.project .ptext p, .project .lede { max-width: 62ch; }
