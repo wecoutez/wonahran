@@ -503,3 +503,16 @@ html[lang="ko"] .cv-h .ko, .cv-h .ko { font-family: "Gothic A1", "Noto Sans KR",
 .cv-logo { width: min(26rem, 100%); }
 .cv-ts .cv-title { background: rgba(70,110,150,.6); }
 .cv-ts .cv-h { font-size: clamp(2rem, 4.6vw, 4.4rem); }
+
+/* ---------- no white padding around images ---------- */
+.cs-good { padding: 0; overflow: hidden; }
+.cs-good img, .cs .cs-good img { aspect-ratio: auto !important; height: auto; object-fit: initial; padding: 0 !important; border-radius: 0 !important; }
+.cs-good figcaption { padding: 0 0.9rem 0.9rem; }
+.cs-collage-4 figure img { aspect-ratio: auto; object-fit: initial; padding: 0; }
+.mb-renders figure:nth-child(4) img, .mb-renders figure:nth-of-type(4) img { object-fit: cover; }
+.cs-board img { background: transparent !important; }
+
+/* no numbers: cover numerals and chapter numbers are gone */
+.cv-num, .cs-n { display: none !important; }
+.cs-head { grid-template-columns: 1fr; }
+.cv-h .en, .cv-h .ko { white-space: normal; }
