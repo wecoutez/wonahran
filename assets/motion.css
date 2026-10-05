@@ -379,3 +379,21 @@ html[lang="ko"] .flow-k .ko { letter-spacing: -0.02em; font-weight: 600; }
 /* render → built: the built photo gets the bigger share */
 .pair.match > .fig:first-child { flex: 1.35 1 0 !important; align-self: center; }
 .pair.match > .fig:last-child { flex: 1 1 0 !important; }
+
+/* ---------- contact card ---------- */
+.contact-card {
+  position: fixed; z-index: 80; width: min(20rem, calc(100vw - 24px));
+  padding: 1rem 1.1rem 1.1rem; background: #fff; color: var(--ink);
+  border: 1.5px solid var(--ink); border-radius: 18px; box-shadow: 5px 5px 0 var(--ink);
+}
+.contact-card[hidden] { display: none; }
+.cc-k { margin: 0; font-size: .74rem; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-2); }
+.cc-mail { margin: .25rem 0 .8rem; font-family: "Inter Tight", var(--body); font-weight: 700; font-size: 1.15rem; letter-spacing: -0.01em; word-break: break-all; }
+.cc-row { display: flex; flex-wrap: wrap; gap: .45rem; }
+.cc-btn {
+  appearance: none; font: inherit; font-size: .84rem; font-weight: 600; cursor: pointer;
+  padding: .45rem .85rem; border: 1.5px solid var(--ink); border-radius: 999px; background: #fff; color: var(--ink); text-decoration: none;
+}
+.cc-btn:hover, .cc-btn:focus-visible { background: var(--ink); color: #fff; }
+.cc-copy { background: var(--ink); color: #fff; }
+.cc-x { position: absolute; top: .45rem; right: .6rem; appearance: none; border: 0; background: none; font-size: 1.3rem; line-height: 1; cursor: pointer; color: var(--ink-2); }
