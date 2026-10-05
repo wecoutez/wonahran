@@ -474,3 +474,18 @@ html[lang="ko"] .it figcaption { word-break: keep-all; }
 @media (max-width: 700px) { .cs-space-grid { grid-template-columns: 1fr; } }
 .cs-space-grid .sp-1 { grid-column: 1 / -1; }
 .cs-space-grid .sp-2 { grid-column: 1 / -1; }
+
+/* Toy Story cover, as in the deck */
+.cv-ts .cv-art img { object-fit: cover; object-position: 50% 30%; }
+.cv-ts .cv-num { left: 3%; top: auto; bottom: -8%; translate: none; font-size: clamp(14rem, 50vw, 42rem); }
+.cv-ts .cv-title { top: 8%; left: 4%; bottom: auto; max-width: 46%; background: rgba(90,130,170,.55); border-radius: 6px; padding: 1rem 1.4rem 1.1rem; backdrop-filter: none; }
+.cv-ts .cv-h { font-size: clamp(1.8rem, 4.2vw, 4rem); }
+.cv-ts .cv-poster { right: 3%; top: 3%; bottom: 3%; height: auto; width: auto; aspect-ratio: 900 / 1125; transform: rotate(2.5deg); }
+@media (max-width: 700px) { .cv-ts .cv-poster { top: 30%; bottom: 3%; right: 4%; } .cv-ts .cv-title { top: 4%; bottom: auto; } }
+.cv-ts .cv-art img { height: 122%; object-position: 50% 0; }
+.cv-ts .cv-num { left: -3%; top: 14%; bottom: auto; font-size: clamp(16rem, 60vw, 52rem); z-index: 1; }
+.cv-ts .cv-title { left: 0; top: 7%; border-radius: 0; padding: 1.1rem 1.6rem 1.2rem 4%; max-width: 44%; background: rgba(70,110,150,.62); z-index: 2; }
+.cv-ts .cv-h { font-weight: 700; letter-spacing: -0.04em; }
+.cv-ts .cv-d { font-weight: 500; opacity: .95; }
+.cs-cover.cv-ts .cv-title { left: 0 !important; top: 7% !important; }
+.cs-cover.cv-ts .cv-num { font-size: clamp(13rem, 42vw, 36rem); top: 17%; left: -1%; }
