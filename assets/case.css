@@ -608,3 +608,14 @@ html[lang="ko"] .cv-h .ko, .cv-h .ko { font-family: "Gothic A1", "Noto Sans KR",
 
 .cs-finale.ms-mon { background: radial-gradient(ellipse 80% 70% at 50% 35%, #f6a9b8, #c9784f 85%) !important; }
 .ms-mon .ms-logo { width: min(26rem, 70%); }
+
+/* Monchhichi cover v2: the friends on the meadow, lockup in the sky top-left */
+.cs-cover.cv-mon .cv-title { left: 4% !important; right: auto; top: 7% !important; bottom: auto; max-width: 52% !important;
+  background: none; padding: 0; text-shadow: 0 2px 12px rgba(80,40,120,.35); }
+.cs-cover.cv-mon .cv-art img { object-position: 60% 60%; }
+.cs-cover.cv-mon .cv-lock .cv-br { filter: drop-shadow(0 3px 10px rgba(80,40,120,.45)); }
+.cs-cover.cv-mon .cv-lock .cv-ip { filter: drop-shadow(0 6px 14px rgba(80,40,120,.35)); }
+@media (max-width: 700px) { .cs-cover.cv-mon .cv-title { left: 5% !important; right: 5%; top: 5% !important; max-width: none !important; } }
+.cs-cover.cv-mon .cv-lock .cv-br { width: clamp(8rem, 15vw, 14rem); }
+.cs-cover.cv-mon .cv-lock .cv-ip { width: clamp(9rem, 19vw, 17rem); }
+@media (max-width: 700px) { .cs-cover.cv-mon .cv-lock .cv-br { width: 34vw; } .cs-cover.cv-mon .cv-lock .cv-ip { width: 40vw; } }

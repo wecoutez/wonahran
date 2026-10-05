@@ -407,3 +407,10 @@ html[lang="ko"] .flow-k .ko { letter-spacing: -0.02em; font-weight: 600; }
 .eyebrow-logo .lx { font: 300 1.8rem/1 "Inter Tight", sans-serif; color: var(--ink-2); }
 .eyebrow-logo img.ip-logo { height: 3.4rem; width: auto; background: none; display: block; }
 .eyebrow-logo .lx-name { font: 800 1.9rem/1 "Inter Tight", sans-serif; letter-spacing: .02em; color: var(--ink); }
+
+/* ---------- zoomed out: project windows sit narrower, with the ground showing around them ---------- */
+@media (min-width: 900px) {
+  .project, .cs main > .win, .cs main > .flow { max-width: 1180px; margin-left: auto; margin-right: auto; }
+  .project { --pad: clamp(1.25rem, 5vw, 5rem); --max: 1060px; }
+  .cs main > .win.cs-sec { padding-left: clamp(1.25rem, 5vw, 5rem); padding-right: clamp(1.25rem, 5vw, 5rem); }
+}
