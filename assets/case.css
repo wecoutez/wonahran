@@ -606,3 +606,5 @@ html[lang="ko"] .cv-h .ko, .cv-h .ko { font-family: "Gothic A1", "Noto Sans KR",
   .cv-lock .cv-br { width: 38vw; } .cv-lock .cv-ip { width: 40vw; }
 }
 
+.cs-finale.ms-mon { background: radial-gradient(ellipse 80% 70% at 50% 35%, #f6a9b8, #c9784f 85%) !important; }
+.ms-mon .ms-logo { width: min(26rem, 70%); }
