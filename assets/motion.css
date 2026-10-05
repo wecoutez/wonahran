@@ -416,3 +416,11 @@ html[lang="ko"] .flow-k .ko { letter-spacing: -0.02em; font-weight: 600; }
   .project { --pad: clamp(1.25rem, 5vw, 5rem); --max: 1060px; }
   .cs main > .win.cs-sec { padding-left: clamp(1.25rem, 5vw, 5rem); padding-right: clamp(1.25rem, 5vw, 5rem); }
 }
+
+/* project-page stat strip */
+.pstats { list-style: none; max-width: var(--max); margin: clamp(1.4rem, 3vw, 2.4rem) auto 0; padding: 0 var(--pad);
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(.6rem, 1.4vw, 1rem); }
+.pstats li { border: 1.5px solid var(--ink); border-radius: 16px; padding: .9rem 1rem; background: var(--paper-2); }
+.pstats b { display: block; font: 900 clamp(1.1rem, 2vw, 1.6rem)/1.05 "Inter Tight", var(--body); letter-spacing: -0.02em; }
+.pstats span { display: block; margin-top: .35rem; font-size: .84rem; line-height: 1.4; color: var(--ink-2); }
+@media (max-width: 760px) { .pstats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
