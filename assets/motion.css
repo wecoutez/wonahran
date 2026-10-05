@@ -22,7 +22,7 @@
   color-scheme: light;
 }
 
-html { background: var(--sky); }
+html { background: var(--sky); overflow-x: clip; }
 body {
   background: transparent; color: var(--ink);
   position: relative; isolation: isolate; overflow-x: hidden;

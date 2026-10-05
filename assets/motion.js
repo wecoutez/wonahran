@@ -46,7 +46,7 @@
   window.addEventListener("resize", fit);
 
   /* collage videos: play only when visible */
-  var vids = [].slice.call(document.querySelectorAll(".tl video"));
+  var vids = [].slice.call(document.querySelectorAll(".tl video, .cs-vid"));
   if (reduce) {
     vids.forEach(function (v) { v.removeAttribute("autoplay"); v.pause(); });
   } else if (io && vids.length) {
@@ -61,7 +61,7 @@
   }
 
   /* window reveals */
-  var rv = [].slice.call(document.querySelectorAll(".group, .span, .cta, .about, .cv, .mq"));
+  var rv = [].slice.call(document.querySelectorAll(".group, .span, .cta, .about, .cv, .mq, .cs-sec"));
   rv.forEach(function (el) {
     el.classList.add("rv");
     el.querySelectorAll(".card").forEach(function (c, k) { c.style.setProperty("--k", k); });
