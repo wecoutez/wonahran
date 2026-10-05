@@ -85,7 +85,7 @@
 
 /* lightbox: every image on a project page opens large; arrows, keys and swipe move between them */
 (function () {
-  var sel = ".project .phero img, .project .fig img";
+  var sel = ".project .phero img, .project .fig img, .cs-board img, .cs figure:not(.cs-hero-film):not(.cs-poster-main) img";
   var imgs = [].slice.call(document.querySelectorAll(sel));
   if (!imgs.length) return;
 

@@ -318,3 +318,15 @@ html[lang="ko"] .cs-sub-h .ko { font-family: "Noto Sans KR", var(--body); font-w
   @keyframes posterIn { from { opacity: 0; transform: translateY(40px) rotate(9deg); } }
 }
 @media (max-width: 760px) { .cs-hero-grid { grid-template-columns: 1fr; } .cs-poster-main { max-width: 26rem; margin: 0 auto; } }
+
+/* board grids (plan slides shown whole) */
+.cs-boards { display: grid; gap: clamp(0.8rem, 2vw, 1.6rem); margin-top: clamp(1.2rem, 3vw, 2.2rem); }
+.cs-boards.cols-1 { grid-template-columns: 1fr; }
+.cs-boards.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.cs-boards.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.cs-boards .cs-board img { cursor: zoom-in; transition: transform .4s var(--spring), box-shadow .3s; }
+.cs-boards .cs-board img:hover { transform: translateY(-4px); box-shadow: 0 20px 30px -18px rgba(59,15,13,.55); }
+.cs-stats + .cs-boards, .cs-lead + .cs-boards { margin-top: clamp(1.2rem, 3vw, 2rem); }
+.cs-lead.narrow + .cs-stats { margin-top: 0; }
+@media (max-width: 700px) { .cs-boards.cols-2, .cs-boards.cols-3 { grid-template-columns: 1fr; } }
+.cs-title-long { font-size: clamp(3rem, 11vw, 11rem); }
