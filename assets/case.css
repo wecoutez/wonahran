@@ -619,3 +619,15 @@ html[lang="ko"] .cv-h .ko, .cv-h .ko { font-family: "Gothic A1", "Noto Sans KR",
 .cs-cover.cv-mon .cv-lock .cv-br { width: clamp(8rem, 15vw, 14rem); }
 .cs-cover.cv-mon .cv-lock .cv-ip { width: clamp(9rem, 19vw, 17rem); }
 @media (max-width: 700px) { .cs-cover.cv-mon .cv-lock .cv-br { width: 34vw; } .cs-cover.cv-mon .cv-lock .cv-ip { width: 40vw; } }
+
+/* covers: "campaign plan" reads as a clear badge, not a whisper */
+.cs-cover .cv-title:has(.cv-lock) .cv-k {
+  display: inline-block; align-self: flex-start; padding: .45rem 1rem; border-radius: 999px;
+  background: #fff; color: var(--ink); text-shadow: none; opacity: 1;
+  font: 700 clamp(0.95rem, 1.5vw, 1.25rem)/1.1 "Inter Tight", var(--body); letter-spacing: .01em;
+  box-shadow: 3px 3px 0 var(--ink); border: 1.5px solid var(--ink);
+}
+.cs-cover.cv-right .cv-title:has(.cv-lock) .cv-k { align-self: flex-end; }
+.cs-cover .cv-title:has(.cv-lock) .cv-d { font-size: clamp(0.85rem, 1.2vw, 1.05rem); opacity: 1; font-weight: 500; }
+.cs-cover.cv-mon .cv-lock .cv-ip { width: clamp(9rem, 18vw, 16rem); filter: drop-shadow(0 4px 10px rgba(80,40,120,.35)); }
+@media (max-width: 700px) { .cs-cover.cv-right .cv-title:has(.cv-lock) .cv-k { align-self: flex-start; } }
