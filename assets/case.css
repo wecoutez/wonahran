@@ -370,3 +370,6 @@ html[lang="ko"] .cs-sub-h .ko { font-family: "Noto Sans KR", var(--body); font-w
   .cs-logo { animation: logoIn 1s var(--spring) both, bob 4s ease-in-out 1s infinite alternate; }
   @keyframes logoIn { from { opacity: 0; transform: translateY(-30px) scale(.85) rotate(-3deg); } }
 }
+
+/* titles stay still */
+.cs-title, .cs-title span, .cs-logo { animation: none !important; translate: none !important; }
