@@ -489,3 +489,17 @@ html[lang="ko"] .it figcaption { word-break: keep-all; }
 .cv-ts .cv-d { font-weight: 500; opacity: .95; }
 .cs-cover.cv-ts .cv-title { left: 0 !important; top: 7% !important; }
 .cs-cover.cv-ts .cv-num { font-size: clamp(13rem, 42vw, 36rem); top: 17%; left: -1%; }
+
+/* ---------- cover titles: set on the image, deck-like type ---------- */
+.cv-title { text-shadow: 0 2px 2px rgba(0,0,0,.18), 0 6px 24px rgba(0,0,0,.35); }
+.cv-h, .cv-h .en { font-family: "Inter Tight", var(--display); font-weight: 800; letter-spacing: -0.035em; line-height: 1.02; font-size: clamp(2.2rem, 5.4vw, 5.4rem); }
+html[lang="ko"] .cv-h .ko, .cv-h .ko { font-family: "Gothic A1", "Noto Sans KR", sans-serif; font-weight: 800; letter-spacing: -0.06em; line-height: 1.12; }
+.cv-k { font-family: "Gothic A1", "Inter Tight", sans-serif; font-weight: 700; font-size: clamp(0.9rem, 1.4vw, 1.2rem); letter-spacing: -0.01em; }
+.cv-d { font-family: "Gothic A1", "Inter Tight", sans-serif; font-weight: 700; font-size: clamp(0.78rem, 1.05vw, 0.98rem); }
+.cs-cover:not(.cv-ts) .cv-title { background: none !important; backdrop-filter: none !important; padding: 0; }
+.cv-left:not(.cv-ts) .cv-title { left: 5%; bottom: 10%; max-width: 50%; }
+.cv-right .cv-title { left: 30%; top: 30%; max-width: 44%; }
+.cv-right .cv-h { font-size: clamp(2.4rem, 6vw, 6rem); }
+.cv-logo { width: min(26rem, 100%); }
+.cv-ts .cv-title { background: rgba(70,110,150,.6); }
+.cv-ts .cv-h { font-size: clamp(2rem, 4.6vw, 4.4rem); }

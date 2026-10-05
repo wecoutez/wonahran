@@ -306,3 +306,9 @@ body {
 .bar .lang .lang-opt { display: inline-block !important; padding: 0.25rem 0.6rem; border-radius: 999px; font-size: 0.74rem; line-height: 1; color: var(--ink); font-family: "Noto Sans KR", var(--body); }
 html:not([lang="ko"]) .bar .lang .lang-en, html[lang="ko"] .bar .lang .lang-ko { background: var(--ink); color: #fff; }
 .bar .lang:hover .lang-opt { opacity: .85; }
+
+/* project cards: titles readable at a glance */
+.group .card-body { padding-top: 0.9rem; }
+.group .card-title { display: block; font-family: "Inter Tight", var(--display); font-weight: 700; font-size: clamp(1.05rem, 0.95rem + 0.5vw, 1.35rem); line-height: 1.2; letter-spacing: -0.02em; color: var(--ink); }
+.group .card-place { display: block; margin-top: 0.35rem; font-size: 0.78rem; letter-spacing: 0.01em; }
+@media (max-width: 700px) { .group .card-title { font-size: 1.1rem; } }
