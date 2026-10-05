@@ -356,24 +356,16 @@ html[lang="ko"] .cr-d { word-break: keep-all; }
 }
 .flow-pill b {
   display: inline-flex; align-items: center; justify-content: center; white-space: nowrap; min-width: 3.1rem; height: 1.9rem; padding: 0 .6rem;
-  border-radius: 999px; background: #ff4f9a; color: #fff; font-family: var(--chunk); font-weight: 400; font-size: 1rem; letter-spacing: 0;
+  border-radius: 999px; background: var(--ink); color: #fff; font-family: var(--chunk); font-weight: 400; font-size: 1rem; letter-spacing: 0;
 }
 .flow-pill b em { font-style: normal; opacity: .7; font-size: .7rem; margin-left: .1rem; }
 html[lang="ko"] .flow-k .ko { letter-spacing: -0.02em; font-weight: 600; }
-.flow-arrow {
-  position: absolute; left: 50%; bottom: -14px; width: clamp(46px, 4.4vw, 62px); height: auto;
-  margin-left: calc(clamp(46px, 4.4vw, 62px) / -2); background: none;
-}
 .flow-first { height: clamp(110px, 11vw, 150px); }
 .flow-cr { margin: clamp(2rem, 5vw, 3.5rem) auto calc(clamp(3rem, 8vw, 6rem) * -1 + 1rem); }
-.flow-cr .flow-arrow { bottom: -6px; }
 @media (prefers-reduced-motion: no-preference) {
   .js .flow .flow-path path { stroke-dashoffset: 60; transition: stroke-dashoffset 1.6s ease; }
   .js .flow .flow-pill { opacity: 0; transform: translateY(14px) rotate(4deg) scale(.9); transition: opacity .5s ease .15s, transform .7s var(--spring) .15s; }
-  .js .flow .flow-arrow { opacity: 0; transform: translateY(-16px); transition: opacity .4s ease .35s, transform .6s var(--spring) .35s; }
   .js .flow.on .flow-path path { stroke-dashoffset: 0; animation: flowdash 2.4s linear infinite; }
   .js .flow.on .flow-pill { opacity: 1; transform: rotate(-2deg); }
-  .js .flow.on .flow-arrow { opacity: 1; transform: none; animation: flowbob 1.8s ease-in-out 1s infinite; }
   @keyframes flowdash { to { stroke-dashoffset: -18; } }
-  @keyframes flowbob { 50% { transform: translateY(6px); } }
 }

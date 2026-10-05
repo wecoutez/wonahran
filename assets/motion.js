@@ -158,8 +158,7 @@
     f.className = "flow" + (s.classList.contains("cr-sec") ? " flow-cr" : "");
     f.setAttribute("aria-hidden", "true");
     f.innerHTML = '<svg class="flow-path" viewBox="0 0 40 200" preserveAspectRatio="none"><path d="M20 0 C 36 50, 4 110, 20 200"/></svg>' +
-      '<span class="flow-pill"><b>' + pad(i + 1) + '<i>/' + pad(total) + '</i></b>' + (k ? '<span class="flow-k">' + k.innerHTML + '</span>' : '') + '</span>' +
-      '<img class="flow-arrow" src="' + (document.querySelector('link[href*="motion.css"]').getAttribute("href").replace(/motion\.css.*$/, "img/flow-arrow.png")) + '" alt="" />';
+      '<span class="flow-pill"><b>' + pad(i + 1) + '<i>/' + pad(total) + '</i></b>' + (k ? '<span class="flow-k">' + k.innerHTML + '</span>' : '') + '</span>';
     if (i === 0) f.classList.add("flow-first");
     s.parentNode.insertBefore(f, s);
     if (io) io.observe(f); else f.classList.add("on");
