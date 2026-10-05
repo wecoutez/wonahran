@@ -143,3 +143,25 @@
     if (img.complete) fit(img); else img.addEventListener("load", function () { fit(img); });
   });
 })();
+
+/* chapter flow: a dotted route with a step pill and an arrow sticker between chapters */
+(function () {
+  var secs = [].slice.call(document.querySelectorAll(".cs main > section.cs-sec:not(.cs-map), main .cr-sec"));
+  if (secs.length < 2) return;
+  var total = secs.length, pad = function (n) { return (n < 10 ? "0" : "") + n; };
+  var io = "IntersectionObserver" in window ? new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("on"); io.unobserve(e.target); } });
+  }, { rootMargin: "0px 0px -15% 0px" }) : null;
+  secs.forEach(function (s, i) {
+    var k = s.querySelector(".cs-kick, .cr-kick");
+    var f = document.createElement("div");
+    f.className = "flow" + (s.classList.contains("cr-sec") ? " flow-cr" : "");
+    f.setAttribute("aria-hidden", "true");
+    f.innerHTML = '<svg class="flow-path" viewBox="0 0 40 200" preserveAspectRatio="none"><path d="M20 0 C 36 50, 4 110, 20 200"/></svg>' +
+      '<span class="flow-pill"><b>' + pad(i + 1) + '<i>/' + pad(total) + '</i></b>' + (k ? '<span class="flow-k">' + k.innerHTML + '</span>' : '') + '</span>' +
+      '<img class="flow-arrow" src="' + (document.querySelector('link[href*="motion.css"]').getAttribute("href").replace(/motion\.css.*$/, "img/flow-arrow.png")) + '" alt="" />';
+    if (i === 0) f.classList.add("flow-first");
+    s.parentNode.insertBefore(f, s);
+    if (io) io.observe(f); else f.classList.add("on");
+  });
+})();
