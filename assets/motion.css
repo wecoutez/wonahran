@@ -156,8 +156,6 @@ body {
 
 /* stickers */
 .stk { position: absolute; pointer-events: none; z-index: 15; }
-.stk-match { width: clamp(0.9rem, 1.5vw, 1.5rem); }
-.stk-match svg { width: 100%; height: auto; display: block; }
 .stk-note {
   font-family: "Caveat", "Comic Sans MS", cursive; font-size: clamp(1rem, 1.6vw, 1.5rem);
   line-height: 1.05; color: var(--ink); transform: rotate(-6deg); text-align: center;
@@ -169,27 +167,20 @@ body {
 @media (prefers-reduced-motion: no-preference) {
   .stk { animation: pop .8s var(--spring) both 1.5s; }
   .stk-star span { display: inline-block; animation: spin 9s linear infinite; }
-  .stk-match svg { animation: wobble 4s ease-in-out infinite alternate; transform-origin: 50% 90%; }
-  @keyframes wobble { from { transform: rotate(-8deg); } to { transform: rotate(10deg); } }
 }
 
-/* ---------- marquee ---------- */
+/* ---------- discipline strip (static) ---------- */
 .mq {
   margin: 0 var(--win-m) var(--win-m); border-radius: 999px; overflow: hidden;
   background: var(--ink); color: #fff; border: 1.5px solid var(--ink);
   transform: rotate(-1.2deg);
 }
-.mq-track { display: flex; width: max-content; }
+.mq-track { display: block; text-align: center; padding: 0 1.2rem; }
 .mq-track span {
-  font-family: var(--chunk); text-transform: uppercase; white-space: nowrap;
-  font-size: clamp(1.1rem, 2.6vw, 2.2rem); padding: 0.55rem 0; letter-spacing: 0.01em;
+  font-family: var(--chunk); text-transform: uppercase; white-space: normal; text-align: center; line-height: 1.5;
+  font-size: clamp(0.8rem, 1.18vw, 1.35rem); padding: 0.6rem 0; letter-spacing: 0.01em;
 }
-.mq-track b { font-family: var(--body); font-weight: 400; color: var(--coral); padding: 0 0.8em; }
-@media (prefers-reduced-motion: no-preference) {
-  .mq-track { animation: marquee 38s linear infinite; }
-  .mq:hover .mq-track { animation-play-state: paused; }
-  @keyframes marquee { to { transform: translateX(-50%); } }
-}
+.mq-track b { font-family: var(--body); font-weight: 400; color: var(--coral); padding: 0 0.6em; }
 
 /* ---------- work: every client is its own window ---------- */
 .work { padding: 0; max-width: none; }
@@ -296,5 +287,5 @@ body {
   .tl-tag { display: none; }
   .am .mh-collage { height: 72vw; }
   .bar { top: 0.4rem; margin-top: 0.4rem; }
-  .mq { transform: none; }
+  .mq { transform: none; border-radius: 22px; }
 }
