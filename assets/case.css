@@ -564,3 +564,25 @@ html[lang="ko"] .cv-h .ko, .cv-h .ko { font-family: "Gothic A1", "Noto Sans KR",
 .cs-mon-end .cs-kick { color: #fff; font-size: clamp(1rem, 1.6vw, 1.3rem); text-transform: none; }
 .cs .mon-end-kv { margin: clamp(1.4rem, 3vw, 2.4rem) auto 0; max-width: 34rem; }
 .cs .mon-end-kv img { border-radius: 14px; border: 0; box-shadow: 0 30px 60px -30px rgba(60,20,10,.6); }
+
+/* covers where the lockup is the title: let it fill the title area */
+.cs-cover.cv-ts .cv-title { max-width: 48%; }
+.cs-cover.cv-ts .cv-lockup { width: 100%; margin-top: 1.2rem; margin-bottom: 1rem; }
+.cs-cover.cv-mon .cv-title { max-width: 52%; right: 4%; top: 7% !important; }
+.cs-cover.cv-mon .cv-logo { width: 100%; margin: 1rem 0 .9rem; }
+.cs-cover.cv-mon .cv-k, .cs-cover.cv-mon .cv-d { font-size: clamp(0.85rem, 1.3vw, 1.1rem); }
+@media (max-width: 700px) {
+  .cs-cover.cv-ts .cv-title, .cs-cover.cv-mon .cv-title { max-width: none; }
+  .cs-cover.cv-ts .cv-lockup { width: 80%; }
+  .cs-cover.cv-mon .cv-logo { width: 88%; }
+}
+
+/* stat figures: even, tabular numerals instead of the display face */
+.cs-stats b { font-family: "Inter Tight", var(--body); font-weight: 900; letter-spacing: -0.035em; font-variant-numeric: tabular-nums lining-nums; font-feature-settings: "tnum" 1, "lnum" 1; }
+
+/* mobile Toy Story cover: poster on top, title card below it, never overlapping */
+@media (max-width: 700px) {
+  .cs-cover.cv-ts { aspect-ratio: auto; min-height: 0; max-height: none; display: flex; flex-direction: column; gap: 1rem; padding: 1.2rem 1rem 1.4rem; }
+  .cs-cover.cv-ts .cv-poster { position: relative; inset: auto; width: 78%; height: auto; margin: 0 auto; order: 1; }
+  .cs-cover.cv-ts .cv-title { position: relative; inset: auto !important; left: auto !important; right: auto; top: auto !important; bottom: auto; max-width: none; order: 2; }
+}

@@ -355,8 +355,8 @@ html[lang="ko"] .cr-d { word-break: keep-all; }
   transform: rotate(-2deg);
 }
 .flow-pill b {
-  display: inline-flex; align-items: center; justify-content: center; white-space: nowrap; min-width: 3.1rem; height: 1.9rem; padding: 0 .6rem;
-  border-radius: 999px; background: var(--ink); color: #fff; font-family: var(--chunk); font-weight: 400; font-size: 1rem; letter-spacing: 0;
+  display: inline-flex; align-items: center; justify-content: center; white-space: nowrap; width: 1.9rem; height: 1.9rem; padding: 0;
+  border-radius: 999px; background: var(--ink); color: #fff; font-family: "Inter Tight", sans-serif; font-weight: 900; font-size: 1rem; letter-spacing: 0;
 }
 .flow-pill b em { font-style: normal; opacity: .7; font-size: .7rem; margin-left: .1rem; }
 html[lang="ko"] .flow-k .ko { letter-spacing: -0.02em; font-weight: 600; }
