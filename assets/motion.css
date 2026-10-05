@@ -372,3 +372,10 @@ html[lang="ko"] .flow-k .ko { letter-spacing: -0.02em; font-weight: 600; }
 
 /* closing main-scene photo on project pages: portrait shots stay a sensible size */
 .gallery .fig-final { width: min(100%, 980px); margin-left: auto; margin-right: auto; }
+.pair.match { align-items: stretch; }
+.pair.match .fig figcaption { margin-top: .5rem; font-size: .78rem; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-2); }
+.pair.match .fig:last-child figcaption { color: var(--ink); font-weight: 600; }
+.pair.match + .pair.match { margin-top: var(--plate-gap); }
+/* render → built: the built photo gets the bigger share */
+.pair.match > .fig:first-child { flex: 1.35 1 0 !important; align-self: center; }
+.pair.match > .fig:last-child { flex: 1 1 0 !important; }
