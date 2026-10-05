@@ -330,3 +330,30 @@ html[lang="ko"] .cs-sub-h .ko { font-family: "Noto Sans KR", var(--body); font-w
 .cs-lead.narrow + .cs-stats { margin-top: 0; }
 @media (max-width: 700px) { .cs-boards.cols-2, .cs-boards.cols-3 { grid-template-columns: 1fr; } }
 .cs-title-long { font-size: clamp(3rem, 11vw, 11rem); }
+
+/* per-IP hero backdrops (Toy Story keeps the clouds) */
+.cs-sea .cs-clouds {
+  background-color: #1f7fc4;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='40' viewBox='0 0 160 40'%3E%3Cpath d='M0 20 Q20 4 40 20 T80 20 T120 20 T160 20' fill='none' stroke='%23ffffff' stroke-opacity='.55' stroke-width='3'/%3E%3C/svg%3E"),
+    linear-gradient(180deg, #7fd0f5 0%, #2a8fd4 55%, #135c9c 100%);
+  background-size: 160px 46px, 100% 100%;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .cs-sea .cs-clouds { animation: waves 14s linear infinite; }
+  @keyframes waves { to { background-position: 160px 0, 0 0; } }
+}
+.cs-sea .cs-t1 { color: #e8412f; } .cs-sea .cs-t2 { color: #f6c21c; }
+.cs-ditto .cs-clouds {
+  background-color: #b48cf5;
+  background-image:
+    radial-gradient(circle at 30% 40%, #2b1340 0 2.2px, transparent 3px),
+    radial-gradient(circle at 70% 40%, #2b1340 0 2.2px, transparent 3px),
+    radial-gradient(ellipse 34px 22px at 50% 55%, #c9a7fb 98%, transparent 100%);
+  background-size: 64px 48px, 64px 48px, 64px 48px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .cs-ditto .cs-clouds { animation: clouds 50s linear infinite; }
+}
+.cs-ditto .cs-t1 { color: #b48cf5; } .cs-ditto .cs-t2 { color: #f6d21c; }
+.cs-ditto .cs-stats li { background: #efe4ff; }
