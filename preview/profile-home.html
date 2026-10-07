@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex">
+<title>Ahran Won — profile preview</title>
+<style>
+  @font-face { font-family: "Instrument Serif"; font-style: normal; src: url(fonts/iserif-0.woff2) format("woff2"); }
+  @font-face { font-family: "Instrument Serif"; font-style: italic; src: url(fonts/iserif-1.woff2) format("woff2"); }
+  @font-face { font-family: "Inter Tight"; font-weight: 100 900; src: url(fonts/intertight-var.woff2) format("woff2"); }
+  @font-face { font-family: "Plex Mono"; src: url(fonts/plexmono.woff2) format("woff2"); }
+  :root { --ink: #2b1d1d; --paper: #f6f3f1; --blush: #f6d9e3; --cocoa: #2f1b1b; --dim: #8b7f7c; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 400 15px/1.5 "Inter Tight", "Helvetica Neue", Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; } img { display: block; }
+  .mono { font-family: "Plex Mono", ui-monospace, monospace; font-size: 12px; letter-spacing: .04em; text-transform: uppercase; line-height: 1.35; }
+
+  /* hero: full-bleed photo, split title (light sans / serif), mono captions, halftone grain */
+  .hero { position: relative; height: min(100vh, 980px); min-height: 640px; overflow: hidden; color: #fff; }
+  .hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+  .hero::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(rgba(0,0,0,.18) 1px, transparent 1.2px) 0 0 / 4px 4px, linear-gradient(180deg, rgba(0,0,0,.28), rgba(0,0,0,0) 30%, rgba(0,0,0,0) 55%, rgba(0,0,0,.45)); mix-blend-mode: multiply; }
+  .hero .bar { position: absolute; z-index: 3; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; padding: 20px clamp(16px, 3vw, 36px); }
+  .hero .bar a { margin-left: 22px; }
+  .hero h1 { position: absolute; z-index: 2; top: 9%; left: 0; right: 0; margin: 0; padding: 0 clamp(14px, 2.4vw, 32px); display: flex; justify-content: space-between; align-items: baseline;
+    font-weight: 400; line-height: .82; font-size: clamp(64px, 12vw, 210px); letter-spacing: -.045em; }
+  .hero h1 .a { font-family: "Inter Tight", sans-serif; font-weight: 500; }
+  .hero h1 .b { font-family: "Instrument Serif", serif; letter-spacing: -.02em; }
+  .hero .mono { text-shadow: 0 1px 8px rgba(0,0,0,.45); }
+  .hero .l1 { position: absolute; z-index: 2; left: clamp(16px, 2.4vw, 34px); top: calc(9% + clamp(70px, 12.6vw, 220px)); }
+  .hero .l2 { position: absolute; z-index: 2; right: clamp(16px, 2.4vw, 34px); top: calc(9% + clamp(70px, 12.6vw, 220px)); text-align: right; }
+  .hero .sig { position: absolute; z-index: 2; left: 50%; bottom: 7%; transform: translateX(-50%); font: italic 400 clamp(52px, 8vw, 120px)/1 "Instrument Serif", serif; opacity: .55; white-space: nowrap; }
+
+  /* carousel of project tiles riding over the bottom of the hero */
+  .rail { position: relative; z-index: 4; margin-top: -170px; overflow: hidden; }
+  .rail-track { display: flex; gap: 14px; width: max-content; animation: slide 46s linear infinite; padding: 0 14px 24px; }
+  .rail:hover .rail-track { animation-play-state: paused; }
+  .rail a { position: relative; width: clamp(200px, 21vw, 290px); aspect-ratio: 1; border-radius: 14px; overflow: hidden; box-shadow: 0 20px 34px -18px rgba(0,0,0,.45); }
+  .rail a img { width: 100%; height: 100%; object-fit: cover; }
+  .rail a::after { content: ""; position: absolute; inset: 0 0 50%; background: linear-gradient(0deg, transparent, rgba(20,10,10,.6)); }
+  .rail a b { z-index: 2; position: absolute; left: 12px; right: 12px; top: 10px; color: #fff; font: 700 clamp(20px, 2.1vw, 30px)/.92 "Inter Tight"; letter-spacing: -.04em; text-transform: uppercase; text-shadow: 0 2px 12px rgba(0,0,0,.35); }
+  @keyframes slide { to { transform: translateX(-50%); } }
+
+  /* profile block */
+  .profile { max-width: 980px; margin: 30px auto 0; padding: 0 clamp(14px, 3vw, 24px); }
+  .ph { display: grid; grid-template-columns: auto 1fr; gap: clamp(18px, 4vw, 56px); align-items: center; }
+  .avatar { width: clamp(96px, 13vw, 150px); aspect-ratio: 1; border-radius: 50%; background: var(--cocoa); color: #fff; display: grid; place-content: center; text-align: center; }
+  .avatar b { font: 400 clamp(34px, 4.6vw, 52px)/.9 "Instrument Serif", serif; }
+  .avatar span { font-size: 11px; letter-spacing: .02em; margin-top: 4px; }
+  .handle { font-weight: 600; font-size: 18px; margin: 0 0 12px; }
+  .stats { display: flex; gap: clamp(22px, 5vw, 64px); }
+  .stats div b { display: block; font-weight: 600; font-size: 20px; }
+  .stats div span { color: var(--dim); font-size: 13px; }
+  .bio { margin: 18px 0 0; max-width: 52ch; }
+  .bio a { display: inline-flex; gap: 6px; margin-top: 10px; text-decoration: underline; text-underline-offset: 3px; }
+
+  .tabs { display: flex; gap: 6px; flex-wrap: wrap; margin: 30px 0 14px; border-top: 1px solid #ddd3cf; padding-top: 14px; }
+  .tabs button { appearance: none; border: 0; background: none; font: 500 13px "Inter Tight"; padding: 8px 12px; border-radius: 999px; color: var(--dim); cursor: pointer; }
+  .tabs button.on { background: var(--ink); color: #fff; }
+
+  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; }
+  .tile { position: relative; aspect-ratio: 4/5; overflow: hidden; background: #ddd; }
+  .tile img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease, filter .4s; }
+  .tile::after { content: ""; position: absolute; inset: 45% 0 0; background: linear-gradient(180deg, transparent, rgba(20,10,10,.72)); pointer-events: none; }
+  .tile .tt, .tile .tm { z-index: 2; }
+  .tile:hover img { transform: scale(1.05); filter: brightness(.82); }
+  .tile .tt { position: absolute; left: 12px; right: 12px; bottom: 30px; color: #fff; font: 500 clamp(22px, 2.6vw, 34px)/.9 "Inter Tight"; letter-spacing: -.045em; text-shadow: 0 2px 14px rgba(0,0,0,.35); }
+  .tile .tm { position: absolute; left: 12px; bottom: 11px; color: #fff; font: 11px "Plex Mono", monospace; text-transform: uppercase; letter-spacing: .04em; opacity: .9; }
+  .tile .conf { position: absolute; left: 10px; top: 10px; background: #fff; color: var(--ink); font: 10px "Plex Mono", monospace; text-transform: uppercase; padding: 3px 7px; border-radius: 999px; font-style: normal; }
+  .tile:nth-child(6n+2) { background: var(--cocoa); }
+  .tile.hide { display: none; }
+  /* every 5th tile becomes a text card, like the reference's message post */
+  .note { aspect-ratio: 4/5; background: var(--blush); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; }
+  .note p { margin: 0; font: 13px/1.35 "Plex Mono", monospace; text-align: justify; }
+  .note b { font: 400 38px/.9 "Instrument Serif", serif; }
+
+  .foot { max-width: 980px; margin: 70px auto 0; padding: 30px clamp(14px, 3vw, 24px) 50px; display: flex; justify-content: space-between; align-items: end; border-top: 1px solid #ddd3cf; }
+  .foot h2 { margin: 0; font: italic 400 clamp(52px, 8vw, 110px)/.9 "Instrument Serif", serif; }
+
+  @media (max-width: 700px) {
+    .hero { min-height: 560px; height: 86vh; }
+    .hero .l1, .hero .l2 { top: calc(9% + 64px); font-size: 10px; }
+    .hero .bar a.x { display: none; }
+    .rail { margin-top: -120px; }
+    .ph { grid-template-columns: 1fr; justify-items: start; }
+    .tile .tt { font-size: 14px; bottom: 22px; left: 7px; right: 6px; letter-spacing: -.03em; } .tile .conf { font-size: 8px; left: 6px; top: 6px; } .tile .tm { left: 8px; font-size: 9px; }
+    .grid { gap: 2px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .rail-track { animation: none; } }
+</style>
+</head>
+<body>
+<header class="hero">
+  <img src="../assets/img/monchhichi/cover-friends.jpg" alt="">
+  <div class="bar mono"><span>ahran won ©2026</span><span><a class="x" href="#work">work</a><a class="x" href="../about.html">about</a><a href="mailto:awonjs@gmail.com">contact</a></span></div>
+  <h1><span class="a">Ahran</span><span class="b">Won</span></h1>
+  <p class="l1 mono">creative direction<br>brand · product · space<br>seoul, korea</p>
+  <p class="l2 mono">marketing director<br>baskin-robbins korea<br>2014—2026</p>
+  <div class="sig">brands you can walk into</div>
+</header>
+
+<div class="rail" aria-label="Featured"><div class="rail-track">
+  <a href="../work/monchhichi.html"><img src="../assets/img/monchhichi/card.jpg" alt=""><b>Caramel<br>holic</b></a>
+  <a href="../work/one-piece-adventure.html"><img src="../assets/img/one-piece-adventure/card.jpg" alt=""><b>One<br>Piece</b></a>
+  <a href="../work/pokemon-ditto.html"><img src="../assets/img/pokemon-ditto/card.jpg" alt=""><b>Catch the<br>flavors</b></a>
+  <a href="../work/toy-story-lets-play.html"><img src="../assets/img/toy-story-lets-play/main-poster.jpg" alt=""><b>Let’s<br>play!</b></a>
+  <a href="../work/retail-design-knotted-seoullo.html"><img src="../assets/img/retail-design-knotted-seoullo/built.jpg" alt=""><b>Knotted<br>Seoullo</b></a>
+  <a href="../work/bonjour-paris.html"><img src="../assets/img/bonjour-paris/01.jpg" alt=""><b>Bonjour<br>Paris</b></a>
+  <a href="../work/toysrus.html"><img src="../assets/img/toysrus/07.jpg" alt=""><b>Toys<br>“R” Us</b></a>
+  <a href="../work/monchhichi.html"><img src="../assets/img/monchhichi/card.jpg" alt=""><b>Caramel<br>holic</b></a>
+  <a href="../work/one-piece-adventure.html"><img src="../assets/img/one-piece-adventure/card.jpg" alt=""><b>One<br>Piece</b></a>
+  <a href="../work/pokemon-ditto.html"><img src="../assets/img/pokemon-ditto/card.jpg" alt=""><b>Catch the<br>flavors</b></a>
+  <a href="../work/toy-story-lets-play.html"><img src="../assets/img/toy-story-lets-play/main-poster.jpg" alt=""><b>Let’s<br>play!</b></a>
+  <a href="../work/retail-design-knotted-seoullo.html"><img src="../assets/img/retail-design-knotted-seoullo/built.jpg" alt=""><b>Knotted<br>Seoullo</b></a>
+  <a href="../work/bonjour-paris.html"><img src="../assets/img/bonjour-paris/01.jpg" alt=""><b>Bonjour<br>Paris</b></a>
+  <a href="../work/toysrus.html"><img src="../assets/img/toysrus/07.jpg" alt=""><b>Toys<br>“R” Us</b></a>
+</div></div>
+
+<main class="profile" id="work">
+  <div class="ph">
+    <div class="avatar"><b>Ahran</b><span>creative direction</span></div>
+    <div>
+      <p class="handle">ahran.won — creative director</p>
+      <div class="stats"><div><b>27</b><span>projects</span></div><div><b>6</b><span>companies</span></div><div><b>12</b><span>years</span></div></div>
+    </div>
+  </div>
+  <p class="bio">Architect, landscape, then brands. Monthly campaigns, IP collaborations, original characters and stores you can walk into.<br><a href="../about.html">about me ↗</a></p>
+  <nav class="tabs"><button class="on" data-f="all">All</button><button data-f="br">Baskin-Robbins</button><button data-f="gffg">GFFG</button><button data-f="disney">Disney</button><button data-f="hanbul">It’s Hanbul</button><button data-f="toun28">Toun28</button><button data-f="independent">Independent</button></nav>
+  <div class="grid"><a class="tile" data-co="br" href="../work/trickimas.html"><img src="../assets/img/trickimas/01.jpg" alt="" loading="lazy"><i class="conf">confidential</i><span class="tt">Merry Trickimas</span><span class="tm">baskin-robbins · 2026</span></a><a class="tile" data-co="br" href="../work/monchhichi.html"><img src="../assets/img/monchhichi/card.jpg" alt="" loading="lazy"><span class="tt">Monchhichi</span><span class="tm">baskin-robbins · 2026</span></a><a class="tile" data-co="br" href="../work/pokemon-ditto.html"><img src="../assets/img/pokemon-ditto/card.jpg" alt="" loading="lazy"><span class="tt">Pokémon</span><span class="tm">baskin-robbins · 2026</span></a><a class="tile" data-co="br" href="../work/one-piece-adventure.html"><img src="../assets/img/one-piece-adventure/card.jpg" alt="" loading="lazy"><span class="tt">One Piece</span><span class="tm">baskin-robbins · 2026</span></a><a class="tile" data-co="br" href="../work/toy-story-lets-play.html"><img src="../assets/img/toy-story-lets-play/main-poster.jpg" alt="" loading="lazy"><span class="tt">Toy Story 5</span><span class="tm">baskin-robbins · 2026</span></a><a class="tile" data-co="br" href="../work/bonjour-paris.html"><img src="../assets/img/bonjour-paris/01.jpg" alt="" loading="lazy"><span class="tt">Bonjour! Paris<br>Robin</span><span class="tm">baskin-robbins · 2025</span></a><a class="tile" data-co="br" href="../work/baskin-robbins-popup.html"><img src="../assets/img/baskin-robbins-popup/01.png" alt="" loading="lazy"><span class="tt">Mangbingo Gacha Shop</span><span class="tm">baskin-robbins · 2025</span></a><a class="tile" data-co="gffg" href="../work/knotted.html"><img src="../assets/img/knotted/01.jpeg?v=8" alt="" loading="lazy"><span class="tt">Knotted<br>Gwangju Sangmu</span><span class="tm">gffg · 2024</span></a><a class="tile" data-co="gffg" href="../work/knotted-store-la.html"><img src="../assets/img/knotted-store-la/01.png" alt="" loading="lazy"><span class="tt">Knotted<br>Westfield Century City</span><span class="tm">gffg · 2024</span></a><a class="tile" data-co="gffg" href="../work/retail-design-knotted-seoullo.html"><img src="../assets/img/retail-design-knotted-seoullo/01.png" alt="" loading="lazy"><span class="tt">Knotted<br>Seoullo</span><span class="tm">gffg · 2024</span></a><a class="tile" data-co="gffg" href="../work/retail-design-knotted-guui.html"><img src="../assets/img/retail-design-knotted-guui/01.png" alt="" loading="lazy"><span class="tt">Knotted<br>Guui</span><span class="tm">gffg · 2024</span></a><a class="tile" data-co="gffg" href="../work/clap-pizza.html"><img src="../assets/img/clap-pizza/01.jpeg?v=8" alt="" loading="lazy"><span class="tt">Clap Pizza Gwangju</span><span class="tm">gffg · 2024</span></a><a class="tile" data-co="gffg" href="../work/gffg-graphic-works.html"><img src="../assets/img/gffg-graphic-works/01.png?v=8" alt="" loading="lazy"><span class="tt">Knotted<br>2025 Campaigns</span><span class="tm">gffg · 2025</span></a><a class="tile" data-co="gffg" href="../work/knotted-goods-proposal.html"><img src="../assets/img/knotted-goods-proposal/01.jpg?v=8" alt="" loading="lazy"><span class="tt">Knotted<br>Lifestyle Expansion</span><span class="tm">gffg · 2024</span></a><a class="tile" data-co="gffg" href="../work/project-three.html"><img src="../assets/img/project-three/01.png?v=8" alt="" loading="lazy"><span class="tt">Knotted<br>Merchandise Collection</span><span class="tm">gffg · 2024–2025</span></a><a class="tile" data-co="disney" href="../work/toysrus.html"><img src="../assets/img/toysrus/01.jpeg?v=8" alt="" loading="lazy"><span class="tt">Disney at Toys “R” Us</span><span class="tm">disney · 2022–2023</span></a><a class="tile" data-co="disney" href="../work/d100-hyundai.html"><img src="../assets/img/d100-hyundai/01.jpeg?v=8" alt="" loading="lazy"><span class="tt">Disney D100<br>Hyundai Pangyo</span><span class="tm">disney · 2023</span></a><a class="tile" data-co="disney" href="../work/korea-kickoff.html"><img src="../assets/img/korea-kickoff/06.jpg" alt="" loading="lazy"><span class="tt">Disney CPGP Korea Kickoff</span><span class="tm">disney · 2022</span></a><a class="tile" data-co="disney" href="../work/graphic.html"><img src="../assets/img/graphic/01.jpg?v=8" alt="" loading="lazy"><span class="tt">National Geographic Retail Toolkit</span><span class="tm">disney · 2022–2023</span></a><a class="tile" data-co="hanbul" href="../work/chasinrabbits.html"><img src="../assets/img/chasinrabbits/01.jpg?v=8" alt="" loading="lazy"><span class="tt">Chasin’ Rabbits</span><span class="tm">it’s hanbul · 2020–2022</span></a><a class="tile" data-co="hanbul" href="../work/enature.html"><img src="../assets/img/enature/01.png?v=8" alt="" loading="lazy"><span class="tt">enature</span><span class="tm">it’s hanbul · 2020–2022</span></a><a class="tile" data-co="toun28" href="../work/toun28.html"><img src="../assets/img/toun28/06.jpeg" alt="" loading="lazy"><span class="tt">Toun28 Main VMD</span><span class="tm">toun28 · 2019–2020</span></a><a class="tile" data-co="toun28" href="../work/toun28-small-vmds.html"><img src="../assets/img/toun28-small-vmds/12.jpeg" alt="" loading="lazy"><span class="tt">Toun28 Retail VMD Stands</span><span class="tm">toun28 · 2019–2020</span></a><a class="tile" data-co="toun28" href="../work/officedesign.html"><img src="../assets/img/officedesign/02.jpeg" alt="" loading="lazy"><span class="tt">Toun28 Office</span><span class="tm">toun28 · 2019–2020</span></a><a class="tile" data-co="independent" href="../work/moving-capsule.html"><img src="../assets/img/moving-capsule/01.png?v=8" alt="" loading="lazy"><span class="tt">Moving Capsule</span><span class="tm">independent · 2017</span></a><a class="tile" data-co="independent" href="../work/landscape.html"><img src="../assets/img/landscape/09.jpg" alt="" loading="lazy"><span class="tt">Transbay Transit Center Roof Garden</span><span class="tm">independent · 2016</span></a><a class="tile" data-co="independent" href="../work/harvard-passport.html"><img src="../assets/img/harvard-passport/01.jpeg?v=8" alt="" loading="lazy"><span class="tt">Passport to the Harvard Libraries</span><span class="tm">independent · 2017</span></a></div>
+</main>
+
+<footer class="foot"><h2>say hello</h2><a class="mono" href="mailto:awonjs@gmail.com">awonjs@gmail.com ↗</a></footer>
+
+<script>
+document.querySelectorAll('.tabs button').forEach(function(b){ b.addEventListener('click', function(){
+  document.querySelectorAll('.tabs button').forEach(function(x){ x.classList.toggle('on', x===b); });
+  var f=b.dataset.f; document.querySelectorAll('.tile').forEach(function(t){ t.classList.toggle('hide', f!=='all' && t.dataset.co!==f); });
+}); });
+</script>
+</body>
+</html>
