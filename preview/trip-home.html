@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex">
+<title>Ahran Won — travel preview</title>
+<style>
+  @font-face { font-family: "Inter Tight"; font-weight: 100 900; src: url(fonts/intertight-var.woff2) format("woff2"); }
+  :root { --ink: #161616; --paper: #f3f2ef; --dim: #7b7b7b; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 400 15px/1.45 "Inter Tight", "Helvetica Neue", Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; } img { display: block; }
+  .cap { font-size: 11px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; }
+
+  .nav { display: flex; justify-content: space-between; align-items: center; max-width: 1240px; margin: 0 auto; padding: 22px clamp(16px, 3vw, 40px); }
+  .nav b { font-weight: 600; letter-spacing: -.02em; font-size: 18px; } .nav a { margin-left: 22px; }
+
+  /* stage: suitcase left, words + tag right */
+  .stage { max-width: 1240px; margin: 0 auto; padding: 10px clamp(16px, 3vw, 40px) 60px; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(30px, 5vw, 80px); align-items: center; }
+  .intro h1 { margin: 0; font-weight: 300; font-size: clamp(52px, 6.6vw, 104px); line-height: .92; letter-spacing: -.055em; }
+  .intro h1 b { font-weight: 600; }
+  .intro p { margin: 26px 0 0; max-width: 38ch; font-size: 17px; color: #444; }
+  .hint { margin-top: 26px; color: var(--dim); }
+
+  /* the suitcase */
+  .case { position: relative; width: 100%; max-width: 600px; margin: 70px auto 46px; aspect-ratio: 3 / 4.1; }
+  .shell { position: absolute; inset: 0; border-radius: 28px;
+    background:
+      repeating-linear-gradient(90deg, rgba(255,255,255,.0) 0 18px, rgba(255,255,255,.75) 18px 21px, rgba(0,0,0,.08) 21px 23px, rgba(255,255,255,0) 23px 40px),
+      linear-gradient(100deg, #cfd2d6, #f4f5f6 28%, #dadde1 55%, #f7f8f9 78%, #c9ccd0);
+    box-shadow: inset 0 0 0 3px #b9bdc2, inset 0 -18px 30px rgba(0,0,0,.08), 0 40px 60px -30px rgba(0,0,0,.45); }
+  .shell::before, .shell::after { content: ""; position: absolute; left: 0; right: 0; height: 22px; background: linear-gradient(180deg, #e9ebed, #b8bcc1); }
+  .shell::before { top: 15%; } .shell::after { bottom: 15%; }
+  .handle { position: absolute; left: 34%; right: 34%; top: -46px; height: 54px; border: 12px solid #c4c8cc; border-bottom: 0; border-radius: 22px 22px 0 0; }
+  .wheel { position: absolute; bottom: -34px; width: 15%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, #9a9ea3 0 18%, #e3e5e7 19% 46%, #b9bdc1 47% 60%, #eef0f1 61%); box-shadow: 0 6px 10px rgba(0,0,0,.25); }
+  .wheel.l { left: 7%; } .wheel.r { right: 7%; }
+
+  /* stickers */
+  .st { position: absolute; left: var(--x); top: var(--y); width: var(--w); transform: rotate(var(--r)); z-index: var(--z, 2); transition: transform .35s cubic-bezier(.34,1.56,.64,1), z-index 0s; filter: drop-shadow(0 6px 8px rgba(0,0,0,.18)); }
+  .st:hover { transform: rotate(0deg) scale(1.12); z-index: 30; }
+  .st .lbl { position: absolute; left: 50%; bottom: -12px; transform: translateX(-50%); background: var(--ink); color: #fff; white-space: nowrap; border-radius: 999px; padding: 4px 9px; opacity: 0; transition: opacity .2s; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
+  .st:hover .lbl { opacity: 1; }
+  .ph { background: #fff; padding: 6px; border-radius: 6px; }
+  .ph img { width: 100%; aspect-ratio: var(--ar, 4/3); object-fit: cover; border-radius: 3px; }
+  .cut img { width: 100%; filter: drop-shadow(2px 0 0 #fff) drop-shadow(-2px 0 0 #fff) drop-shadow(0 2px 0 #fff) drop-shadow(0 -2px 0 #fff); }
+  .round { aspect-ratio: 1; min-height: 0; overflow: hidden; border-radius: 50%; display: grid; place-items: center; text-align: center; padding: 10%; font-weight: 600; letter-spacing: -.02em; line-height: 1; }
+  .blk { padding: 10px 12px; font-weight: 700; letter-spacing: -.04em; line-height: .88; text-transform: uppercase; }
+  .postcard { background: #f7f3ea; padding: 8px; border-radius: 3px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 10px; line-height: 1.3; }
+  .postcard img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+  .postcard b { display: block; font-size: 13px; letter-spacing: -.02em; margin-bottom: 4px; }
+  .postcard i { font-style: normal; color: #b33; display: block; margin-top: 4px; }
+  .tape { position: absolute; left: 30%; top: -9px; width: 40%; height: 18px; background: rgba(255,240,170,.75); transform: rotate(-4deg); }
+
+  /* luggage tag on the right */
+  .tag { position: relative; width: 220px; margin-top: 34px; background: #e9eaec; border-radius: 16px; padding: 46px 20px 22px; box-shadow: 0 20px 30px -18px rgba(0,0,0,.4); transform: rotate(-4deg); }
+  .tag::before { content: ""; position: absolute; left: 50%; top: 14px; width: 54px; height: 12px; margin-left: -27px; border-radius: 6px; background: var(--paper); box-shadow: inset 0 0 0 2px #c8cacc; }
+  .tag b { display: block; font-size: 26px; font-weight: 600; letter-spacing: -.04em; }
+  .tag span { display: block; margin-top: 6px; color: #555; }
+
+  /* boarding passes */
+  .passes { max-width: 1240px; margin: 0 auto; padding: 40px clamp(16px, 3vw, 40px) 30px; }
+  .sh { display: flex; justify-content: space-between; align-items: baseline; border-top: 1px solid var(--ink); padding-top: 14px; margin-bottom: 30px; }
+  .sh h2 { margin: 0; font-weight: 300; font-size: clamp(36px, 4.4vw, 64px); letter-spacing: -.05em; }
+  .pgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+  .pass { display: grid; grid-template-columns: 1fr 140px; background: #fff; border-radius: 18px; overflow: hidden; box-shadow: 0 18px 30px -24px rgba(0,0,0,.4); position: relative; }
+  .pass::before, .pass::after { content: ""; position: absolute; right: 130px; width: 20px; height: 20px; border-radius: 50%; background: var(--paper); }
+  .pass::before { top: -10px; } .pass::after { bottom: -10px; }
+  .pmain { padding: 20px 22px; border-right: 2px dashed #d6d6d6; }
+  .pl { margin: 0; color: var(--dim); font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; font-weight: 500; }
+  .route { display: flex; align-items: center; gap: 16px; margin: 10px 0 14px; }
+  .route b { display: block; font-size: 38px; font-weight: 300; letter-spacing: -.05em; line-height: 1; }
+  .route span { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); }
+  .route svg { width: 28px; fill: var(--acc); transform: rotate(90deg); flex: none; }
+  .fields { display: grid; grid-template-columns: 1fr 1.6fr .7fr .6fr; gap: 10px; padding: 10px 0; border-top: 1px solid #eee; border-bottom: 1px solid #eee; }
+  .fields span { display: block; font-size: 9.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); }
+  .fields b { font-weight: 600; font-size: 13px; letter-spacing: -.01em; }
+  .plist { list-style: none; margin: 12px 0 0; padding: 0; columns: 2; column-gap: 18px; }
+  .plist li { break-inside: avoid; }
+  .plist a { display: flex; justify-content: space-between; gap: 8px; padding: 5px 0; border-bottom: 1px dotted #ddd; font-size: 13px; }
+  .plist a span { color: var(--dim); font-size: 11px; }
+  .plist a:hover { color: var(--acc); }
+  .stub { padding: 20px 16px; display: flex; flex-direction: column; gap: 10px; background: color-mix(in srgb, var(--acc) 10%, #fff); }
+  .code { font-size: 40px; font-weight: 300; letter-spacing: -.05em; color: var(--acc); line-height: 1; }
+  .bar { flex: 1; min-height: 70px; background: repeating-linear-gradient(90deg, #111 0 2px, transparent 2px 4px, #111 4px 5px, transparent 5px 8px, #111 8px 11px, transparent 11px 12px); }
+
+  .end { max-width: 1240px; margin: 0 auto; padding: 80px clamp(16px, 3vw, 40px) 80px; text-align: center; }
+  .end h2 { margin: 0; font-weight: 300; font-size: clamp(56px, 10vw, 150px); letter-spacing: -.06em; line-height: .9; }
+  .end a { display: inline-block; margin-top: 22px; border-bottom: 1px solid; }
+
+  @media (max-width: 860px) {
+    .stage { grid-template-columns: 1fr; }
+    .intro { order: -1; } .tag { display: none; }
+    .case { max-width: 420px; }
+    .pgrid { grid-template-columns: 1fr; }
+    .pass { grid-template-columns: 1fr 96px; } .pass::before, .pass::after { right: 86px; }
+    .code { font-size: 28px; } .plist { columns: 1; } .fields { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<nav class="nav"><b>Ahran Won</b><span class="cap"><a href="#passes">work</a><a href="../about.html">about</a><a href="mailto:awonjs@gmail.com">contact</a></span></nav>
+
+<section class="stage">
+  <div class="case" aria-label="Projects as stickers on a suitcase">
+    <span class="handle"></span><span class="shell"></span><span class="wheel l"></span><span class="wheel r"></span>
+
+    <a class="st cut" href="../work/monchhichi.html" style="--x:4%;--y:3%;--w:19%;--r:-8deg;--z:4"><img src="../assets/img/monchhichi/ms/09.webp" alt=""><span class="lbl">Monchhichi</span></a>
+    <a class="st ph" href="../work/one-piece-adventure.html" style="--x:30%;--y:3%;--w:34%;--r:4deg;--ar:16/10"><img src="../assets/img/one-piece-adventure/cover.jpg" alt=""><span class="lbl">One Piece</span></a>
+    <a class="st round" href="#passes" style="--x:70%;--y:2%;--w:25%;--r:10deg;background:#ffe100;font-size:clamp(13px,1.5vw,18px)"><span>BR × IP<br>collabs<br><small style="font-size:.6em;letter-spacing:.1em">2025—</small></span></a>
+    <a class="st blk" href="#passes" style="--x:4%;--y:29%;--w:44%;--r:-3deg;background:#e8322b;color:#fff;font-size:clamp(22px,2.9vw,40px)">Brands<br>you can<br>walk into</a>
+    <a class="st ph" href="../work/retail-design-knotted-seoullo.html" style="--x:52%;--y:21%;--w:28%;--r:-5deg;--ar:1/1"><img src="../assets/img/retail-design-knotted-seoullo/built.jpg" alt=""><span class="lbl">Knotted Seoullo</span></a>
+    <a class="st cut" href="../work/toy-story-lets-play.html" style="--x:79%;--y:23%;--w:18%;--r:7deg;--z:5"><img src="../assets/img/toy-story-lets-play/ms/03.webp" alt=""><span class="lbl">Toy Story 5</span></a>
+    <a class="st cut" href="../work/pokemon-ditto.html" style="--x:3%;--y:49%;--w:30%;--r:3deg"><img src="../assets/img/pokemon-ditto/ms/03.webp" alt=""><span class="lbl">Pokémon</span></a>
+    <a class="st postcard" href="../work/toysrus.html" style="--x:37%;--y:46%;--w:42%;--r:-2deg"><img src="../assets/img/toysrus/07.jpg" alt=""><span><b>Post card</b>Disney at Toys “R” Us — a full retail renewal, schematic to built.<i>— with love, Disney APAC</i></span><span class="lbl">Toys “R” Us</span></a>
+    <a class="st ph" href="../work/bonjour-paris.html" style="--x:76%;--y:44%;--w:22%;--r:8deg;--ar:3/4"><img src="../assets/img/bonjour-paris/01.jpg" alt=""><span class="lbl">Bonjour! Paris</span></a>
+    <a class="st blk" href="#passes" style="--x:42%;--y:66%;--w:30%;--r:2deg;background:#9be564;font-size:clamp(11px,1.2vw,15px);font-weight:600;letter-spacing:0;text-transform:none">knotted · gffg · 2024</a>
+    <a class="st ph" href="../work/chasinrabbits.html" style="--x:5%;--y:70%;--w:27%;--r:-6deg;--ar:4/5"><span class="tape"></span><img src="../assets/img/chasinrabbits/01.jpg" alt=""><span class="lbl">Chasin’ Rabbits</span></a>
+    <a class="st ph" href="../work/moving-capsule.html" style="--x:34%;--y:74%;--w:26%;--r:5deg"><img src="../assets/img/moving-capsule/01.png" alt=""><span class="lbl">Moving Capsule</span></a>
+    <a class="st round" href="mailto:awonjs@gmail.com" style="--x:60%;--y:79%;--w:18%;--r:-10deg;background:#2b5cff;color:#fff;font-size:clamp(10px,1vw,13px)">open to<br>new<br>work</a>
+    <a class="st ph" href="../work/toun28.html" style="--x:78%;--y:66%;--w:20%;--r:-7deg;--ar:3/4"><img src="../assets/img/toun28/06.jpeg" alt=""><span class="lbl">Toun28</span></a>
+  </div>
+
+  <div class="intro">
+    <p class="cap" style="color:var(--dim)">creative director — seoul</p>
+    <h1>Twelve years,<br><b>one suitcase</b><br>of stickers.</h1>
+    <p>Every sticker is a project: campaigns, IP collaborations, original characters and stores you can walk into. Hover one, then open it.</p>
+    <div class="tag"><p class="pl">luggage tag</p><b>Ahran Won</b><span>Marketing Director,<br>Baskin-Robbins Korea</span><span style="margin-top:12px">awonjs@gmail.com</span></div>
+  </div>
+</section>
+
+<section class="passes" id="passes">
+  <div class="sh"><h2>Boarding passes</h2><span class="cap" style="color:var(--dim)">6 companies · 27 projects</span></div>
+  <div class="pgrid"><article class="pass" style="--acc:#ff5fa2">
+  <div class="pmain">
+    <p class="pl">boarding pass · Baskin-Robbins Korea</p>
+    <div class="route"><div><b>2025</b><span>from</span></div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg><div><b>NOW</b><span>to</span></div></div>
+    <div class="fields"><div><span>passenger</span><b>Ahran Won</b></div><div><span>class</span><b>Marketing Director</b></div><div><span>gate</span><b>BRK</b></div><div><span>seat</span><b>07</b></div></div>
+    <ul class="plist"><li><a href="../work/trickimas.html">Merry Trickimas<span>2026</span></a></li><li><a href="../work/monchhichi.html">Baskin-Robbins × Monchhichi<span>2026</span></a></li><li><a href="../work/pokemon-ditto.html">Baskin-Robbins × Pokémon<span>2026</span></a></li><li><a href="../work/one-piece-adventure.html">Baskin-Robbins × One Piece<span>2026</span></a></li><li><a href="../work/toy-story-lets-play.html">Baskin-Robbins × Toy Story 5<span>2026</span></a></li><li><a href="../work/bonjour-paris.html">Bonjour! Paris — Robin<span>2025</span></a></li><li><a href="../work/baskin-robbins-popup.html">Mangbingo Gacha Shop<span>2025</span></a></li></ul>
+  </div>
+  <div class="stub"><p class="pl">Baskin-Robbins Korea</p><b class="code">BRK</b><span class="bar"></span><p class="pl">pack light, design right</p></div>
+</article><article class="pass" style="--acc:#2f8f6a">
+  <div class="pmain">
+    <p class="pl">boarding pass · GFFG</p>
+    <div class="route"><div><b>2024</b><span>from</span></div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg><div><b>2025</b><span>to</span></div></div>
+    <div class="fields"><div><span>passenger</span><b>Ahran Won</b></div><div><span>class</span><b>Creative Director</b></div><div><span>gate</span><b>GFG</b></div><div><span>seat</span><b>08</b></div></div>
+    <ul class="plist"><li><a href="../work/knotted.html">Knotted Gwangju Sangmu<span>2024</span></a></li><li><a href="../work/knotted-store-la.html">Knotted Westfield Century City<span>2024</span></a></li><li><a href="../work/retail-design-knotted-seoullo.html">Knotted Seoullo<span>2024</span></a></li><li><a href="../work/retail-design-knotted-guui.html">Knotted Guui<span>2024</span></a></li><li><a href="../work/clap-pizza.html">Clap Pizza Gwangju<span>2024</span></a></li><li><a href="../work/gffg-graphic-works.html">Knotted 2025 Campaigns<span>2025</span></a></li><li><a href="../work/knotted-goods-proposal.html">Knotted Lifestyle Expansion<span>2024</span></a></li><li><a href="../work/project-three.html">Knotted Merchandise Collection<span>2024–2025</span></a></li></ul>
+  </div>
+  <div class="stub"><p class="pl">GFFG</p><b class="code">GFG</b><span class="bar"></span><p class="pl">pack light, design right</p></div>
+</article><article class="pass" style="--acc:#2b5cff">
+  <div class="pmain">
+    <p class="pl">boarding pass · The Walt Disney Company</p>
+    <div class="route"><div><b>2022</b><span>from</span></div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg><div><b>2023</b><span>to</span></div></div>
+    <div class="fields"><div><span>passenger</span><b>Ahran Won</b></div><div><span>class</span><b>Creative Manager, APAC</b></div><div><span>gate</span><b>DIS</b></div><div><span>seat</span><b>04</b></div></div>
+    <ul class="plist"><li><a href="../work/toysrus.html">Disney at Toys “R” Us<span>2022–2023</span></a></li><li><a href="../work/d100-hyundai.html">Disney D100 — Hyundai Pangyo<span>2023</span></a></li><li><a href="../work/korea-kickoff.html">Disney CPGP Korea Kickoff<span>2022</span></a></li><li><a href="../work/graphic.html">National Geographic Retail Toolkit<span>2022–2023</span></a></li></ul>
+  </div>
+  <div class="stub"><p class="pl">The Walt Disney Company</p><b class="code">DIS</b><span class="bar"></span><p class="pl">pack light, design right</p></div>
+</article><article class="pass" style="--acc:#e6a700">
+  <div class="pmain">
+    <p class="pl">boarding pass · IT’S HANBUL</p>
+    <div class="route"><div><b>2020</b><span>from</span></div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg><div><b>2022</b><span>to</span></div></div>
+    <div class="fields"><div><span>passenger</span><b>Ahran Won</b></div><div><span>class</span><b>Creative Director</b></div><div><span>gate</span><b>HNB</b></div><div><span>seat</span><b>02</b></div></div>
+    <ul class="plist"><li><a href="../work/chasinrabbits.html">Chasin’ Rabbits<span>2020–2022</span></a></li><li><a href="../work/enature.html">enature<span>2020–2022</span></a></li></ul>
+  </div>
+  <div class="stub"><p class="pl">IT’S HANBUL</p><b class="code">HNB</b><span class="bar"></span><p class="pl">pack light, design right</p></div>
+</article><article class="pass" style="--acc:#a14be0">
+  <div class="pmain">
+    <p class="pl">boarding pass · Toun28</p>
+    <div class="route"><div><b>2019</b><span>from</span></div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg><div><b>2020</b><span>to</span></div></div>
+    <div class="fields"><div><span>passenger</span><b>Ahran Won</b></div><div><span>class</span><b>Art Director</b></div><div><span>gate</span><b>T28</b></div><div><span>seat</span><b>03</b></div></div>
+    <ul class="plist"><li><a href="../work/toun28.html">Toun28 Main VMD<span>2019–2020</span></a></li><li><a href="../work/toun28-small-vmds.html">Toun28 Retail VMD Stands<span>2019–2020</span></a></li><li><a href="../work/officedesign.html">Toun28 Office<span>2019–2020</span></a></li></ul>
+  </div>
+  <div class="stub"><p class="pl">Toun28</p><b class="code">T28</b><span class="bar"></span><p class="pl">pack light, design right</p></div>
+</article><article class="pass" style="--acc:#ff6a1a">
+  <div class="pmain">
+    <p class="pl">boarding pass · Projects</p>
+    <div class="route"><div><b>2014</b><span>from</span></div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg><div><b>2018</b><span>to</span></div></div>
+    <div class="fields"><div><span>passenger</span><b>Ahran Won</b></div><div><span>class</span><b>Designer</b></div><div><span>gate</span><b>IND</b></div><div><span>seat</span><b>03</b></div></div>
+    <ul class="plist"><li><a href="../work/moving-capsule.html">Moving Capsule<span>2017</span></a></li><li><a href="../work/landscape.html">Transbay Transit Center Roof Garden<span>2016</span></a></li><li><a href="../work/harvard-passport.html">Passport to the Harvard Libraries<span>2017</span></a></li></ul>
+  </div>
+  <div class="stub"><p class="pl">Projects</p><b class="code">IND</b><span class="bar"></span><p class="pl">pack light, design right</p></div>
+</article></div>
+</section>
+
+<section class="end"><h2>Next stop?</h2><a class="cap" href="mailto:awonjs@gmail.com">awonjs@gmail.com ↗</a></section>
+</body>
+</html>
