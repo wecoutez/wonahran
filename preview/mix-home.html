@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex">
+<title>Ahran Won — Creative Director</title>
+<style>
+  @font-face { font-family: "Instrument Serif"; font-style: normal; src: url(fonts/iserif-0.woff2) format("woff2"); }
+  @font-face { font-family: "Instrument Serif"; font-style: italic; src: url(fonts/iserif-1.woff2) format("woff2"); }
+  @font-face { font-family: "Inter Tight"; font-weight: 100 900; src: url(fonts/intertight-var.woff2) format("woff2"); }
+  @font-face { font-family: "Plex Mono"; src: url(fonts/plexmono.woff2) format("woff2"); }
+  :root { --ink: #1c1616; --paper: #f7f4f1; --dim: #857a77; --yellow: #ffe100; --cocoa: #2f1b1b; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 400 15px/1.5 "Inter Tight", "Helvetica Neue", Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; } img { display: block; }
+  em { font-family: "Instrument Serif", Georgia, serif; font-style: italic; font-weight: 400; }
+  .mono { font-family: "Plex Mono", ui-monospace, monospace; font-size: 11.5px; letter-spacing: .05em; text-transform: uppercase; line-height: 1.4; font-style: normal; }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 clamp(16px, 3.4vw, 44px); }
+
+  /* yellow sticker (magazine) */
+  .sticker { position: absolute; z-index: 6; width: clamp(90px, 9vw, 130px); aspect-ratio: 1; border-radius: 50%; background: var(--yellow); color: var(--ink); }
+  .sticker svg { width: 100%; height: 100%; animation: spin 16s linear infinite; }
+  .sticker text { font: 600 11.5px "Plex Mono", monospace; letter-spacing: .08em; text-transform: uppercase; fill: var(--ink); }
+  .sticker b { position: absolute; inset: 0; display: grid; place-items: center; font: 400 clamp(20px, 2.2vw, 30px) "Instrument Serif", serif; }
+  .sticker.sm { width: clamp(70px, 6.4vw, 92px); right: 8%; top: 40%; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* hero (profile/editorial) */
+  .hero { position: relative; height: min(96vh, 960px); min-height: 620px; overflow: hidden; color: #fff; }
+  .hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 32%; }
+  .hero::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(rgba(0,0,0,.16) 1px, transparent 1.2px) 0 0 / 4px 4px, linear-gradient(180deg, rgba(0,0,0,.3), transparent 32%, transparent 55%, rgba(0,0,0,.4)); }
+  .hero .bar { position: absolute; z-index: 5; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; padding: 20px clamp(16px, 3vw, 36px); text-shadow: 0 1px 8px rgba(0,0,0,.4); }
+  .hero .bar a { margin-left: 22px; }
+  .hero h1 { position: absolute; z-index: 4; top: 8%; left: 0; right: 0; margin: 0; padding: 0 clamp(14px, 2.4vw, 32px); display: flex; justify-content: space-between; align-items: baseline;
+    font-weight: 400; line-height: .82; font-size: clamp(64px, 12vw, 210px); letter-spacing: -.045em; }
+  .hero h1 .a { font-weight: 500; } .hero h1 .b { font-family: "Instrument Serif", serif; font-style: italic; letter-spacing: -.02em; }
+  .hero .cap { position: absolute; z-index: 4; top: calc(8% + clamp(68px, 12.6vw, 220px)); text-shadow: 0 1px 8px rgba(0,0,0,.45); }
+  .hero .c1 { left: clamp(16px, 2.4vw, 34px); } .hero .c2 { right: clamp(16px, 2.4vw, 34px); text-align: right; }
+  .hero .hero-st { right: 8%; bottom: 30%; }
+
+  /* featured rail overlapping the hero */
+  .rail { position: relative; z-index: 7; margin-top: -160px; overflow: hidden; }
+  .rail-track { display: flex; gap: 14px; width: max-content; animation: slide 50s linear infinite; padding: 0 14px 22px; }
+  .rail:hover .rail-track { animation-play-state: paused; }
+  .rail a { position: relative; width: clamp(190px, 19vw, 270px); aspect-ratio: 1; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 34px -18px rgba(0,0,0,.45); }
+  .rail a img { width: 100%; height: 100%; object-fit: cover; }
+  .rail a::after { content: ""; position: absolute; inset: 55% 0 0; background: linear-gradient(180deg, transparent, rgba(20,10,10,.65)); }
+  .rail a span { position: absolute; z-index: 2; left: 14px; bottom: 12px; color: #fff; font: 400 clamp(22px, 2.2vw, 30px)/1 "Instrument Serif", serif; }
+  @keyframes slide { to { transform: translateX(-50%); } }
+
+  /* profile strip */
+  .pf { display: grid; grid-template-columns: auto 1fr auto; gap: clamp(18px, 4vw, 50px); align-items: center; padding: 34px 0 40px; }
+  .avatar { width: clamp(84px, 9vw, 116px); aspect-ratio: 1; border-radius: 50%; background: var(--cocoa); color: #fff; display: grid; place-content: center; text-align: center; font: italic 400 clamp(28px, 3vw, 38px)/1 "Instrument Serif", serif; }
+  .pf p { margin: 0; max-width: 46ch; font-size: clamp(15px, 1.4vw, 18px); }
+  .stats { display: flex; gap: clamp(18px, 3.4vw, 44px); }
+  .stats b { display: block; font: 400 clamp(34px, 3.6vw, 52px)/1 "Instrument Serif", serif; }
+
+  /* marquee (magazine), light weight */
+  .mq { overflow: hidden; background: var(--ink); color: #fff; border-radius: 999px; }
+  .mq div { display: inline-flex; gap: 26px; padding: 13px 0; white-space: nowrap; animation: mq 34s linear infinite; font: 400 20px/1 "Instrument Serif", serif; }
+  .mq i { color: var(--yellow); font-style: normal; font-family: "Inter Tight"; }
+  @keyframes mq { to { transform: translateX(-50%); } }
+
+  /* section heads */
+  .sh { display: flex; justify-content: space-between; align-items: baseline; border-top: 1px solid var(--ink); padding-top: 14px; margin: 80px 0 56px; }
+  .sh h2 { margin: 0; font: 400 clamp(36px, 4.6vw, 66px)/1 "Inter Tight"; letter-spacing: -.045em; }
+  .sh h2 em { letter-spacing: -.01em; }
+
+  /* folders */
+  .folders { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: clamp(24px, 5vw, 76px); row-gap: clamp(40px, 6vw, 76px); }
+  .fold { position: relative; display: block; aspect-ratio: 1.42; }
+  .fback { position: absolute; left: 0; right: 0; bottom: 0; height: 80%; background: var(--b); border-radius: 6px 18px 18px 18px; }
+  .fback::before { content: ""; position: absolute; left: 0; top: -14px; width: 38%; height: 20px; background: var(--b); border-radius: 12px 12px 0 0; }
+  .items { position: absolute; left: 4%; right: 4%; top: -22%; height: 70%; }
+  .pk { position: absolute; aspect-ratio: 4/3; object-fit: cover; border-radius: 6px; transform: rotate(var(--r)); box-shadow: 0 10px 18px -10px rgba(0,0,0,.4); transition: transform .45s cubic-bezier(.34,1.56,.64,1); }
+  .pk.cut { aspect-ratio: auto; height: 100%; width: auto !important; object-fit: contain; box-shadow: none; filter: drop-shadow(0 10px 12px rgba(0,0,0,.22)); }
+  .fold:hover .pk { transform: translateY(-14%) rotate(calc(var(--r) * 1.6)); }
+  .ffront { position: absolute; left: 0; right: 0; bottom: 0; height: 66%; background: var(--a); border-radius: 18px; transition: transform .35s ease; transform-origin: bottom; }
+  .fold:hover .ffront { transform: perspective(600px) rotateX(-12deg); }
+  .fcount { position: absolute; right: 14px; bottom: 12px; color: rgba(0,0,0,.55); }
+  .flabel { margin: 16px 0 0; text-align: center; }
+  .flabel em { display: block; font-size: clamp(24px, 2.4vw, 34px); line-height: 1.05; }
+  .flabel span { display: block; margin-top: 6px; color: var(--dim); }
+
+  /* company sheets (folder) */
+  .co { margin-top: 70px; }
+  .tab { display: inline-block; background: var(--a); padding: 10px 20px 8px; border-radius: 14px 14px 0 0; }
+  .sheet { background: var(--a); border-radius: 0 24px 24px 24px; padding: clamp(18px, 3vw, 34px); }
+  .coh { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; margin-bottom: 22px; }
+  .coh h2 { margin: 0; font: 400 clamp(36px, 4.8vw, 72px)/.95 "Instrument Serif", serif; letter-spacing: -.01em; }
+  .coh p { margin: 0; text-align: right; color: rgba(0,0,0,.6); }
+  .cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+  .card { position: relative; display: block; aspect-ratio: 4/5; border-radius: 16px; overflow: hidden; transition: transform .35s cubic-bezier(.34,1.56,.64,1); }
+  .card:hover { transform: translateY(-5px) rotate(-.5deg); }
+  .card .cm { position: absolute; z-index: 3; left: 14px; bottom: 12px; }
+  /* photo card (profile) */
+  .photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+  .photo:hover img { transform: scale(1.05); }
+  .photo::after { content: ""; position: absolute; inset: 45% 0 0; background: linear-gradient(180deg, transparent, rgba(20,10,10,.7)); }
+  .photo .pt { position: absolute; z-index: 3; left: 14px; right: 14px; bottom: 30px; color: #fff; font: 500 clamp(20px, 1.9vw, 28px)/.95 "Inter Tight"; letter-spacing: -.045em; }
+  .photo .cm { color: rgba(255,255,255,.9); }
+  .conf { position: absolute; z-index: 3; left: 10px; top: 10px; background: #fff; color: var(--ink); padding: 3px 8px; border-radius: 999px; font-size: 9.5px; }
+  /* cut-out card (magazine): object breaks through the title */
+  .cutcard { background: var(--paper); padding: 16px 10px 0; }
+  .cutcard .ct { position: relative; z-index: 1; display: block; text-align: center; font: 500 clamp(30px, 3.4vw, 50px)/.86 "Inter Tight"; letter-spacing: -.055em; }
+  .cutcard .co-img { position: absolute; z-index: 2; left: 50%; bottom: 13%; height: 66%; width: auto; max-width: 92%; object-fit: contain; transform: translateX(-50%); filter: drop-shadow(0 18px 20px rgba(0,0,0,.22)); transition: transform .45s cubic-bezier(.34,1.56,.64,1); }
+  .cutcard:hover .co-img { transform: translateX(-50%) translateY(-6px) rotate(-3deg) scale(1.04); }
+  .cutcard .cm { color: var(--dim); }
+
+  /* contact */
+  .end { position: relative; text-align: center; padding: 120px 0 100px; }
+  .end h2 { margin: 0; font: 400 clamp(64px, 11vw, 170px)/.9 "Inter Tight"; letter-spacing: -.05em; }
+  .end h2 em { letter-spacing: -.02em; }
+  .end a { display: inline-block; margin-top: 24px; border-bottom: 1px solid; }
+  .end .end-st { left: 12%; top: 34%; }
+  .foot { display: flex; justify-content: space-between; padding: 22px 0 34px; border-top: 1px solid #ddd3cf; color: var(--dim); }
+
+  @media (max-width: 760px) {
+    .hero { height: 84vh; min-height: 540px; } .hero .bar a.x { display: none; }
+    .hero .cap { top: calc(8% + 62px); font-size: 9.5px; }
+    .hero .hero-st { right: 5%; bottom: 34%; width: 80px; }
+    .rail { margin-top: -110px; }
+    .pf { grid-template-columns: auto 1fr; } .pf p { grid-column: 1 / -1; order: 3; }
+    .folders { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 16px; }
+    .flabel em { font-size: 19px; } .flabel span { font-size: 9px; }
+    .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+    .photo .pt { font-size: 17px; bottom: 26px; left: 10px; } .card .cm { left: 10px; font-size: 9px; }
+    .cutcard .ct { font-size: 9.6vw; }
+    .coh { flex-direction: column; align-items: flex-start; } .coh p { text-align: left; }
+    .end .end-st { left: 4%; top: 18%; width: 76px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .rail-track, .mq div, .sticker svg { animation: none; } }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><path id="ring" d="M50,50 m-37,0 a37,37 0 1,1 74,0 a37,37 0 1,1 -74,0"/></defs></svg>
+
+<header class="hero">
+  <img src="../assets/img/monchhichi/cover-friends.jpg" alt="">
+  <div class="bar mono"><span>ahran won ©2026</span><span><a class="x" href="#work">work</a><a class="x" href="../about.html">about</a><a href="mailto:awonjs@gmail.com">contact</a></span></div>
+  <h1><span class="a">Ahran</span><span class="b">Won</span></h1>
+  <p class="cap c1 mono">creative direction<br>brand · product · space<br>seoul, korea</p>
+  <p class="cap c2 mono">marketing director<br>baskin-robbins korea<br>2014—2026</p>
+  <div class="sticker hero-st"><svg viewBox="0 0 100 100"><text><textPath href="#ring" textLength="226" lengthAdjust="spacingAndGlyphs">selected work · 2014—2026 · seoul ·</textPath></text></svg><b>WORK</b></div>
+</header>
+
+<div class="rail" aria-label="Featured"><div class="rail-track">
+  <a href="../work/monchhichi.html"><img src="../assets/img/monchhichi/card.jpg" alt=""><span>Caramelholic</span></a>
+  <a href="../work/one-piece-adventure.html"><img src="../assets/img/one-piece-adventure/card.jpg" alt=""><span>One Piece</span></a>
+  <a href="../work/pokemon-ditto.html"><img src="../assets/img/pokemon-ditto/card.jpg" alt=""><span>Catch the flavors</span></a>
+  <a href="../work/toy-story-lets-play.html"><img src="../assets/img/toy-story-lets-play/main-poster.jpg" alt=""><span>Let’s play!</span></a>
+  <a href="../work/retail-design-knotted-seoullo.html"><img src="../assets/img/retail-design-knotted-seoullo/built.jpg" alt=""><span>Knotted Seoullo</span></a>
+  <a href="../work/bonjour-paris.html"><img src="../assets/img/bonjour-paris/01.jpg" alt=""><span>Bonjour Paris</span></a>
+  <a href="../work/toysrus.html"><img src="../assets/img/toysrus/07.jpg" alt=""><span>Toys “R” Us</span></a>
+  <a href="../work/monchhichi.html"><img src="../assets/img/monchhichi/card.jpg" alt=""><span>Caramelholic</span></a>
+  <a href="../work/one-piece-adventure.html"><img src="../assets/img/one-piece-adventure/card.jpg" alt=""><span>One Piece</span></a>
+  <a href="../work/pokemon-ditto.html"><img src="../assets/img/pokemon-ditto/card.jpg" alt=""><span>Catch the flavors</span></a>
+  <a href="../work/toy-story-lets-play.html"><img src="../assets/img/toy-story-lets-play/main-poster.jpg" alt=""><span>Let’s play!</span></a>
+  <a href="../work/retail-design-knotted-seoullo.html"><img src="../assets/img/retail-design-knotted-seoullo/built.jpg" alt=""><span>Knotted Seoullo</span></a>
+  <a href="../work/bonjour-paris.html"><img src="../assets/img/bonjour-paris/01.jpg" alt=""><span>Bonjour Paris</span></a>
+  <a href="../work/toysrus.html"><img src="../assets/img/toysrus/07.jpg" alt=""><span>Toys “R” Us</span></a>
+</div></div>
+
+<div class="wrap">
+  <section class="pf">
+    <div class="avatar">Ahran</div>
+    <p>Architect, landscape, then brands. I make monthly campaigns, IP collaborations, original characters and stores you can <em>walk into</em>.</p>
+    <div class="stats"><div><b>27</b><span class="mono">projects</span></div><div><b>6</b><span class="mono">companies</span></div><div><b>12</b><span class="mono">years</span></div></div>
+  </section>
+
+  <div class="mq" aria-hidden="true"><div>
+    <span>Brand strategy</span><i>✳</i><span>Identity</span><i>✳</i><span>Graphic</span><i>✳</i><span>Packaging</span><i>✳</i><span>Merchandise</span><i>✳</i><span>Campaign &amp; IP</span><i>✳</i><span>VMD</span><i>✳</i><span>Space &amp; construction</span><i>✳</i>
+    <span>Brand strategy</span><i>✳</i><span>Identity</span><i>✳</i><span>Graphic</span><i>✳</i><span>Packaging</span><i>✳</i><span>Merchandise</span><i>✳</i><span>Campaign &amp; IP</span><i>✳</i><span>VMD</span><i>✳</i><span>Space &amp; construction</span><i>✳</i>
+  </div></div>
+
+  <div class="sh" id="work"><h2>Twelve years, <em>tucked</em> in folders</h2><span class="mono">6 companies · 27 projects</span></div>
+  <div class="folders"><div class="fcell"><a class="fold" href="#br" style="--a:#ffd3dc;--b:#f4a9b8"><span class="fback"></span><span class="items"><img class="pk cut" src="../assets/img/toy-story-lets-play/ms/03.webp" alt="" style="left:0%;top:6%;width:44%;--r:-7deg"><img class="pk cut" src="../assets/img/monchhichi/ms/09.webp" alt="" style="left:22%;top:-2%;width:40%;--r:4deg"><img class="pk cut" src="../assets/img/one-piece-adventure/ms/16.webp" alt="" style="left:46%;top:2%;width:40%;--r:-3deg"><img class="pk cut" src="../assets/img/pokemon-ditto/ms/03.webp" alt="" style="left:66%;top:10%;width:30%;--r:6deg"></span><span class="ffront"><span class="mono fcount">07 projects</span></span></a><p class="flabel"><em>Baskin-Robbins Korea</em><span class="mono">Marketing Director · 2025—</span></p></div><div class="fcell"><a class="fold" href="#gffg" style="--a:#b9d3c6;--b:#7fa895"><span class="fback"></span><span class="items"><img class="pk" src="../assets/img/retail-design-knotted-seoullo/built.jpg" alt="" style="left:2%;top:2%;width:46%;--r:-6deg"><img class="pk" src="../assets/img/knotted/08.jpeg" alt="" style="left:30%;top:-8%;width:42%;--r:3deg"><img class="pk" src="../assets/img/gffg-graphic-works/01.png" alt="" style="left:58%;top:4%;width:40%;--r:6deg"></span><span class="ffront"><span class="mono fcount">08 projects</span></span></a><p class="flabel"><em>GFFG</em><span class="mono">Creative Director · 2024–2025</span></p></div><div class="fcell"><a class="fold" href="#disney" style="--a:#f8d3a8;--b:#f0a050"><span class="fback"></span><span class="items"><img class="pk" src="../assets/img/toysrus/07.jpg" alt="" style="left:2%;top:2%;width:46%;--r:-6deg"><img class="pk" src="../assets/img/d100-hyundai/06.jpeg" alt="" style="left:30%;top:-8%;width:42%;--r:3deg"><img class="pk" src="../assets/img/graphic/01.jpg" alt="" style="left:58%;top:4%;width:40%;--r:6deg"></span><span class="ffront"><span class="mono fcount">04 projects</span></span></a><p class="flabel"><em>The Walt Disney Company</em><span class="mono">Creative Manager, APAC · 2022–2023</span></p></div><div class="fcell"><a class="fold" href="#hanbul" style="--a:#f5df9c;--b:#e9b830"><span class="fback"></span><span class="items"><img class="pk" src="../assets/img/chasinrabbits/01.jpg" alt="" style="left:6%;top:0%;width:50%;--r:-5deg"><img class="pk" src="../assets/img/enature/01.png" alt="" style="left:44%;top:-6%;width:48%;--r:5deg"></span><span class="ffront"><span class="mono fcount">02 projects</span></span></a><p class="flabel"><em>IT’S HANBUL</em><span class="mono">Creative Director · 2020–2022</span></p></div><div class="fcell"><a class="fold" href="#toun28" style="--a:#efc4f2;--b:#d08ad8"><span class="fback"></span><span class="items"><img class="pk" src="../assets/img/toun28/06.jpeg" alt="" style="left:2%;top:2%;width:46%;--r:-6deg"><img class="pk" src="../assets/img/toun28-small-vmds/12.jpeg" alt="" style="left:30%;top:-8%;width:42%;--r:3deg"><img class="pk" src="../assets/img/officedesign/02.jpeg" alt="" style="left:58%;top:4%;width:40%;--r:6deg"></span><span class="ffront"><span class="mono fcount">03 projects</span></span></a><p class="flabel"><em>Toun28</em><span class="mono">Art Director · 2019–2020</span></p></div><div class="fcell"><a class="fold" href="#independent" style="--a:#c4e6f6;--b:#86c4e0"><span class="fback"></span><span class="items"><img class="pk" src="../assets/img/moving-capsule/01.png" alt="" style="left:2%;top:2%;width:46%;--r:-6deg"><img class="pk" src="../assets/img/landscape/09.jpg" alt="" style="left:30%;top:-8%;width:42%;--r:3deg"><img class="pk" src="../assets/img/harvard-passport/01.jpeg" alt="" style="left:58%;top:4%;width:40%;--r:6deg"></span><span class="ffront"><span class="mono fcount">03 projects</span></span></a><p class="flabel"><em>Projects</em><span class="mono">Designer · 2014–2018</span></p></div></div>
+
+  <section class="co" id="br" style="--a:#ffd3dc;--b:#f4a9b8"><div class="tab mono">Baskin-Robbins</div><div class="sheet"><header class="coh"><h2>Baskin-Robbins Korea</h2><p class="mono">Marketing Director<br>2025— · 7 projects</p></header><div class="cards"><a class="card photo" href="../work/trickimas.html"><img src="../assets/img/trickimas/01.jpg" alt="" loading="lazy"><i class="conf mono">confidential</i><span class="pt">Merry Trickimas</span><span class="cm mono">baskin-robbins · 2026</span></a><a class="card cutcard" href="../work/monchhichi.html"><span class="ct">Monchhichi</span><img class="co-img" src="../assets/img/monchhichi/ms/09.webp" alt="" loading="lazy"><div class="sticker sm"><svg viewBox="0 0 100 100"><text><textPath href="#ring" textLength="226" lengthAdjust="spacingAndGlyphs">monchhichi · 2026 · campaign ·</textPath></text></svg></div><span class="cm mono">baskin-robbins · 2026</span></a><a class="card cutcard" href="../work/pokemon-ditto.html"><span class="ct">Pokémon</span><img class="co-img" src="../assets/img/pokemon-ditto/ms/03.webp" alt="" loading="lazy"><span class="cm mono">baskin-robbins · 2026</span></a><a class="card cutcard" href="../work/one-piece-adventure.html"><span class="ct">One Piece</span><img class="co-img" src="../assets/img/one-piece-adventure/ms/16.webp" alt="" loading="lazy"><span class="cm mono">baskin-robbins · 2026</span></a><a class="card cutcard" href="../work/toy-story-lets-play.html"><span class="ct">Toy Story 5</span><img class="co-img" src="../assets/img/toy-story-lets-play/ms/03.webp" alt="" loading="lazy"><span class="cm mono">baskin-robbins · 2026</span></a><a class="card photo" href="../work/bonjour-paris.html"><img src="../assets/img/bonjour-paris/01.jpg" alt="" loading="lazy"><span class="pt">Bonjour! Paris — Robin</span><span class="cm mono">baskin-robbins · 2025</span></a><a class="card photo" href="../work/baskin-robbins-popup.html"><img src="../assets/img/baskin-robbins-popup/01.png" alt="" loading="lazy"><span class="pt">Mangbingo Gacha Shop</span><span class="cm mono">baskin-robbins · 2025</span></a></div></div></section><section class="co" id="gffg" style="--a:#b9d3c6;--b:#7fa895"><div class="tab mono">GFFG</div><div class="sheet"><header class="coh"><h2>GFFG</h2><p class="mono">Creative Director<br>2024–2025 · 8 projects</p></header><div class="cards"><a class="card photo" href="../work/knotted.html"><img src="../assets/img/knotted/01.jpeg?v=8" alt="" loading="lazy"><span class="pt">Knotted Gwangju Sangmu</span><span class="cm mono">gffg · 2024</span></a><a class="card photo" href="../work/knotted-store-la.html"><img src="../assets/img/knotted-store-la/01.png" alt="" loading="lazy"><span class="pt">Knotted Westfield Century City</span><span class="cm mono">gffg · 2024</span></a><a class="card photo" href="../work/retail-design-knotted-seoullo.html"><img src="../assets/img/retail-design-knotted-seoullo/01.png" alt="" loading="lazy"><span class="pt">Knotted Seoullo</span><span class="cm mono">gffg · 2024</span></a><a class="card photo" href="../work/retail-design-knotted-guui.html"><img src="../assets/img/retail-design-knotted-guui/01.png" alt="" loading="lazy"><span class="pt">Knotted Guui</span><span class="cm mono">gffg · 2024</span></a><a class="card photo" href="../work/clap-pizza.html"><img src="../assets/img/clap-pizza/01.jpeg?v=8" alt="" loading="lazy"><span class="pt">Clap Pizza Gwangju</span><span class="cm mono">gffg · 2024</span></a><a class="card photo" href="../work/gffg-graphic-works.html"><img src="../assets/img/gffg-graphic-works/01.png?v=8" alt="" loading="lazy"><span class="pt">Knotted 2025 Campaigns</span><span class="cm mono">gffg · 2025</span></a><a class="card photo" href="../work/knotted-goods-proposal.html"><img src="../assets/img/knotted-goods-proposal/01.jpg?v=8" alt="" loading="lazy"><span class="pt">Knotted Lifestyle Expansion</span><span class="cm mono">gffg · 2024</span></a><a class="card photo" href="../work/project-three.html"><img src="../assets/img/project-three/01.png?v=8" alt="" loading="lazy"><span class="pt">Knotted Merchandise Collection</span><span class="cm mono">gffg · 2024–2025</span></a></div></div></section><section class="co" id="disney" style="--a:#f8d3a8;--b:#f0a050"><div class="tab mono">Disney</div><div class="sheet"><header class="coh"><h2>The Walt Disney Company</h2><p class="mono">Creative Manager, APAC<br>2022–2023 · 4 projects</p></header><div class="cards"><a class="card photo" href="../work/toysrus.html"><img src="../assets/img/toysrus/01.jpeg?v=8" alt="" loading="lazy"><span class="pt">Disney at Toys “R” Us</span><span class="cm mono">disney · 2022–2023</span></a><a class="card photo" href="../work/d100-hyundai.html"><img src="../assets/img/d100-hyundai/01.jpeg?v=8" alt="" loading="lazy"><span class="pt">Disney D100 — Hyundai Pangyo</span><span class="cm mono">disney · 2023</span></a><a class="card photo" href="../work/korea-kickoff.html"><img src="../assets/img/korea-kickoff/06.jpg" alt="" loading="lazy"><span class="pt">Disney CPGP Korea Kickoff</span><span class="cm mono">disney · 2022</span></a><a class="card photo" href="../work/graphic.html"><img src="../assets/img/graphic/01.jpg?v=8" alt="" loading="lazy"><span class="pt">National Geographic Retail Toolkit</span><span class="cm mono">disney · 2022–2023</span></a></div></div></section><section class="co" id="hanbul" style="--a:#f5df9c;--b:#e9b830"><div class="tab mono">It’s Hanbul</div><div class="sheet"><header class="coh"><h2>IT’S HANBUL</h2><p class="mono">Creative Director<br>2020–2022 · 2 projects</p></header><div class="cards"><a class="card photo" href="../work/chasinrabbits.html"><img src="../assets/img/chasinrabbits/01.jpg?v=8" alt="" loading="lazy"><span class="pt">Chasin’ Rabbits</span><span class="cm mono">it’s hanbul · 2020–2022</span></a><a class="card photo" href="../work/enature.html"><img src="../assets/img/enature/01.png?v=8" alt="" loading="lazy"><span class="pt">enature</span><span class="cm mono">it’s hanbul · 2020–2022</span></a></div></div></section><section class="co" id="toun28" style="--a:#efc4f2;--b:#d08ad8"><div class="tab mono">Toun28</div><div class="sheet"><header class="coh"><h2>Toun28</h2><p class="mono">Art Director<br>2019–2020 · 3 projects</p></header><div class="cards"><a class="card photo" href="../work/toun28.html"><img src="../assets/img/toun28/06.jpeg" alt="" loading="lazy"><span class="pt">Toun28 Main VMD</span><span class="cm mono">toun28 · 2019–2020</span></a><a class="card photo" href="../work/toun28-small-vmds.html"><img src="../assets/img/toun28-small-vmds/12.jpeg" alt="" loading="lazy"><span class="pt">Toun28 Retail VMD Stands</span><span class="cm mono">toun28 · 2019–2020</span></a><a class="card photo" href="../work/officedesign.html"><img src="../assets/img/officedesign/02.jpeg" alt="" loading="lazy"><span class="pt">Toun28 Office</span><span class="cm mono">toun28 · 2019–2020</span></a></div></div></section><section class="co" id="independent" style="--a:#c4e6f6;--b:#86c4e0"><div class="tab mono">Independent</div><div class="sheet"><header class="coh"><h2>Projects</h2><p class="mono">Designer<br>2014–2018 · 3 projects</p></header><div class="cards"><a class="card photo" href="../work/moving-capsule.html"><img src="../assets/img/moving-capsule/01.png?v=8" alt="" loading="lazy"><span class="pt">Moving Capsule</span><span class="cm mono">independent · 2017</span></a><a class="card photo" href="../work/landscape.html"><img src="../assets/img/landscape/09.jpg" alt="" loading="lazy"><span class="pt">Transbay Transit Center Roof Garden</span><span class="cm mono">independent · 2016</span></a><a class="card photo" href="../work/harvard-passport.html"><img src="../assets/img/harvard-passport/01.jpeg?v=8" alt="" loading="lazy"><span class="pt">Passport to the Harvard Libraries</span><span class="cm mono">independent · 2017</span></a></div></div></section>
+
+  <section class="end"><div class="sticker end-st"><svg viewBox="0 0 100 100"><text><textPath href="#ring" textLength="226" lengthAdjust="spacingAndGlyphs">open to new work · say hi · seoul ·</textPath></text></svg><b>HI!</b></div><h2>Say <em>hello</em></h2><a class="mono" href="mailto:awonjs@gmail.com">awonjs@gmail.com ↗</a></section>
+  <footer class="foot mono"><span>ahran won</span><span>creative direction — seoul</span></footer>
+</div>
+</body>
+</html>
