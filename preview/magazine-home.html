@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Ahran Won — Creative Director</title>
+<style>
+  @font-face { font-family: "Inter Tight"; font-weight: 900; src: url(fonts/intertight-900.woff2) format("woff2"); font-display: swap; }
+  :root { --ink: #0b0b0b; --paper: #fbfbf9; --ground: #ecebe7; --yellow: #ffe100; --dim: #6b6b6b; --gap: 14px; }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--ground); color: var(--ink); font-family: "Helvetica Neue", Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; }
+  .bk { font-family: "Inter Tight", "Helvetica Neue", Arial, sans-serif; font-weight: 900; text-transform: uppercase; letter-spacing: -.065em; line-height: .8; }
+
+  /* nav */
+  .nav { position: sticky; top: 0; z-index: 30; display: flex; align-items: center; gap: 22px; padding: 14px 22px; background: rgba(236,235,231,.86); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+  .nav .name { font: 900 20px/1 "Inter Tight", sans-serif; letter-spacing: -.04em; text-transform: uppercase; }
+  .nav .sp { flex: 1; }
+  .nav a.l { font-size: 14px; font-weight: 500; }
+  .nav .cta { background: var(--ink); color: #fff; border-radius: 999px; padding: 10px 18px; font-size: 13px; font-weight: 700; letter-spacing: .02em; }
+
+  .sheet { background: var(--paper); border-radius: 6px; margin: 0 var(--gap) var(--gap); position: relative; overflow: hidden; }
+
+  /* hero */
+  .hero { padding: 22px 22px 0; min-height: calc(100vh - 70px); }
+  .hero .kick { text-align: center; font-size: 15px; font-weight: 500; margin: 0 0 8px; }
+  .hero .hl { margin: 0; text-align: center; font-size: clamp(64px, 16.5vw, 280px); }
+  .hero .hl span { display: block; }
+  .hero .cut { position: absolute; left: 50%; bottom: -1%; width: min(28vw, 420px); transform: translateX(14%); filter: drop-shadow(0 30px 40px rgba(0,0,0,.25)); }
+  .hero .cut2 { position: absolute; left: 50%; bottom: -1%; width: min(19vw, 290px); transform: translateX(-118%); filter: drop-shadow(0 30px 40px rgba(0,0,0,.25)); }
+  .hero .meta { position: absolute; left: 22px; bottom: 22px; font-size: 14px; line-height: 1.4; font-weight: 500; }
+  .hero .meta b { display: block; font: 900 15px "Inter Tight", sans-serif; letter-spacing: -.02em; text-transform: uppercase; }
+  .hero .sticker { right: 6%; top: 46%; width: clamp(110px, 11vw, 160px); }
+
+  /* marquee */
+  .mq { overflow: hidden; background: var(--ink); color: #fff; margin: 0 var(--gap) var(--gap); border-radius: 6px; }
+  .mq div { display: inline-flex; gap: 28px; padding: 12px 0; white-space: nowrap; animation: mq 30s linear infinite; font: 900 22px/1 "Inter Tight", sans-serif; letter-spacing: -.03em; text-transform: uppercase; }
+  .mq i { color: var(--yellow); font-style: normal; }
+  @keyframes mq { to { transform: translateX(-50%); } }
+
+  /* sticker */
+  .sticker { position: absolute; z-index: 3; width: clamp(64px, 6.6vw, 100px); aspect-ratio: 1; border-radius: 50%; background: var(--yellow); }
+  .sticker svg { width: 100%; height: 100%; animation: spin 16s linear infinite; }
+  .sticker text { font: 900 11.5px "Inter Tight", sans-serif; letter-spacing: .1em; text-transform: uppercase; fill: var(--ink); }
+  .sticker b { position: absolute; inset: 0; display: grid; place-items: center; font: 900 clamp(16px, 1.8vw, 24px) "Inter Tight"; letter-spacing: -.04em; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* company groups */
+  .grp { margin: 0 var(--gap) calc(var(--gap) * 3); }
+  .gh { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; padding: 44px 6px 16px; border-bottom: 2px solid var(--ink); margin-bottom: var(--gap); }
+  .gh h2 { margin: 0; font: 900 clamp(44px, 8.4vw, 136px)/.82 "Inter Tight", sans-serif; letter-spacing: -.06em; text-transform: uppercase; }
+  .gh p { margin: 0 0 6px; text-align: right; font-size: 14px; line-height: 1.35; white-space: nowrap; }
+  .gh p b { display: block; font: 900 16px "Inter Tight", sans-serif; letter-spacing: -.02em; text-transform: uppercase; }
+  .grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--gap); }
+
+  /* poster card */
+  .poster { position: relative; display: block; aspect-ratio: 9 / 14; background: var(--paper); border-radius: 6px; overflow: hidden; padding: 14px 8px 0; transition: transform .35s cubic-bezier(.34,1.56,.64,1); }
+  .poster:hover { transform: translateY(-6px) rotate(-.6deg); }
+  .poster .kick { margin: 0 0 4px; text-align: center; font-size: 12px; font-weight: 500; }
+  .poster .hl { position: relative; z-index: 1; margin: 0; text-align: center; font: 900 calc(var(--fs, 1) * clamp(38px, 6.1vw, 96px))/.8 "Inter Tight", sans-serif; letter-spacing: -.065em; text-transform: uppercase; }
+  .poster .hl span { display: block; white-space: nowrap; }
+  .poster .cut { position: absolute; z-index: 2; left: 50%; bottom: 9%; transform: translateX(-50%); max-height: 64%; object-fit: contain; filter: drop-shadow(0 22px 24px rgba(0,0,0,.22)); }
+  .poster .ph { position: absolute; z-index: 2; left: 9%; right: 9%; top: 31%; bottom: 11%; margin: 0; border-radius: 10px; overflow: hidden; transform: rotate(-2.2deg); box-shadow: 0 22px 30px -18px rgba(0,0,0,.45); }
+  .poster:nth-child(even) .ph { transform: rotate(2deg); }
+  .poster .ph img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+  .poster:hover .ph img { transform: scale(1.06); }
+  .poster .cap { position: absolute; z-index: 4; left: 10px; right: 10px; bottom: 8px; margin: 0; display: flex; justify-content: space-between; gap: 8px; font-size: 11px; font-weight: 500; }
+  .poster .cap b { font: 900 11px "Inter Tight", sans-serif; letter-spacing: -.01em; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .poster .conf { position: absolute; z-index: 4; left: 10px; top: 10px; background: var(--ink); color: #fff; font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 5px 8px; border-radius: 999px; }
+
+  /* about + contact */
+  .about { padding: clamp(28px, 5vw, 64px) 22px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 30px; align-items: end; }
+  .about h2 { margin: 0; font: 900 clamp(44px, 7.6vw, 124px)/.82 "Inter Tight", sans-serif; letter-spacing: -.06em; text-transform: uppercase; }
+  .about p { margin: 0; font-size: clamp(16px, 1.5vw, 20px); line-height: 1.45; }
+  .about a { display: inline-block; margin-top: 18px; border: 2px solid var(--ink); border-radius: 999px; padding: 10px 18px; font-weight: 700; font-size: 14px; }
+  .contact { text-align: center; padding: clamp(40px, 7vw, 90px) 22px; }
+  .contact .kick { font-size: 15px; font-weight: 500; margin: 0 0 10px; }
+  .contact a.big { display: block; font: 900 clamp(48px, 12vw, 200px)/.82 "Inter Tight", sans-serif; letter-spacing: -.065em; text-transform: uppercase; }
+  .contact .mail { margin-top: 18px; font-size: 16px; font-weight: 500; }
+  .contact .sticker { left: 8%; top: 18%; width: clamp(90px, 9vw, 130px); }
+
+  @media (max-width: 760px) {
+    :root { --gap: 9px; }
+    .nav { padding: 12px 14px; gap: 14px; } .nav a.l { display: none; }
+    .hero { padding: 18px 10px 0; min-height: 82vh; }
+    .hero .cut { width: 50vw; transform: translateX(-2%); }
+    .hero .cut2 { width: 34vw; transform: translateX(-104%); }
+    .hero .meta { display: none; }
+    .hero .sticker { right: 4%; top: 40%; width: 84px; }
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .poster .hl { font-size: calc(var(--fs, 1) * 11.4vw); }
+    .poster .kick { font-size: 10px; }
+    .poster .cap { font-size: 9px; } .poster .cap b { font-size: 9px; }
+    .gh { flex-direction: column; align-items: flex-start; } .gh p { text-align: left; }
+    .about { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) { .sticker svg, .mq div { animation: none; } }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><path id="ring" d="M50,50 m-37,0 a37,37 0 1,1 74,0 a37,37 0 1,1 -74,0"/></defs></svg>
+
+<nav class="nav">
+  <a class="name" href="#top">Ahran Won</a><span class="sp"></span>
+  <a class="l" href="#br">Work</a><a class="l" href="../about.html">About</a>
+  <a class="cta" href="#contact">Contact</a>
+</nav>
+
+<header class="sheet hero" id="top">
+  <p class="kick">ahran won — creative director</p>
+  <h1 class="hl bk"><span>Brands you</span><span>can walk</span><span>into.</span></h1>
+  <img class="cut2" src="../assets/img/monchhichi/ms/09.webp" alt="">
+  <img class="cut" src="../assets/img/toy-story-lets-play/ms/03.webp" alt="">
+  <div class="sticker"><svg viewBox="0 0 100 100"><text><textPath href="#ring" textLength="226" lengthAdjust="spacingAndGlyphs">selected work · 2014—2026 · seoul ·</textPath></text></svg><b>WORK</b></div>
+  <p class="meta"><b>Brand · product · built space</b>Baskin-Robbins, GFFG, Disney, It’s Hanbul</p>
+</header>
+
+<div class="mq" aria-hidden="true"><div>
+  <span>Brand strategy</span><i>✳</i><span>Identity</span><i>✳</i><span>Graphic</span><i>✳</i><span>Packaging</span><i>✳</i><span>Merchandise</span><i>✳</i><span>Campaign</span><i>✳</i><span>VMD</span><i>✳</i><span>Space &amp; construction</span><i>✳</i>
+  <span>Brand strategy</span><i>✳</i><span>Identity</span><i>✳</i><span>Graphic</span><i>✳</i><span>Packaging</span><i>✳</i><span>Merchandise</span><i>✳</i><span>Campaign</span><i>✳</i><span>VMD</span><i>✳</i><span>Space &amp; construction</span><i>✳</i>
+</div></div>
+
+<main>
+<section class="grp" id="br"><header class="gh"><h2>Baskin-Robbins Korea</h2><p><b>Marketing Director</b><span>2025—</span></p></header><div class="grid"><a class="poster" href="../work/trickimas.html"><p class="kick">baskin robbins</p><h3 class="hl" style="--fs:0.87"><span>Tricki</span><span>mas</span></h3><figure class="ph"><img src="../assets/img/trickimas/01.jpg" alt="" loading="lazy"></figure><div class="sticker" style="left:6%;top:47%"><svg viewBox="0 0 100 100"><text><textPath href="#ring" textLength="226" lengthAdjust="spacingAndGlyphs">seoul · 2026 · baskin robbins ·</textPath></text></svg></div><span class="conf">Confidential</span><p class="cap"><b>Merry Trickimas</b><span>2026</span></p></a><a class="poster is-cut" href="../work/monchhichi.html"><p class="kick">baskin robbins</p><h3 class="hl" style="--fs:1.00"><span>Monch</span><span>hichi</span></h3><img class="cut" src="../assets/img/monchhichi/ms/09.webp" alt="" loading="lazy" style="width:60%"><div class="sticker" style="right:6%;top:42%"><svg viewBox="0 0 100 100"><text><textPath href="#ring" textLength="226" lengthAdjust="spacingAndGlyphs">seoul · 2026 · baskin robbins ·</textPath></text></svg></div><p class="cap"><b>Baskin-Robbins × Monchhichi</b><span>2026</span></p></a><a class="poster is-cut" href="../work/pokemon-ditto.html"><p class="kick">baskin robbins</p><h3 class="hl" style="--fs:1.00"><span>Poké</span><span>mon</span></h3><img class="cut" src="../assets/img/pokemon-ditto/ms/03.webp" alt="" loading="lazy" style="width:94%"><div class="sticker" style="left:5%;bottom:18%"><svg viewBox="0 0 100 100"><text><textPath href="#ring" textLength="226" lengthAdjust="spacingAndGlyphs">seoul · 2026 · baskin robbins ·</textPath></text></svg></div><p class="cap"><b>Baskin-Robbins × Pokémon</b><span>2026</span></p></a><a class="poster is-cut" href="../work/one-piece-adventure.html"><p class="kick">baskin robbins</p><h3 class="hl" style="--fs:1.00"><span>One</span><span>Piece</span></h3><img class="cut" src="../assets/img/one-piece-adventure/ms/16.webp" alt="" loading="lazy" style="width:90%"><div class="sticker" style="right:5%;bottom:20%"><svg viewBox="0 0 100 100"><text><textPath href="#ring" textLength="226" lengthAdjust="spacingAndGlyphs">seoul · 2026 · baskin robbins ·</textPath></text></svg></div><p class="cap"><b>Baskin-Robbins × One Piece</b><span>2026</span></p></a><a class="poster is-cut" href="../work/toy-story-lets-play.html"><p class="kick">baskin robbins</p><h3 class="hl" style="--fs:1.00"><span>Toy</span><span>Story</span></h3><img class="cut" src="../assets/img/toy-story-lets-play/ms/03.webp" alt="" loading="lazy" style="width:56%"><div class="sticker" style="left:6%;top:47%"><svg viewBox="0 0 100 100"><text><textPath href="#ring" textLength="226" lengthAdjust="spacingAndGlyphs">seoul · 2026 · baskin robbins ·</textPath></text></svg></div><p class="cap"><b>Baskin-Robbins × Toy Story 5</b><span>2026</span></p></a><a class="poster" href="../work/bonjour-paris.html"><p class="kick">baskin robbins</p><h3 class="hl" style="--fs:1.00"><span>Bon</span><span>jour!</span></h3><figure class="ph"><img src="../assets/img/bonjour-paris/01.jpg" alt="" loading="lazy"></figure><div class="sticker" style="right:6%;top:42%"><svg viewBox="0 0 100 100"><text><textPath href="#ring" textLength="226" lengthAdjust="spacingAndGlyphs">seoul · 2025 · baskin robbins ·</textPath></text></svg></div><p class="cap"><b>Bonjour! Paris — Robin</b><span>2025</span></p></a><a class="poster" href="../work/baskin-robbins-popup.html"><p class="kick">baskin robbins</p><h3 class="hl" style="--fs:1.00"><span>Gacha</span><span>Shop</span></h3><figure class="ph"><img src="../assets/img/baskin-robbins-popup/01.png" alt="" loading="lazy"></figure><div class="sticker" style="left:5%;bottom:18%"><svg viewBox="0 0 100 100"><text><textPath href="#ring" textLength="226" lengthAdjust="spacingAndGlyphs">seongsu · 2025 · baskin robbins ·</textPath></text></svg></div><p class="cap"><b>Mangbingo Gacha Shop</b><span>2025</span></p></a></div></section>
+<section class="grp" id="gffg"><header class="gh"><h2>GFFG</h2><p><b>Creative Director</b><span>2024–2025</span></p></header><div class="grid"><a class="poster" href="../work/knotted.html"><p class="kick">knotted</p><h3 class="hl" style="--fs:1.00"><span>Gwang</span><span>ju</span></h3><figure class="ph"><img src="../assets/img/knotted/01.jpeg?v=8" alt="" loading="lazy"></figure><div class="sticker" style="left:6%;top:47%"><svg viewBox="0 0 100 100"><text><textPath href="#ring" textLength="226" lengthAdjust="spacingAndGlyphs">gwangju · 2024 · knotted ·</textPath></text></svg></div><p class="cap"><b>Knotted Gwangju Sangmu</b><span>2024</span></p></a><a class="poster" href="../work/knotted-store-la.html"><p class="kick">knotted</p><h3 class="hl" style="--fs:1.00"><span>L.A.</span><span>Store</span></h3><figure class="ph"><img src="../assets/img/knotted-store-la/01.png" alt="" loading="lazy"></figure><div class="sticker" style="right:6%;top:42%"><svg viewBox="0 0 100 100"><text><textPath href="#ring" textLength="226" lengthAdjust="spacingAndGlyphs">los angeles · 2024 · knotted ·</textPath></text></svg></div><p class="cap"><b>Knotted Westfield Century City</b><span>2024</span></p></a><a class="poster" href="../work/retail-design-knotted-seoullo.html"><p class="kick">knotted</p><h3 class="hl" style="--fs:1.00"><span>Seoul</span><span>lo</span></h3><figure class="ph"><img src="../assets/img/retail-design-knotted-seoullo/01.png" alt="" loading="lazy"></figure><div class="sticker" style="left:5%;bottom:18%"><svg viewBox="0 0 100 100"><text><textPath href="#ring" textLength="226" lengthAdjust="spacingAndGlyphs">seoul station · 2024 · knotted ·</textPath></text></svg></div><p class="cap"><b>Knotted Seoullo</b><span>2024</span></p></a><a class="poster" href="../work/retail-design-knotted-guui.html"><p class="kick">knotted</p><h3 class="hl" style="--fs:1.00"><span>Guui</span><span>Store</span></h3><figure class="ph"><img src="../assets/img/retail-design-knotted-guui/01.png" alt="" loading="lazy"></figure><div class="sticker" style="right:5%;bottom:20%"><svg viewBox="0 0 100 100"><text><textPath href="#ring" textLength="226" lengthAdjust="spacingAndGlyphs">guui · 2024 · knotted ·</textPath></text></svg></div><p class="cap"><b>Knotted Guui</b><span>2024</span></p></a><a class="poster" href="../work/clap-pizza.html"><p class="kick">gffg</p><h3 class="hl" style="--fs:1.00"><span>Clap</span><span>Pizza</span></h3><figure class="ph"><img src="../assets/img/clap-pizza/01.jpeg?v=8" alt="" loading="lazy"></figure><div class="sticker" style="left:6%;top:47%"><svg viewBox="0 0 100 100"><text><textPath href="#ring" textLength="226" lengthAdjust="spacingAndGlyphs">gwangju · 2024 · gffg ·</textPath></text></svg></div><p class="cap"><b>Clap Pizza Gwangju</b><span>2024</span></p></a><a class="poster" href="../work/gffg-graphic-works.html"><p class="kick">knotted</p><h3 class="hl" style="--fs:0.87"><span>Cam</span><span>paigns</span></h3><figure class="ph"><img src="../assets/img/gffg-graphic-works/01.png?v=8" alt="" loading="lazy"></figure><div class="sticker" style="right:6%;top:42%"><svg viewBox="0 0 100 100"><text><textPath href="#ring" textLength="226" lengthAdjust="spacingAndGlyphs">seoul · 2025 · knotted ·</textPath></text></svg></div><p class="cap"><b>Knotted 2025 Campaigns</b><span>2025</span></p></a><a class="poster" href="../work/knotted-goods-proposal.html"><p class="kick">knotted</p><h3 class="hl" style="--fs:1.00"><span>Life</span><span>style</span></h3><figure class="ph"><img src="../assets/img/knotted-goods-proposal/01.jpg?v=8" alt="" loading="lazy"></figure><div class="sticker" style="left:5%;bottom:18%"><svg viewBox="0 0 100 100"><text><textPath href="#ring" textLength="226" lengthAdjust="spacingAndGlyphs">seoul · 2024 · knotted ·</textPath></text></svg></div><p class="cap"><b>Knotted Lifestyle Expansion</b><span>2024</span></p></a><a class="poster" href="../work/project-three.html"><p class="kick">knotted</p><h3 class="hl" style="--fs:0.87"><span>Merch</span><span>andise</span></h3><figure class="ph"><img src="../assets/img/project-three/01.png?v=8" alt="" loading="lazy"></figure><div class="sticker" style="right:5%;bottom:20%"><svg viewBox="0 0 100 100"><text><textPath href="#ring" textLength="226" lengthAdjust="spacingAndGlyphs">seoul · 2024–2025 · knotted ·</textPath></text></svg></div><p class="cap"><b>Knotted Merchandise Collection</b><span>2024–2025</span></p></a></div></section>
+<section class="grp" id="disney"><header class="gh"><h2>The Walt Disney Company</h2><p><b>Creative Manager, APAC</b><span>2022–2023</span></p></header><div class="grid"><a class="poster" href="../work/toysrus.html"><p class="kick">disney</p><h3 class="hl" style="--fs:0.87"><span>Toys</span><span>“R” Us</span></h3><figure class="ph"><img src="../assets/img/toysrus/01.jpeg?v=8" alt="" loading="lazy"></figure><div class="sticker" style="left:6%;top:47%"><svg viewBox="0 0 100 100"><text><textPath href="#ring" textLength="226" lengthAdjust="spacingAndGlyphs">seoul · 2022–2023 · disney ·</textPath></text></svg></div><p class="cap"><b>Disney at Toys “R” Us</b><span>2022–2023</span></p></a><a class="poster" href="../work/d100-hyundai.html"><p class="kick">disney</p><h3 class="hl" style="--fs:1.00"><span>D</span><span>100</span></h3><figure class="ph"><img src="../assets/img/d100-hyundai/01.jpeg?v=8" alt="" loading="lazy"></figure><div class="sticker" style="right:6%;top:42%"><svg viewBox="0 0 100 100"><text><textPath href="#ring" textLength="226" lengthAdjust="spacingAndGlyphs">pangyo · 2023 · disney ·</textPath></text></svg></div><p class="cap"><b>Disney D100 — Hyundai Pangyo</b><span>2023</span></p></a><a class="poster" href="../work/korea-kickoff.html"><p class="kick">disney</p><h3 class="hl" style="--fs:1.00"><span>Kick</span><span>off</span></h3><figure class="ph"><img src="../assets/img/korea-kickoff/06.jpg" alt="" loading="lazy"></figure><div class="sticker" style="left:5%;bottom:18%"><svg viewBox="0 0 100 100"><text><textPath href="#ring" textLength="226" lengthAdjust="spacingAndGlyphs">seoul · 2022 · disney ·</textPath></text></svg></div><p class="cap"><b>Disney CPGP Korea Kickoff</b><span>2022</span></p></a><a class="poster" href="../work/graphic.html"><p class="kick">disney</p><h3 class="hl" style="--fs:1.00"><span>Nat</span><span>Geo</span></h3><figure class="ph"><img src="../assets/img/graphic/01.jpg?v=8" alt="" loading="lazy"></figure><div class="sticker" style="right:5%;bottom:20%"><svg viewBox="0 0 100 100"><text><textPath href="#ring" textLength="226" lengthAdjust="spacingAndGlyphs">apac region · 2022–2023 · disney ·</textPath></text></svg></div><p class="cap"><b>National Geographic Retail Toolkit</b><span>2022–2023</span></p></a></div></section>
+<section class="grp" id="hanbul"><header class="gh"><h2>IT’S HANBUL</h2><p><b>Creative Director</b><span>2020–2022</span></p></header><div class="grid"><a class="poster" href="../work/chasinrabbits.html"><p class="kick">it’s hanbul</p><h3 class="hl" style="--fs:0.74"><span>Chasin’</span><span>Rabbits</span></h3><figure class="ph"><img src="../assets/img/chasinrabbits/01.jpg?v=8" alt="" loading="lazy"></figure><div class="sticker" style="left:6%;top:47%"><svg viewBox="0 0 100 100"><text><textPath href="#ring" textLength="226" lengthAdjust="spacingAndGlyphs">seoul · 2020–2022 · it’s hanbul ·</textPath></text></svg></div><p class="cap"><b>Chasin’ Rabbits</b><span>2020–2022</span></p></a><a class="poster" href="../work/enature.html"><p class="kick">it’s hanbul</p><h3 class="hl" style="--fs:1.00"><span>ena</span><span>ture</span></h3><figure class="ph"><img src="../assets/img/enature/01.png?v=8" alt="" loading="lazy"></figure><div class="sticker" style="right:6%;top:42%"><svg viewBox="0 0 100 100"><text><textPath href="#ring" textLength="226" lengthAdjust="spacingAndGlyphs">seoul · 2020–2022 · it’s hanbul ·</textPath></text></svg></div><p class="cap"><b>enature</b><span>2020–2022</span></p></a></div></section>
+<section class="grp" id="toun28"><header class="gh"><h2>Toun28</h2><p><b>Art Director</b><span>2019–2020</span></p></header><div class="grid"><a class="poster" href="../work/toun28.html"><p class="kick">toun28</p><h3 class="hl" style="--fs:1.00"><span>Main</span><span>VMD</span></h3><figure class="ph"><img src="../assets/img/toun28/06.jpeg" alt="" loading="lazy"></figure><div class="sticker" style="left:6%;top:47%"><svg viewBox="0 0 100 100"><text><textPath href="#ring" textLength="226" lengthAdjust="spacingAndGlyphs">seoul · 2019–2020 · toun28 ·</textPath></text></svg></div><p class="cap"><b>Toun28 Main VMD</b><span>2019–2020</span></p></a><a class="poster" href="../work/toun28-small-vmds.html"><p class="kick">toun28</p><h3 class="hl" style="--fs:0.87"><span>VMD</span><span>Stands</span></h3><figure class="ph"><img src="../assets/img/toun28-small-vmds/12.jpeg" alt="" loading="lazy"></figure><div class="sticker" style="right:6%;top:42%"><svg viewBox="0 0 100 100"><text><textPath href="#ring" textLength="226" lengthAdjust="spacingAndGlyphs">aritaum · 2019–2020 · toun28 ·</textPath></text></svg></div><p class="cap"><b>Toun28 Retail VMD Stands</b><span>2019–2020</span></p></a><a class="poster" href="../work/officedesign.html"><p class="kick">toun28</p><h3 class="hl" style="--fs:1.00"><span>Of</span><span>fice</span></h3><figure class="ph"><img src="../assets/img/officedesign/02.jpeg" alt="" loading="lazy"></figure><div class="sticker" style="left:5%;bottom:18%"><svg viewBox="0 0 100 100"><text><textPath href="#ring" textLength="226" lengthAdjust="spacingAndGlyphs">seoul · 2019–2020 · toun28 ·</textPath></text></svg></div><p class="cap"><b>Toun28 Office</b><span>2019–2020</span></p></a></div></section>
+<section class="grp" id="independent"><header class="gh"><h2>Projects</h2><p><b>Designer</b><span>2014–2018</span></p></header><div class="grid"><a class="poster" href="../work/moving-capsule.html"><p class="kick">lexus design award</p><h3 class="hl" style="--fs:0.74"><span>Moving</span><span>Capsule</span></h3><figure class="ph"><img src="../assets/img/moving-capsule/01.png?v=8" alt="" loading="lazy"></figure><div class="sticker" style="left:6%;top:47%"><svg viewBox="0 0 100 100"><text><textPath href="#ring" textLength="226" lengthAdjust="spacingAndGlyphs">la triennale di milano · 2017 · lexus design award ·</textPath></text></svg></div><p class="cap"><b>Moving Capsule</b><span>2017</span></p></a><a class="poster" href="../work/landscape.html"><p class="kick">pwp landscape</p><h3 class="hl" style="--fs:1.00"><span>Trans</span><span>bay</span></h3><figure class="ph"><img src="../assets/img/landscape/09.jpg" alt="" loading="lazy"></figure><div class="sticker" style="right:6%;top:42%"><svg viewBox="0 0 100 100"><text><textPath href="#ring" textLength="226" lengthAdjust="spacingAndGlyphs">san francisco · 2016 · pwp landscape ·</textPath></text></svg></div><p class="cap"><b>Transbay Transit Center Roof Garden</b><span>2016</span></p></a><a class="poster" href="../work/harvard-passport.html"><p class="kick">harvard university</p><h3 class="hl" style="--fs:1.00"><span>Har</span><span>vard</span></h3><figure class="ph"><img src="../assets/img/harvard-passport/01.jpeg?v=8" alt="" loading="lazy"></figure><div class="sticker" style="left:5%;bottom:18%"><svg viewBox="0 0 100 100"><text><textPath href="#ring" textLength="226" lengthAdjust="spacingAndGlyphs">cambridge · 2017 · harvard university ·</textPath></text></svg></div><p class="cap"><b>Passport to the Harvard Libraries</b><span>2017</span></p></a></div></section>
+</main>
+
+<section class="sheet about">
+  <h2>Architect.<br>Landscape.<br>Brands.</h2>
+  <div><p>I started in architecture and landscape, then moved into brands. Today I lead marketing at Baskin-Robbins Korea: monthly campaigns, IP collaborations, original characters and stores you can walk into.</p><a href="../about.html">More about me →</a></div>
+</section>
+
+<section class="sheet contact" id="contact">
+  <p class="kick">let’s make something</p>
+  <a class="big" href="mailto:awonjs@gmail.com">Say<br>hello</a>
+  <p class="mail">awonjs@gmail.com</p>
+  <div class="sticker"><svg viewBox="0 0 100 100"><text><textPath href="#ring" textLength="226" lengthAdjust="spacingAndGlyphs">open to new work · seoul · open to ·</textPath></text></svg><b>HI!</b></div>
+</section>
+</body>
+</html>
