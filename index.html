@@ -91,10 +91,6 @@ html.gated, html.gated body { overflow: hidden; }
   .ctas { display: flex; gap: 10px; margin-top: 26px; }
   .ctas a { border-radius: 999px; padding: 12px 20px; font-weight: 500; border: 1.5px solid var(--ink); }
   .ctas a:first-child { background: var(--ink); color: #fff; }
-  .legend { list-style: none; margin: 34px 0 0; padding: 18px 0 0; border-top: 1px solid #ddd; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 18px; }
-  .legend a { display: flex; align-items: center; gap: 10px; padding: 5px 0; font-size: 14px; }
-  .legend a:hover, .legend a.on { color: #000; font-weight: 600; }
-  i.n, .legend i, .hot i { font-style: normal; display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--yellow); color: var(--ink); font-size: 12px; font-weight: 600; flex: none; }
 
   /* 3D suitcase: a real box. Photo front and back, ribbed aluminium sides and lid, stickers on all four faces */
   .stage3d { position: relative; perspective: 1700px; padding: 10px 0 64px; touch-action: pan-y; cursor: grab; }
@@ -116,16 +112,12 @@ html.gated, html.gated body { overflow: hidden; }
   .stickers { position: absolute; inset: 0; transform-style: preserve-3d; }
   .stk { position: absolute; display: block; transform: translateZ(var(--z)) rotate(var(--r)); transition: transform .45s cubic-bezier(.34,1.56,.64,1); }
   .stk img { display: block; width: 100%; height: auto; filter: drop-shadow(0 4px 5px rgba(0,0,0,.22)); transition: filter .3s; }
-  .stk:hover, .stk.on { transform: translateZ(calc(var(--z) + 46px)) rotate(0deg) scale(1.12); z-index: 5; }
-  .stk:hover img, .stk.on img { filter: drop-shadow(0 18px 18px rgba(0,0,0,.28)); }
-  .stk i { position: absolute; left: -6px; top: -6px; font-style: normal; display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--yellow); color: var(--ink); font-size: 12px; font-weight: 700; box-shadow: 0 2px 6px rgba(0,0,0,.3); }
+  .stk:hover { transform: translateZ(calc(var(--z) + 46px)) rotate(0deg) scale(1.12); z-index: 5; }
+  .stk:hover img { filter: drop-shadow(0 18px 18px rgba(0,0,0,.28)); }
   .floor { position: absolute; left: 50%; bottom: 46px; width: 62%; max-width: 300px; height: 26px; transform: translateX(-50%); border-radius: 50%;
     background: radial-gradient(closest-side, rgba(0,0,0,.28), rgba(0,0,0,.08) 60%, transparent); filter: blur(4px); pointer-events: none; }
   .spin-hint { position: absolute; left: 0; right: 0; bottom: 6px; text-align: center; margin: 0; }
-  .hot { pointer-events: none; position: absolute; transform: rotate(var(--r)); border-radius: 8px; transition: box-shadow .2s; }
-  .hot i { position: absolute; left: -8px; top: -8px; box-shadow: 0 2px 6px rgba(0,0,0,.3); transform: rotate(calc(var(--r) * -1)); }
   
-  .hot:hover, .hot.on { box-shadow: 0 0 0 4px var(--yellow); }
 
   /* work: a slim ticket per company + a plain grid */
   .work-h { display: flex; justify-content: space-between; align-items: baseline; border-top: 1px solid var(--ink); padding-top: 14px; margin: 50px 0 10px; }
@@ -156,7 +148,7 @@ html.gated, html.gated body { overflow: hidden; }
   @media (max-width: 860px) {
     .nav a.l { display: none; }
     .hero { grid-template-columns: 1fr; } .stage3d { order: 2; } .box { width: min(78%, 360px); }
-    .legend { display: none; }
+
     .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
     .ticket { grid-template-columns: auto 1fr; gap: 6px 14px; } .ticket .cnt { display: none; }
     .ticket .route { grid-column: 2; grid-row: 1; font-size: 15px; } .ticket .who { grid-column: 1 / -1; }
@@ -173,16 +165,16 @@ html.gated, html.gated body { overflow: hidden; }
     <h1><span class="en">Twelve years of work,<br><b>packed in one suitcase.</b></span><span class="ko">12년의 작업,<br><b>가방 하나에 담았습니다.</b></span></h1>
     <p class="lede"><span class="en">Campaigns, IP collaborations and stores you can walk into, for Baskin-Robbins, GFFG, Disney and more.</span><span class="ko">캠페인, IP 콜라보, 들어가 볼 수 있는 공간까지. 배스킨라빈스, GFFG, 디즈니 등과 함께했습니다.</span></p>
     <div class="ctas"><a href="#work"><span class="en">See all work</span><span class="ko">전체 작업 보기</span></a><a href="mailto:awonjs@gmail.com"><span class="en">Say hello</span><span class="ko">연락하기</span></a></div>
-    <ul class="legend"><li><a data-n="1" href="work/one-piece-adventure.html"><i>1</i>Baskin-Robbins × One Piece</a></li><li><a data-n="2" href="work/monchhichi.html"><i>2</i>Baskin-Robbins × Monchhichi</a></li><li><a data-n="3" href="work/retail-design-knotted-seoullo.html"><i>3</i>Knotted Seoullo</a></li><li><a data-n="4" href="work/pokemon-ditto.html"><i>4</i>Baskin-Robbins × Pokémon</a></li><li><a data-n="5" href="work/toy-story-lets-play.html"><i>5</i>Baskin-Robbins × Toy Story 5</a></li><li><a data-n="6" href="work/toysrus.html"><i>6</i>Disney at Toys “R” Us</a></li><li><a data-n="7" href="work/bonjour-paris.html"><i>7</i>Bonjour! Paris — Robin</a></li><li><a data-n="8" href="work/chasinrabbits.html"><i>8</i>Chasin’ Rabbits</a></li></ul>
+    
   </div>
   <div class="stage3d" aria-label="A suitcase covered in project stickers">
       <div class="box" id="box">
-        <div class="face front"><img class="shell" src="assets/img/home/case-empty.webp" alt="Silver suitcase" draggable="false"><div class="stickers"><a class="stk" data-n="1" href="work/one-piece-adventure.html" style="left:11.80%;top:10.99%;width:54.26%;--r:3deg;--z:14px" aria-label="Baskin-Robbins × One Piece"><img src="assets/img/home/stk/op.webp" alt="" draggable="false"><i>1</i></a><a class="stk" data-n="2" href="work/monchhichi.html" style="left:72.76%;top:11.72%;width:18.11%;--r:8deg;--z:20px" aria-label="Baskin-Robbins × Monchhichi"><img src="assets/img/home/stk/mon.webp" alt="" draggable="false"><i>2</i></a><a class="stk" href="#work" style="left:8.93%;top:33.03%;width:38.54%;--r:-4deg;--z:26px" aria-label="All work"><img src="assets/img/home/stk/red.webp" alt="" draggable="false"></a><a class="stk" data-n="3" href="work/retail-design-knotted-seoullo.html" style="left:53.07%;top:31.44%;width:32.48%;--r:-5deg;--z:32px" aria-label="Knotted Seoullo"><img src="assets/img/home/stk/kn.webp" alt="" draggable="false"><i>3</i></a><a class="stk" data-n="4" href="work/pokemon-ditto.html" style="left:9.84%;top:50.31%;width:29.58%;--r:4deg;--z:14px" aria-label="Baskin-Robbins × Pokémon"><img src="assets/img/home/stk/ditto.webp" alt="" draggable="false"><i>4</i></a><a class="stk" data-n="5" href="work/toy-story-lets-play.html" style="left:74.19%;top:49.01%;width:18.83%;--r:7deg;--z:20px" aria-label="Baskin-Robbins × Toy Story 5"><img src="assets/img/home/stk/woody.webp" alt="" draggable="false"><i>5</i></a><a class="stk" data-n="6" href="work/toysrus.html" style="left:37.15%;top:53.85%;width:32.14%;--r:-3deg;--z:26px" aria-label="Disney at Toys “R” Us"><img src="assets/img/home/stk/tr.webp" alt="" draggable="false"><i>6</i></a><a class="stk" data-n="7" href="work/bonjour-paris.html" style="left:12.35%;top:70.46%;width:24.56%;--r:-6deg;--z:32px" aria-label="Bonjour! Paris — Robin"><img src="assets/img/home/stk/bj.webp" alt="" draggable="false"><i>7</i></a><a class="stk" data-n="8" href="work/chasinrabbits.html" style="left:41.70%;top:71.77%;width:23.04%;--r:5deg;--z:14px" aria-label="Chasin’ Rabbits"><img src="assets/img/home/stk/cr.webp" alt="" draggable="false"><i>8</i></a><a class="stk" href="mailto:awonjs@gmail.com" style="left:70.27%;top:76.54%;width:15.96%;--r:-10deg;--z:20px" aria-label="Contact"><img src="assets/img/home/stk/blu.webp" alt="" draggable="false"></a></div></div>
+        <div class="face front"><img class="shell" src="assets/img/home/case-empty.webp" alt="Silver suitcase" draggable="false"><div class="stickers"><a class="stk" href="work/one-piece-adventure.html" style="left:11.80%;top:10.99%;width:54.26%;--r:3deg;--z:14px" aria-label="Baskin-Robbins × One Piece"><img src="assets/img/home/stk/op.webp" alt="" draggable="false"></a><a class="stk" href="work/monchhichi.html" style="left:72.76%;top:11.72%;width:18.11%;--r:8deg;--z:20px" aria-label="Baskin-Robbins × Monchhichi"><img src="assets/img/home/stk/mon.webp" alt="" draggable="false"></a><a class="stk" href="#work" style="left:8.93%;top:33.03%;width:38.54%;--r:-4deg;--z:26px" aria-label="All work"><img src="assets/img/home/stk/red.webp" alt="" draggable="false"></a><a class="stk" href="work/retail-design-knotted-seoullo.html" style="left:53.07%;top:31.44%;width:32.48%;--r:-5deg;--z:32px" aria-label="Knotted Seoullo"><img src="assets/img/home/stk/kn.webp" alt="" draggable="false"></a><a class="stk" href="work/pokemon-ditto.html" style="left:9.84%;top:50.31%;width:29.58%;--r:4deg;--z:14px" aria-label="Baskin-Robbins × Pokémon"><img src="assets/img/home/stk/ditto.webp" alt="" draggable="false"></a><a class="stk" href="work/toy-story-lets-play.html" style="left:74.19%;top:49.01%;width:18.83%;--r:7deg;--z:20px" aria-label="Baskin-Robbins × Toy Story 5"><img src="assets/img/home/stk/woody.webp" alt="" draggable="false"></a><a class="stk" href="work/toysrus.html" style="left:37.15%;top:53.85%;width:32.14%;--r:-3deg;--z:26px" aria-label="Disney at Toys “R” Us"><img src="assets/img/home/stk/tr.webp" alt="" draggable="false"></a><a class="stk" href="work/bonjour-paris.html" style="left:12.35%;top:70.46%;width:24.56%;--r:-6deg;--z:32px" aria-label="Bonjour! Paris — Robin"><img src="assets/img/home/stk/bj.webp" alt="" draggable="false"></a><a class="stk" href="work/chasinrabbits.html" style="left:41.70%;top:71.77%;width:23.04%;--r:5deg;--z:14px" aria-label="Chasin’ Rabbits"><img src="assets/img/home/stk/cr.webp" alt="" draggable="false"></a><a class="stk" href="mailto:awonjs@gmail.com" style="left:70.27%;top:76.54%;width:15.96%;--r:-10deg;--z:20px" aria-label="Contact"><img src="assets/img/home/stk/blu.webp" alt="" draggable="false"></a></div></div>
         <div class="face back"><img class="shell" src="assets/img/home/case-back-empty.webp" alt="" draggable="false"><div class="stickers"><a class="stk" href="work/knotted.html" style="left:10%;top:10%;width:40%;--r:-4deg;--z:14px" aria-label="Knotted Gwangju Sangmu"><img src="assets/img/home/stk/gwangju.webp" alt="" draggable="false" loading="lazy"></a><a class="stk" href="work/trickimas.html" style="left:52%;top:12%;width:38%;--r:5deg;--z:22px" aria-label="Merry Trickimas"><img src="assets/img/home/stk/trickimas.webp" alt="" draggable="false" loading="lazy"></a><a class="stk" href="#work" style="left:40%;top:30%;width:22%;--r:0deg;--z:30px" aria-label="All work"><img src="assets/img/home/stk/yel.webp" alt="" draggable="false" loading="lazy"></a><a class="stk" href="work/d100-hyundai.html" style="left:8%;top:35%;width:36%;--r:3deg;--z:18px" aria-label="Disney D100"><img src="assets/img/home/stk/d100.webp" alt="" draggable="false" loading="lazy"></a><a class="stk" href="work/baskin-robbins-popup.html" style="left:58%;top:36%;width:32%;--r:-6deg;--z:26px" aria-label="Mangbingo Gacha Shop"><img src="assets/img/home/stk/gacha.webp" alt="" draggable="false" loading="lazy"></a><a class="stk" href="work/korea-kickoff.html" style="left:12%;top:57%;width:38%;--r:-3deg;--z:14px" aria-label="Disney CPGP Korea Kickoff"><img src="assets/img/home/stk/kickoff.webp" alt="" draggable="false" loading="lazy"></a><a class="stk" href="work/officedesign.html" style="left:58%;top:56%;width:28%;--r:6deg;--z:22px" aria-label="Toun28 Office"><img src="assets/img/home/stk/office.webp" alt="" draggable="false" loading="lazy"></a><a class="stk" href="work/moving-capsule.html" style="left:26%;top:73%;width:38%;--r:4deg;--z:30px" aria-label="Moving Capsule"><img src="assets/img/home/stk/capsule.webp" alt="" draggable="false" loading="lazy"></a></div></div>
         <div class="face side l"><div class="stickers"><a class="stk" href="work/enature.html" style="left:10%;top:4%;width:78%;--r:-4deg;--z:10px" aria-label="enature"><img src="assets/img/home/stk/enature.webp" alt="" draggable="false" loading="lazy"></a><a class="stk" href="work/gffg-graphic-works.html" style="left:6%;top:40%;width:88%;--r:-3deg;--z:14px" aria-label="GFFG"><img src="assets/img/home/stk/grn.webp" alt="" draggable="false" loading="lazy"></a><a class="stk" href="work/landscape.html" style="left:14%;top:54%;width:74%;--r:5deg;--z:10px" aria-label="Transbay Transit Center"><img src="assets/img/home/stk/transbay.webp" alt="" draggable="false" loading="lazy"></a></div></div><div class="face side r"><div class="stickers"><a class="stk" href="work/harvard-passport.html" style="left:12%;top:4%;width:76%;--r:4deg;--z:10px" aria-label="Passport to the Harvard Libraries"><img src="assets/img/home/stk/harvard.webp" alt="" draggable="false" loading="lazy"></a><a class="stk" href="work/toysrus.html" style="left:6%;top:40%;width:88%;--r:3deg;--z:14px" aria-label="Disney APAC"><img src="assets/img/home/stk/blk.webp" alt="" draggable="false" loading="lazy"></a><a class="stk" href="work/gffg-graphic-works.html" style="left:10%;top:52%;width:78%;--r:-4deg;--z:10px" aria-label="Knotted 2025 Campaigns"><img src="assets/img/home/stk/knotcamp.webp" alt="" draggable="false" loading="lazy"></a><a class="stk" href="work/clap-pizza.html" style="left:18%;top:77%;width:62%;--r:5deg;--z:10px" aria-label="Clap Pizza"><img src="assets/img/home/stk/clap.webp" alt="" draggable="false" loading="lazy"></a></div></div><div class="face lid"></div>
       </div>
       <span class="floor" id="floor"></span>
-      <p class="spin-hint cap"><span class="en">move your mouse · drag to turn · tap a sticker</span><span class="ko">마우스를 움직이거나 끌어서 돌려 보세요 · 스티커를 누르면 열려요</span></p>
+      <p class="spin-hint cap"><span class="en">drag to turn · tap a sticker</span><span class="ko">끌어서 돌려 보세요 · 스티커를 누르면 열려요</span></p>
     </div>
 </section>
 
@@ -193,12 +185,11 @@ html.gated, html.gated body { overflow: hidden; }
   <section class="end"><h2><span class="en">Next stop?</span><span class="ko">다음 목적지는?</span></h2><a href="mailto:awonjs@gmail.com">awonjs@gmail.com ↗</a></section>
 </main>
 <script>
-// suitcase in 3D: it turns slowly so every face (and its stickers) comes round, leans toward the mouse or the phone's tilt,
-// stops turning while you're on it so a sticker can be clicked, and can be dragged round by hand
+// suitcase in 3D: it stands still, leans toward the mouse or the phone's tilt, and can be dragged round to see the other faces
 (function () {
   var box = document.getElementById('box'), floor = document.getElementById('floor'), stage = box.parentNode;
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var base = -24, lean = 0, tilt = 6, ry = -24, rx = 6, hover = false, drag = null, last = performance.now();
+  var base = -24, lean = 0, tilt = 6, ry = -24, rx = 6, drag = null;
   // depth is half the body width (a real carry-on is about 55 × 40 × 23 cm)
   function size() { box.style.setProperty('--dz', (box.offsetWidth * .23).toFixed(1)); }
   size(); addEventListener('resize', size);
@@ -209,16 +200,10 @@ html.gated, html.gated body { overflow: hidden; }
     lean = Math.max(-40, Math.min(40, (e.clientX - cx) / innerWidth * 90));
     tilt = Math.max(-6, Math.min(18, 6 - (e.clientY - cy) / innerHeight * 30));
   }, { passive: true });
-  stage.addEventListener('pointerenter', function () { hover = true; });
-  stage.addEventListener('pointerleave', function () { hover = false; });
   stage.addEventListener('pointerdown', function (e) { if (e.target.closest('.stk')) return; drag = { x: e.clientX, base: base }; stage.setPointerCapture(e.pointerId); });
   addEventListener('pointerup', function () { drag = null; });
   addEventListener('deviceorientation', function (e) { if (e.gamma == null) return; lean = Math.max(-30, Math.min(30, e.gamma * .9)); tilt = Math.max(-4, Math.min(16, 6 + (e.beta - 45) * -.3)); });
-  // the legend turns the front back toward you
-  document.querySelectorAll('.legend a').forEach(function (l) { l.addEventListener('mouseenter', function () { base = Math.round(base / 360) * 360; lean = 0; hover = true; }); l.addEventListener('mouseleave', function () { hover = false; }); });
   function tick(t) {
-    var dt = Math.min(64, t - last) / 1000; last = t;
-    if (!reduce && !hover && !drag) base += dt * 16;
     var gy = reduce ? 0 : base + lean;
     ry += (gy - ry) * .08; rx += ((reduce ? 4 : tilt) - rx) * .08;
     box.style.transform = 'rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg)';
@@ -229,12 +214,6 @@ html.gated, html.gated body { overflow: hidden; }
   }
   requestAnimationFrame(tick);
 })();
-// hovering a sticker highlights its line in the list, and the other way round
-document.querySelectorAll('[data-n]').forEach(function (el) {
-  var n = el.dataset.n;
-  el.addEventListener('mouseenter', function () { document.querySelectorAll('[data-n="' + n + '"]').forEach(function (x) { x.classList.add('on'); }); });
-  el.addEventListener('mouseleave', function () { document.querySelectorAll('[data-n="' + n + '"]').forEach(function (x) { x.classList.remove('on'); }); });
-});
 </script>
 <script src="assets/gate.js?v=2"></script>
 <script defer src="assets/site.js?v=23"></script>
