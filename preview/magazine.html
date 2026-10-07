@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Ahran Won — magazine preview</title>
+<style>
+  @font-face { font-family: "Inter Tight"; font-weight: 900; src: url(fonts/intertight-900.woff2) format("woff2"); font-display: swap; }
+  :root { --ink: #0b0b0b; --paper: #fbfbf9; --yellow: #ffe100; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #ecebe7; color: var(--ink); font-family: "Inter Tight", "Helvetica Neue", Arial, sans-serif; }
+  img { display: block; max-width: none; }
+
+  /* hero: one giant black headline, a cut-out bursting through it */
+  .hero { position: relative; background: var(--paper); margin: 16px; border-radius: 6px; overflow: hidden; padding: 28px 24px 0; min-height: 88vh; }
+  .brand { text-align: center; font-weight: 500; font-size: 17px; letter-spacing: -.01em; margin: 0 0 6px; }
+  .hl { margin: 0; font-weight: 900; text-transform: uppercase; letter-spacing: -.065em; line-height: .8; text-align: center; font-size: clamp(64px, 17.5vw, 290px); }
+  .hero .hl span { display: block; }
+  .hero .cut { position: absolute; left: 50%; bottom: -1%; width: min(30vw, 440px); transform: translateX(12%); filter: drop-shadow(0 30px 40px rgba(0,0,0,.25)); }
+  .sticker { position: absolute; width: clamp(92px, 11vw, 150px); aspect-ratio: 1; border-radius: 50%; background: var(--yellow); display: grid; place-items: center; }
+  .sticker svg { width: 100%; height: 100%; animation: spin 14s linear infinite; }
+  .sticker text { font: 900 11.5px "Inter Tight", sans-serif; letter-spacing: .12em; text-transform: uppercase; }
+  .sticker b { position: absolute; font-size: clamp(16px, 2vw, 24px); letter-spacing: -.04em; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .hero .sticker { left: 9%; bottom: 14%; }
+  .hero .meta { position: absolute; right: 24px; bottom: 22px; text-align: right; font-size: 14px; font-weight: 500; line-height: 1.35; }
+
+  /* poster grid: every project is a magazine cover */
+  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin: 0 16px 16px; }
+  .poster { position: relative; aspect-ratio: 9 / 15; background: var(--paper); border-radius: 6px; overflow: hidden; padding: 18px 10px 0; text-decoration: none; color: inherit; }
+  .poster .hl { font-size: clamp(40px, 8.4vw, 140px); }
+  .poster .cut { position: absolute; left: 50%; transform: translateX(-50%); filter: drop-shadow(0 24px 26px rgba(0,0,0,.22)); }
+  .poster .sticker { width: clamp(64px, 7.4vw, 108px); }
+  .poster .sticker text { font-size: 12px; }
+  .poster .cap { position: absolute; left: 14px; right: 14px; bottom: 12px; display: flex; justify-content: space-between; font-size: 12px; font-weight: 500; letter-spacing: .01em; }
+  .poster .cap b { font-weight: 900; text-transform: uppercase; letter-spacing: -.01em; }
+  @media (max-width: 720px) {
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 0 10px 10px; }
+    .hero { margin: 10px; min-height: 78vh; padding: 20px 12px 0; }
+    .hero .cut { width: 52vw; transform: translateX(-4%); }
+    .hero .sticker { left: 5%; bottom: 30%; }
+    .poster .hl { font-size: 11.6vw; }
+    .poster .cap { font-size: 9px; bottom: 8px; left: 9px; right: 9px; }
+    .poster .cap b { max-width: 70%; }
+    .hero .meta { display: none; }
+    .brand { font-size: 13px; }
+  }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><defs><path id="ring" d="M50,50 m-37,0 a37,37 0 1,1 74,0 a37,37 0 1,1 -74,0"/></defs></svg>
+
+<section class="hero">
+  <p class="brand">ahran won</p>
+  <h1 class="hl"><span>Brands you</span><span>can walk</span><span>into.</span></h1>
+  <img class="cut" src="../assets/img/toy-story-lets-play/ms/03.webp" alt="">
+  <div class="sticker"><svg viewBox="0 0 100 100"><text><textPath href="#ring" textLength="226" lengthAdjust="spacingAndGlyphs">portfolio · 2014—2026 · selected work ·</textPath></text></svg><b>WORK</b></div>
+  <p class="meta">Creative direction<br>brand · product · built space<br>Seoul</p>
+</section>
+
+<section class="grid">
+  <a class="poster" href="../work/one-piece-adventure.html"><p class="brand">baskin robbins</p><h2 class="hl">One<br>Piece</h2>
+    <img class="cut" src="../assets/img/one-piece-adventure/ms/16.webp" alt="" style="width:92%;bottom:6%">
+    <div class="sticker" style="left:6%;top:47%"><svg viewBox="0 0 100 100"><text><textPath href="#ring" textLength="226" lengthAdjust="spacingAndGlyphs">july 2026 · campaign · adventure ·</textPath></text></svg></div>
+    <p class="cap"><b>Adventure</b><span>2026</span></p></a>
+  <a class="poster" href="../work/toy-story-lets-play.html"><p class="brand">baskin robbins</p><h2 class="hl">Toy<br>Story</h2>
+    <img class="cut" src="../assets/img/toy-story-lets-play/ms/18.webp" alt="" style="width:78%;bottom:9%">
+    <div class="sticker" style="right:6%;top:40%"><svg viewBox="0 0 100 100"><text><textPath href="#ring" textLength="226" lengthAdjust="spacingAndGlyphs">let's play · june 2026 · let's play ·</textPath></text></svg></div>
+    <p class="cap"><b>Let’s Play!</b><span>2026</span></p></a>
+  <a class="poster" href="../work/monchhichi.html"><p class="brand">baskin robbins</p><h2 class="hl">Monch<br>hichi</h2>
+    <img class="cut" src="../assets/img/monchhichi/ms/09.webp" alt="" style="width:62%;bottom:7%">
+    <div class="sticker" style="left:5%;bottom:20%"><svg viewBox="0 0 100 100"><text><textPath href="#ring" textLength="226" lengthAdjust="spacingAndGlyphs">sweetie · caramelholic · sweetie ·</textPath></text></svg></div>
+    <p class="cap"><b>Caramelholic</b><span>2026</span></p></a>
+  <a class="poster" href="../work/pokemon-ditto.html"><p class="brand">baskin robbins</p><h2 class="hl">Poké<br>mon</h2>
+    <img class="cut" src="../assets/img/pokemon-ditto/ms/03.webp" alt="" style="width:96%;bottom:8%">
+    <div class="sticker" style="right:5%;top:44%"><svg viewBox="0 0 100 100"><text><textPath href="#ring" textLength="226" lengthAdjust="spacingAndGlyphs">catch the flavors · may 2026 ·</textPath></text></svg></div>
+    <p class="cap"><b>Catch the Flavors</b><span>2026</span></p></a>
+  <a class="poster" href="../work/one-piece-adventure.html"><p class="brand">baskin robbins</p><h2 class="hl">Chop<br>per</h2>
+    <img class="cut" src="../assets/img/one-piece-adventure/ms/07.webp" alt="" style="width:94%;bottom:10%">
+    <div class="sticker" style="left:6%;top:44%"><svg viewBox="0 0 100 100"><text><textPath href="#ring" textLength="226" lengthAdjust="spacingAndGlyphs">chopper cake · one piece · cake ·</textPath></text></svg></div>
+    <p class="cap"><b>Ice cream cake</b><span>2026</span></p></a>
+  <a class="poster" href="../work/toy-story-lets-play.html"><p class="brand">baskin robbins</p><h2 class="hl">Buzz<br>Light</h2>
+    <img class="cut" src="../assets/img/toy-story-lets-play/ms/04.webp" alt="" style="width:74%;bottom:4%">
+    <div class="sticker" style="right:5%;bottom:22%"><svg viewBox="0 0 100 100"><text><textPath href="#ring" textLength="226" lengthAdjust="spacingAndGlyphs">to infinity · and beyond · buzz ·</textPath></text></svg></div>
+    <p class="cap"><b>Flavour of the month</b><span>2026</span></p></a>
+</section>
+</body>
+</html>
