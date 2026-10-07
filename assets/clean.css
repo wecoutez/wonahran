@@ -1,0 +1,59 @@
+/* ------------------------------------------------------------------
+   Clean layer: brings project pages and About in line with the home
+   page. White ground, one typeface (Inter Tight), light headlines,
+   no window frames, thin rules instead of borders.
+------------------------------------------------------------------- */
+@font-face { font-family: "Inter Tight"; font-weight: 100 900; font-display: swap; src: url(fonts/intertight-var.woff2) format("woff2"); }
+
+:root {
+  --ink: #161616; --ink-2: #777; --rule: #ececec; --paper: #fff; --paper-2: #f5f5f4; --print: #161616;
+  --chunk: "Inter Tight", "Noto Sans KR", "Helvetica Neue", Arial, sans-serif;
+  --display: var(--chunk); --body: var(--chunk); --mono: var(--chunk);
+  --win-r: 18px;
+}
+html, body { background: #fff !important; }
+body { color: var(--ink); font-family: var(--body); -webkit-font-smoothing: antialiased; }
+.bg { display: none !important; }
+
+/* top bar, like the home page */
+.bar { position: sticky; top: 0; z-index: 50; margin: 0 !important; border: 0 !important; border-bottom: 1px solid var(--rule) !important;
+  border-radius: 0 !important; background: rgba(255,255,255,.92) !important; box-shadow: none !important; padding: 14px clamp(16px, 3vw, 40px) !important; }
+.bar-name { font-family: var(--chunk) !important; font-weight: 600 !important; text-transform: none !important; letter-spacing: -.02em !important; font-size: 18px !important; }
+.bar-name::before { content: none !important; }
+.bar-nav a { font-family: var(--chunk); text-transform: none !important; letter-spacing: 0 !important; font-size: 14px !important; border: 0 !important; }
+.bar-nav a[href^="mailto:"] { background: var(--ink); color: #fff !important; border-radius: 999px; padding: 8px 16px; }
+
+/* no window frames: content sits on white, sections split by thin rules */
+.win, .project { border: 0 !important; box-shadow: none !important; background: #fff !important; }
+.project { border-radius: 0 !important; }
+.cs main > .win.cs-sec, .cs main > .win.cs-intro { border-radius: 0 !important; border-top: 1px solid var(--rule) !important; margin-bottom: 0 !important; }
+.cs-cover { border-radius: var(--win-r) !important; }
+.cs-finale { border-radius: var(--win-r) !important; margin-top: 24px !important; margin-bottom: 24px !important; }
+
+/* one typeface, light headlines */
+.ptitle, .cr-h, .cs-h, .about-title, .foot-name, .chain, .band-client, .band-n, .span-stats .n, .cta-link, .gate-name, .ms-head .cs-h {
+  font-family: var(--chunk) !important; font-weight: 300 !important; text-transform: none !important; letter-spacing: -.045em !important; line-height: .98 !important; }
+.ptitle { font-size: clamp(2.6rem, 6vw, 5.4rem) !important; }
+.cr-h, .cs-h { font-size: clamp(2rem, 4.2vw, 3.6rem) !important; }
+html[lang="ko"] .ptitle, html[lang="ko"] .cr-h, html[lang="ko"] .cs-h, html[lang="ko"] .about-title,
+html[lang="ko"] .cr-h .ko, html[lang="ko"] .cs-h .ko { font-family: "Inter Tight", "Noto Sans KR", sans-serif !important; font-weight: 400 !important; letter-spacing: -.035em !important; word-break: keep-all; }
+.cr-kick, .cs-kick, .eyebrow, .cs-stamp, .mono, .tb-row dt { font-family: var(--chunk) !important; font-size: 11px !important; font-weight: 500 !important; letter-spacing: .14em !important; text-transform: uppercase; color: var(--ink-2) !important; }
+.cr-head { border-top: 1px solid var(--rule) !important; }
+.lede, .cr-d, .cs-lead, .ptext p { font-family: var(--body); color: #444; }
+.lede { font-style: normal !important; }
+.ptext strong { font-weight: 600; }
+
+/* images: no ink borders, soft corners */
+.cs figure img, .cs figure video, .fig img, .phero img { border: 0 !important; border-radius: 12px !important; }
+.cs figure.cs-plain img { border-radius: 0 !important; }
+
+/* stat boxes, pills, connectors: quieter */
+.cs-stats li, .pstats li { border: 1px solid var(--rule) !important; background: var(--paper-2) !important; border-radius: 14px !important; }
+.flow-pill { border: 1px solid #ddd !important; box-shadow: none !important; transform: none !important; font-weight: 500 !important; }
+.flow-pill b { background: var(--ink) !important; }
+.flow-path path { stroke: #c8c8c8 !important; }
+.cs-ideas li, .cs-line li { border: 1px solid var(--rule) !important; background: var(--paper-2) !important; }
+
+/* footer */
+.foot { border-top: 1px solid var(--rule); background: #fff !important; }
+.foot-name { font-size: clamp(1.4rem, 3vw, 2.2rem) !important; }
