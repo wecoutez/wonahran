@@ -30,10 +30,24 @@
   .legend a:hover, .legend a.on { color: #000; font-weight: 600; }
   i.n, .legend i, .hot i { font-style: normal; display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--yellow); color: var(--ink); font-size: 12px; font-weight: 600; flex: none; }
 
-  .case { position: relative; }
-  .case img { width: 100%; border-radius: 10px; }
-  .hot { position: absolute; transform: rotate(var(--r)); border-radius: 8px; transition: box-shadow .2s; }
+  /* 3D suitcase: front + back photos, ribbed CSS sides, soft floor shadow */
+  .stage3d { position: relative; perspective: 1600px; padding: 10px 0 60px; touch-action: pan-y; cursor: grab; }
+  .stage3d:active { cursor: grabbing; }
+  .box { --d: 34%; position: relative; width: min(100%, 460px); margin: 0 auto; aspect-ratio: 900 / 1315; transform-style: preserve-3d; will-change: transform; }
+  .face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+  .face img { width: 100%; height: 100%; object-fit: contain; }
+  .front { transform: translateZ(calc(var(--dz) * 1px)); }
+  .back { transform: rotateY(180deg) translateZ(calc(var(--dz) * 1px)); }
+  .side { position: absolute; top: 12%; height: 78%; width: calc(var(--dz) * 2px); margin-left: calc(var(--dz) * -1px); border-radius: 14px;
+    background: repeating-linear-gradient(90deg, #c9ccd0 0 6px, #eef0f2 6px 9px, #b6babf 9px 11px, #dfe2e5 11px 18px), linear-gradient(#e4e6e8, #c3c7cb);
+    background-blend-mode: multiply; box-shadow: inset 0 0 0 2px #b3b7bc; }
+  .side.l { left: 5.5%; transform: rotateY(-90deg); } .side.r { left: 95.5%; transform: rotateY(90deg); }
+  .floor { position: absolute; left: 50%; bottom: 46px; width: 62%; max-width: 300px; height: 26px; transform: translateX(-50%); border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(0,0,0,.28), rgba(0,0,0,.08) 60%, transparent); filter: blur(4px); pointer-events: none; }
+  .spin-hint { position: absolute; left: 0; right: 0; bottom: 6px; text-align: center; margin: 0; }
+  .hot { pointer-events: none; position: absolute; transform: rotate(var(--r)); border-radius: 8px; transition: box-shadow .2s; }
   .hot i { position: absolute; left: -8px; top: -8px; box-shadow: 0 2px 6px rgba(0,0,0,.3); transform: rotate(calc(var(--r) * -1)); }
+  .facing .hot { pointer-events: auto; }
   .hot:hover, .hot.on { box-shadow: 0 0 0 4px var(--yellow); }
 
   /* work: a slim ticket per company + a plain grid */
@@ -64,7 +78,7 @@
 
   @media (max-width: 860px) {
     .nav a.l { display: none; }
-    .hero { grid-template-columns: 1fr; } .case { order: 2; }
+    .hero { grid-template-columns: 1fr; } .stage3d { order: 2; } .box { width: min(78%, 360px); }
     .legend { grid-template-columns: 1fr; }
     .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
     .ticket { grid-template-columns: auto 1fr; gap: 6px 14px; } .ticket .cnt { display: none; }
@@ -83,7 +97,15 @@
     <div class="ctas"><a href="#work">See all work</a><a href="mailto:awonjs@gmail.com">Say hello</a></div>
     <ul class="legend"><li><a data-n="1" href="../work/one-piece-adventure.html"><i>1</i>Baskin-Robbins × One Piece</a></li><li><a data-n="2" href="../work/monchhichi.html"><i>2</i>Baskin-Robbins × Monchhichi</a></li><li><a data-n="3" href="../work/retail-design-knotted-seoullo.html"><i>3</i>Knotted Seoullo</a></li><li><a data-n="4" href="../work/pokemon-ditto.html"><i>4</i>Baskin-Robbins × Pokémon</a></li><li><a data-n="5" href="../work/toy-story-lets-play.html"><i>5</i>Baskin-Robbins × Toy Story 5</a></li><li><a data-n="6" href="../work/toysrus.html"><i>6</i>Disney at Toys “R” Us</a></li><li><a data-n="7" href="../work/bonjour-paris.html"><i>7</i>Bonjour! Paris — Robin</a></li><li><a data-n="8" href="../work/chasinrabbits.html"><i>8</i>Chasin’ Rabbits</a></li></ul>
   </div>
-  <div class="case"><img src="img/suitcase2.jpg" alt="A suitcase covered in project stickers"><a class="hot" data-n="1" href="../work/one-piece-adventure.html" style="left:23.48%;top:19.74%;width:38.64%;height:17.34%;--r:3deg" aria-label="Baskin-Robbins × One Piece"><i>1</i></a><a class="hot" data-n="2" href="../work/monchhichi.html" style="left:66.89%;top:20.32%;width:12.90%;height:18.66%;--r:8deg" aria-label="Baskin-Robbins × Monchhichi"><i>2</i></a><a class="hot" data-n="3" href="../work/retail-design-knotted-seoullo.html" style="left:52.87%;top:35.77%;width:23.13%;height:17.43%;--r:-5deg" aria-label="Knotted Seoullo"><i>3</i></a><a class="hot" data-n="4" href="../work/pokemon-ditto.html" style="left:22.08%;top:50.56%;width:21.06%;height:16.29%;--r:4deg" aria-label="Baskin-Robbins × Pokémon"><i>4</i></a><a class="hot" data-n="5" href="../work/toy-story-lets-play.html" style="left:67.91%;top:49.54%;width:13.41%;height:20.80%;--r:7deg" aria-label="Baskin-Robbins × Toy Story 5"><i>5</i></a><a class="hot" data-n="6" href="../work/toysrus.html" style="left:41.53%;top:53.33%;width:22.89%;height:10.74%;--r:-3deg" aria-label="Disney at Toys “R” Us"><i>6</i></a><a class="hot" data-n="7" href="../work/bonjour-paris.html" style="left:23.87%;top:66.35%;width:17.49%;height:15.62%;--r:-6deg" aria-label="Bonjour! Paris — Robin"><i>7</i></a><a class="hot" data-n="8" href="../work/chasinrabbits.html" style="left:44.77%;top:67.37%;width:16.41%;height:14.80%;--r:5deg" aria-label="Chasin’ Rabbits"><i>8</i></a></div>
+  <div class="stage3d" aria-label="A suitcase covered in project stickers, slowly turning">
+      <div class="box" id="box">
+        <div class="face front"><img src="img/case-front.webp" alt="Suitcase front with project stickers"><a class="hot" data-n="1" href="../work/one-piece-adventure.html" style="left:11.80%;top:10.99%;width:54.26%;height:22.12%;--r:3deg" aria-label="Baskin-Robbins × One Piece"><i>1</i></a><a class="hot" data-n="2" href="../work/monchhichi.html" style="left:72.76%;top:11.72%;width:18.11%;height:23.82%;--r:8deg" aria-label="Baskin-Robbins × Monchhichi"><i>2</i></a><a class="hot" data-n="3" href="../work/retail-design-knotted-seoullo.html" style="left:53.07%;top:31.44%;width:32.48%;height:22.24%;--r:-5deg" aria-label="Knotted Seoullo"><i>3</i></a><a class="hot" data-n="4" href="../work/pokemon-ditto.html" style="left:9.84%;top:50.31%;width:29.58%;height:20.79%;--r:4deg" aria-label="Baskin-Robbins × Pokémon"><i>4</i></a><a class="hot" data-n="5" href="../work/toy-story-lets-play.html" style="left:74.19%;top:49.01%;width:18.83%;height:26.55%;--r:7deg" aria-label="Baskin-Robbins × Toy Story 5"><i>5</i></a><a class="hot" data-n="6" href="../work/toysrus.html" style="left:37.15%;top:53.85%;width:32.14%;height:13.70%;--r:-3deg" aria-label="Disney at Toys “R” Us"><i>6</i></a><a class="hot" data-n="7" href="../work/bonjour-paris.html" style="left:12.35%;top:70.46%;width:24.56%;height:19.93%;--r:-6deg" aria-label="Bonjour! Paris — Robin"><i>7</i></a><a class="hot" data-n="8" href="../work/chasinrabbits.html" style="left:41.70%;top:71.77%;width:23.04%;height:18.89%;--r:5deg" aria-label="Chasin’ Rabbits"><i>8</i></a></div>
+        <div class="face back"><img src="img/case-back.webp" alt=""></div>
+        <div class="side l"></div><div class="side r"></div>
+      </div>
+      <span class="floor" id="floor"></span>
+      <p class="spin-hint cap">hover to stop · drag to turn</p>
+    </div>
 </section>
 
 <main class="wrap" id="work">
@@ -93,6 +115,35 @@
   <section class="end"><h2>Next stop?</h2><a href="mailto:awonjs@gmail.com">awonjs@gmail.com ↗</a></section>
 </main>
 <script>
+// turn the suitcase: slow idle spin, eases to the front on hover/legend, drag to turn
+(function () {
+  var box = document.getElementById('box'), floor = document.getElementById('floor'), stage = box.parentNode;
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var a = reduce ? 0 : -24, target = null, hold = false, drag = null, last = performance.now();
+  function size() { box.style.setProperty('--dz', (box.offsetWidth * .17).toFixed(1)); }
+  size(); addEventListener('resize', size);
+  function front() { target = Math.round(a / 360) * 360; }
+  stage.addEventListener('mouseenter', function () { hold = true; front(); });
+  stage.addEventListener('mouseleave', function () { hold = false; target = null; });
+  document.querySelectorAll('.legend a').forEach(function (l) { l.addEventListener('mouseenter', function () { hold = true; front(); }); l.addEventListener('mouseleave', function () { hold = false; target = null; }); });
+  stage.addEventListener('pointerdown', function (e) { if (e.target.closest('.hot')) return; drag = { x: e.clientX, a: a }; target = null; stage.setPointerCapture(e.pointerId); });
+  stage.addEventListener('pointermove', function (e) { if (drag) a = drag.a + (e.clientX - drag.x) * .5; });
+  stage.addEventListener('pointerup', function () { drag = null; if (hold) front(); });
+  function tick(t) {
+    var dt = Math.min(50, t - last); last = t;
+    if (!drag) {
+      if (target !== null) a += (target - a) * Math.min(1, dt / 160);
+      else if (!hold && !reduce) a += dt * 0.024;   // one turn every 15 s
+    }
+    box.style.transform = 'rotateY(' + a.toFixed(2) + 'deg)';
+    var c = Math.abs(Math.cos(a * Math.PI / 180));
+    floor.style.width = (40 + 22 * c) + '%';
+    var facing = Math.cos(a * Math.PI / 180) > .85;
+    box.classList.toggle('facing', facing);
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
 // hovering a sticker highlights its line in the list, and the other way round
 document.querySelectorAll('[data-n]').forEach(function (el) {
   var n = el.dataset.n;
