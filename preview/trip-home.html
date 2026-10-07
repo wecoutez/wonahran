@@ -21,6 +21,17 @@
   .intro p { margin: 26px 0 0; max-width: 38ch; font-size: 17px; color: #444; }
   .hint { margin-top: 26px; color: var(--dim); }
 
+  .case.photo { aspect-ratio: auto; margin: 0 auto; max-width: 640px; position: relative; }
+  .case.photo img { width: 100%; height: auto; border-radius: 6px; }
+  .hot { position: absolute; transform: rotate(var(--r)); border-radius: 8px; transition: box-shadow .2s, background .2s; }
+  .hot span { position: absolute; left: 50%; bottom: -14px; transform: translateX(-50%) rotate(calc(var(--r) * -1)); background: #161616; color: #fff; white-space: nowrap; border-radius: 999px; padding: 4px 10px; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; opacity: 0; transition: opacity .2s; pointer-events: none; }
+  .hot:hover { box-shadow: 0 0 0 3px #ffe100; background: rgba(255,225,0,.08); }
+  .hot:hover span { opacity: 1; }
+  .tagsphoto { max-width: 1240px; margin: 0 auto; padding: 0 clamp(16px, 3vw, 40px); display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; align-items: center; }
+  .tagsphoto img { width: 100%; border-radius: 18px; }
+  .tagsphoto h2 { margin: 0; font-weight: 300; font-size: clamp(40px, 5vw, 76px); line-height: .95; letter-spacing: -.05em; }
+  .tagsphoto p { color: #555; max-width: 36ch; font-size: 17px; }
+  @media (max-width: 860px) { .tagsphoto { grid-template-columns: 1fr; } }
   /* the suitcase */
   .case { position: relative; width: 100%; max-width: 600px; margin: 70px auto 46px; aspect-ratio: 3 / 4.1; }
   .shell { position: absolute; inset: 0; border-radius: 28px;
@@ -100,24 +111,7 @@
 <nav class="nav"><b>Ahran Won</b><span class="cap"><a href="#passes">work</a><a href="../about.html">about</a><a href="mailto:awonjs@gmail.com">contact</a></span></nav>
 
 <section class="stage">
-  <div class="case" aria-label="Projects as stickers on a suitcase">
-    <span class="handle"></span><span class="shell"></span><span class="wheel l"></span><span class="wheel r"></span>
-
-    <a class="st cut" href="../work/monchhichi.html" style="--x:4%;--y:3%;--w:19%;--r:-8deg;--z:4"><img src="../assets/img/monchhichi/ms/09.webp" alt=""><span class="lbl">Monchhichi</span></a>
-    <a class="st ph" href="../work/one-piece-adventure.html" style="--x:30%;--y:3%;--w:34%;--r:4deg;--ar:16/10"><img src="../assets/img/one-piece-adventure/cover.jpg" alt=""><span class="lbl">One Piece</span></a>
-    <a class="st round" href="#passes" style="--x:70%;--y:2%;--w:25%;--r:10deg;background:#ffe100;font-size:clamp(13px,1.5vw,18px)"><span>BR × IP<br>collabs<br><small style="font-size:.6em;letter-spacing:.1em">2025—</small></span></a>
-    <a class="st blk" href="#passes" style="--x:4%;--y:29%;--w:44%;--r:-3deg;background:#e8322b;color:#fff;font-size:clamp(22px,2.9vw,40px)">Brands<br>you can<br>walk into</a>
-    <a class="st ph" href="../work/retail-design-knotted-seoullo.html" style="--x:52%;--y:21%;--w:28%;--r:-5deg;--ar:1/1"><img src="../assets/img/retail-design-knotted-seoullo/built.jpg" alt=""><span class="lbl">Knotted Seoullo</span></a>
-    <a class="st cut" href="../work/toy-story-lets-play.html" style="--x:79%;--y:23%;--w:18%;--r:7deg;--z:5"><img src="../assets/img/toy-story-lets-play/ms/03.webp" alt=""><span class="lbl">Toy Story 5</span></a>
-    <a class="st cut" href="../work/pokemon-ditto.html" style="--x:3%;--y:49%;--w:30%;--r:3deg"><img src="../assets/img/pokemon-ditto/ms/03.webp" alt=""><span class="lbl">Pokémon</span></a>
-    <a class="st postcard" href="../work/toysrus.html" style="--x:37%;--y:46%;--w:42%;--r:-2deg"><img src="../assets/img/toysrus/07.jpg" alt=""><span><b>Post card</b>Disney at Toys “R” Us — a full retail renewal, schematic to built.<i>— with love, Disney APAC</i></span><span class="lbl">Toys “R” Us</span></a>
-    <a class="st ph" href="../work/bonjour-paris.html" style="--x:76%;--y:44%;--w:22%;--r:8deg;--ar:3/4"><img src="../assets/img/bonjour-paris/01.jpg" alt=""><span class="lbl">Bonjour! Paris</span></a>
-    <a class="st blk" href="#passes" style="--x:42%;--y:66%;--w:30%;--r:2deg;background:#9be564;font-size:clamp(11px,1.2vw,15px);font-weight:600;letter-spacing:0;text-transform:none">knotted · gffg · 2024</a>
-    <a class="st ph" href="../work/chasinrabbits.html" style="--x:5%;--y:70%;--w:27%;--r:-6deg;--ar:4/5"><span class="tape"></span><img src="../assets/img/chasinrabbits/01.jpg" alt=""><span class="lbl">Chasin’ Rabbits</span></a>
-    <a class="st ph" href="../work/moving-capsule.html" style="--x:34%;--y:74%;--w:26%;--r:5deg"><img src="../assets/img/moving-capsule/01.png" alt=""><span class="lbl">Moving Capsule</span></a>
-    <a class="st round" href="mailto:awonjs@gmail.com" style="--x:60%;--y:79%;--w:18%;--r:-10deg;background:#2b5cff;color:#fff;font-size:clamp(10px,1vw,13px)">open to<br>new<br>work</a>
-    <a class="st ph" href="../work/toun28.html" style="--x:78%;--y:66%;--w:20%;--r:-7deg;--ar:3/4"><img src="../assets/img/toun28/06.jpeg" alt=""><span class="lbl">Toun28</span></a>
-  </div>
+  <div class="case photo"><img src="img/suitcase.jpg" alt="An aluminium suitcase covered in project stickers"><a class="hot" href="../work/one-piece-adventure.html" style="left:30.66%;top:19.97%;width:29.36%;height:13.18%;--r:4deg"><span>One Piece</span></a><a class="hot" href="#passes" style="left:66.81%;top:21.64%;width:13.07%;height:9.85%;--r:12deg"><span>BR × IP collabs</span></a><a class="hot" href="../work/monchhichi.html" style="left:21.40%;top:21.40%;width:12.25%;height:17.73%;--r:-8deg"><span>Monchhichi</span></a><a class="hot" href="#passes" style="left:24.64%;top:36.66%;width:26.14%;height:10.70%;--r:-4deg"><span>All work</span></a><a class="hot" href="../work/retail-design-knotted-seoullo.html" style="left:52.33%;top:31.72%;width:19.11%;height:14.40%;--r:-6deg"><span>Knotted Seoullo</span></a><a class="hot" href="../work/toy-story-lets-play.html" style="left:70.99%;top:34.30%;width:12.34%;height:19.14%;--r:7deg"><span>Toy Story 5</span></a><a class="hot" href="../work/pokemon-ditto.html" style="left:21.13%;top:48.82%;width:19.15%;height:14.81%;--r:4deg"><span>Pokémon</span></a><a class="hot" href="../work/toysrus.html" style="left:44.08%;top:47.77%;width:22.89%;height:10.74%;--r:-3deg"><span>Disney at Toys “R” Us</span></a><a class="hot" href="../work/bonjour-paris.html" style="left:66.15%;top:52.38%;width:16.94%;height:15.12%;--r:8deg"><span>Bonjour! Paris</span></a><a class="hot" href="../work/one-piece-adventure.html" style="left:40.46%;top:58.19%;width:12.30%;height:12.15%;--r:-9deg"><span>One Piece cup</span></a><a class="hot" href="#passes" style="left:52.98%;top:62.35%;width:17.81%;height:2.60%;--r:3deg"><span>GFFG</span></a><a class="hot" href="../work/chasinrabbits.html" style="left:20.21%;top:66.37%;width:15.89%;height:14.34%;--r:-6deg"><span>Chasin’ Rabbits</span></a><a class="hot" href="../work/moving-capsule.html" style="left:39.22%;top:70.92%;width:18.61%;height:10.17%;--r:5deg"><span>Moving Capsule</span></a><a class="hot" href="mailto:awonjs@gmail.com" style="left:57.48%;top:70.49%;width:11.36%;height:8.56%;--r:-12deg"><span>Contact</span></a><a class="hot" href="../work/toun28.html" style="left:69.26%;top:67.95%;width:14.52%;height:13.64%;--r:-7deg"><span>Toun28</span></a></div>
 
   <div class="intro">
     <p class="cap" style="color:var(--dim)">creative director — seoul</p>
@@ -127,6 +121,7 @@
   </div>
 </section>
 
+<section class="tagsphoto"><img src="img/boarding-tags.jpg" alt="Boarding-pass luggage tags hanging from the suitcase handle"><div><p class="cap" style="color:#7b7b7b">six trips so far</p><h2>Every company,<br>a boarding pass.</h2><p>From architecture and landscape to Disney, GFFG and Baskin-Robbins. Pick a pass to open the projects from that trip.</p></div></section>
 <section class="passes" id="passes">
   <div class="sh"><h2>Boarding passes</h2><span class="cap" style="color:var(--dim)">6 companies · 27 projects</span></div>
   <div class="pgrid"><article class="pass" style="--acc:#ff5fa2">
