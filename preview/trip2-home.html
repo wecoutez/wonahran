@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex">
+<title>Ahran Won — Creative Director</title>
+<style>
+  @font-face { font-family: "Inter Tight"; font-weight: 100 900; src: url(fonts/intertight-var.woff2) format("woff2"); }
+  :root { --ink: #161616; --paper: #f3f2ef; --dim: #777; --yellow: #ffe100; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 400 15px/1.45 "Inter Tight", "Helvetica Neue", Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; } img { display: block; }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 clamp(16px, 3vw, 40px); }
+  .cap { font-size: 11px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); }
+
+  .nav { position: sticky; top: 0; z-index: 20; background: rgba(243,242,239,.9); backdrop-filter: blur(10px); }
+  .nav .wrap { display: flex; align-items: center; gap: 24px; padding-top: 16px; padding-bottom: 16px; }
+  .nav b { font-weight: 600; font-size: 18px; letter-spacing: -.02em; } .nav .sp { flex: 1; }
+  .nav .btn { background: var(--ink); color: #fff; border-radius: 999px; padding: 9px 16px; font-size: 13px; }
+
+  /* hero: simple words left, suitcase right */
+  .hero { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(24px, 4vw, 64px); align-items: center; padding-top: 20px; padding-bottom: 40px; }
+  .hero h1 { margin: 10px 0 0; font-weight: 300; font-size: clamp(44px, 5.6vw, 88px); line-height: .95; letter-spacing: -.055em; }
+  .hero h1 b { font-weight: 600; }
+  .hero .lede { margin: 22px 0 0; font-size: 18px; color: #444; max-width: 32ch; }
+  .ctas { display: flex; gap: 10px; margin-top: 26px; }
+  .ctas a { border-radius: 999px; padding: 12px 20px; font-weight: 500; border: 1.5px solid var(--ink); }
+  .ctas a:first-child { background: var(--ink); color: #fff; }
+  .legend { list-style: none; margin: 34px 0 0; padding: 18px 0 0; border-top: 1px solid #ddd; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 18px; }
+  .legend a { display: flex; align-items: center; gap: 10px; padding: 5px 0; font-size: 14px; }
+  .legend a:hover, .legend a.on { color: #000; font-weight: 600; }
+  i.n, .legend i, .hot i { font-style: normal; display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--yellow); color: var(--ink); font-size: 12px; font-weight: 600; flex: none; }
+
+  .case { position: relative; }
+  .case img { width: 100%; border-radius: 10px; }
+  .hot { position: absolute; transform: rotate(var(--r)); border-radius: 8px; transition: box-shadow .2s; }
+  .hot i { position: absolute; left: -8px; top: -8px; box-shadow: 0 2px 6px rgba(0,0,0,.3); transform: rotate(calc(var(--r) * -1)); }
+  .hot:hover, .hot.on { box-shadow: 0 0 0 4px var(--yellow); }
+
+  /* work: a slim ticket per company + a plain grid */
+  .work-h { display: flex; justify-content: space-between; align-items: baseline; border-top: 1px solid var(--ink); padding-top: 14px; margin: 50px 0 10px; }
+  .work-h h2 { margin: 0; font-weight: 300; font-size: clamp(36px, 4.4vw, 64px); letter-spacing: -.05em; }
+  .jump { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 20px; }
+  .jump a { border: 1px solid #cfcfcf; border-radius: 999px; padding: 7px 14px; font-size: 13px; background: #fff; }
+  .co { margin-top: 44px; scroll-margin-top: 80px; }
+  .ticket { position: relative; display: grid; grid-template-columns: auto auto 1fr auto; gap: 24px; align-items: center; background: #fff; border-radius: 14px; padding: 14px 20px; margin-bottom: 14px; border-left: 6px solid var(--acc); }
+  .ticket .code { font-size: 28px; font-weight: 300; letter-spacing: -.04em; color: var(--acc); }
+  .ticket .route { display: inline-flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 500; }
+  .ticket svg { width: 18px; fill: var(--acc); transform: rotate(90deg); }
+  .ticket .who b { display: block; font-size: 18px; font-weight: 600; letter-spacing: -.02em; }
+  .ticket .who { color: var(--dim); font-size: 13px; }
+  .ticket .cnt { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--dim); padding-left: 20px; border-left: 2px dashed #ddd; }
+  .grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+  .card .img { position: relative; display: block; aspect-ratio: 4/3; border-radius: 12px; overflow: hidden; background: #e5e3df; }
+  .card img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+  .card:hover img { transform: scale(1.05); }
+  .card b { display: block; margin-top: 10px; font-weight: 500; font-size: 16px; letter-spacing: -.01em; line-height: 1.2; }
+  .card .m { display: block; margin-top: 2px; color: var(--dim); font-size: 13px; }
+  .conf { position: absolute; left: 8px; top: 8px; background: var(--ink); color: #fff; font-style: normal; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; padding: 4px 8px; border-radius: 999px; }
+
+  .end { text-align: center; padding: 100px 0 90px; }
+  .end h2 { margin: 0; font-weight: 300; font-size: clamp(54px, 9vw, 130px); letter-spacing: -.06em; line-height: .9; }
+  .end a { display: inline-block; margin-top: 20px; border-bottom: 1px solid; font-size: 17px; }
+
+  @media (max-width: 860px) {
+    .nav a.l { display: none; }
+    .hero { grid-template-columns: 1fr; } .case { order: 2; }
+    .legend { grid-template-columns: 1fr; }
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .ticket { grid-template-columns: auto 1fr; gap: 6px 14px; } .ticket .cnt { display: none; }
+    .ticket .route { grid-column: 2; grid-row: 1; font-size: 15px; } .ticket .who { grid-column: 1 / -1; }
+  }
+</style>
+</head>
+<body>
+<header class="nav"><div class="wrap"><b>Ahran Won</b><span class="sp"></span><a class="l" href="#work">Work</a><a class="l" href="../about.html">About</a><a class="btn" href="mailto:awonjs@gmail.com">Contact</a></div></header>
+
+<section class="wrap hero">
+  <div>
+    <p class="cap">Creative director · Seoul</p>
+    <h1>Twelve years of work,<br><b>packed in one suitcase.</b></h1>
+    <p class="lede">Campaigns, IP collaborations and stores you can walk into, for Baskin-Robbins, GFFG, Disney and more.</p>
+    <div class="ctas"><a href="#work">See all work</a><a href="mailto:awonjs@gmail.com">Say hello</a></div>
+    <ul class="legend"><li><a data-n="1" href="../work/one-piece-adventure.html"><i>1</i>Baskin-Robbins × One Piece</a></li><li><a data-n="2" href="../work/monchhichi.html"><i>2</i>Baskin-Robbins × Monchhichi</a></li><li><a data-n="3" href="../work/retail-design-knotted-seoullo.html"><i>3</i>Knotted Seoullo</a></li><li><a data-n="4" href="../work/pokemon-ditto.html"><i>4</i>Baskin-Robbins × Pokémon</a></li><li><a data-n="5" href="../work/toy-story-lets-play.html"><i>5</i>Baskin-Robbins × Toy Story 5</a></li><li><a data-n="6" href="../work/toysrus.html"><i>6</i>Disney at Toys “R” Us</a></li><li><a data-n="7" href="../work/bonjour-paris.html"><i>7</i>Bonjour! Paris — Robin</a></li><li><a data-n="8" href="../work/chasinrabbits.html"><i>8</i>Chasin’ Rabbits</a></li></ul>
+  </div>
+  <div class="case"><img src="img/suitcase2.jpg" alt="A suitcase covered in project stickers"><a class="hot" data-n="1" href="../work/one-piece-adventure.html" style="left:23.48%;top:19.74%;width:38.64%;height:17.34%;--r:3deg" aria-label="Baskin-Robbins × One Piece"><i>1</i></a><a class="hot" data-n="2" href="../work/monchhichi.html" style="left:66.89%;top:20.32%;width:12.90%;height:18.66%;--r:8deg" aria-label="Baskin-Robbins × Monchhichi"><i>2</i></a><a class="hot" data-n="3" href="../work/retail-design-knotted-seoullo.html" style="left:52.87%;top:35.77%;width:23.13%;height:17.43%;--r:-5deg" aria-label="Knotted Seoullo"><i>3</i></a><a class="hot" data-n="4" href="../work/pokemon-ditto.html" style="left:22.08%;top:50.56%;width:21.06%;height:16.29%;--r:4deg" aria-label="Baskin-Robbins × Pokémon"><i>4</i></a><a class="hot" data-n="5" href="../work/toy-story-lets-play.html" style="left:67.91%;top:49.54%;width:13.41%;height:20.80%;--r:7deg" aria-label="Baskin-Robbins × Toy Story 5"><i>5</i></a><a class="hot" data-n="6" href="../work/toysrus.html" style="left:41.53%;top:53.33%;width:22.89%;height:10.74%;--r:-3deg" aria-label="Disney at Toys “R” Us"><i>6</i></a><a class="hot" data-n="7" href="../work/bonjour-paris.html" style="left:23.87%;top:66.35%;width:17.49%;height:15.62%;--r:-6deg" aria-label="Bonjour! Paris — Robin"><i>7</i></a><a class="hot" data-n="8" href="../work/chasinrabbits.html" style="left:44.77%;top:67.37%;width:16.41%;height:14.80%;--r:5deg" aria-label="Chasin’ Rabbits"><i>8</i></a></div>
+</section>
+
+<main class="wrap" id="work">
+  <div class="work-h"><h2>All work</h2><span class="cap">6 companies · 27 projects</span></div>
+  <nav class="jump"><a href="#br">Baskin-Robbins</a><a href="#gffg">GFFG</a><a href="#disney">Disney</a><a href="#hanbul">It’s Hanbul</a><a href="#toun28">Toun28</a><a href="#independent">Independent</a></nav>
+  <section class="co" id="br" style="--acc:#ff5fa2"><div class="ticket"><span class="code">BRK</span><span class="route">2025 <svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg> Now</span><span class="who"><b>Baskin-Robbins Korea</b>Marketing Director</span><span class="cnt">7 projects</span></div><div class="grid"><a class="card" href="../work/trickimas.html"><span class="img"><img src="../assets/img/trickimas/01.jpg" alt="" loading="lazy"><i class="conf">Confidential</i></span><b>Merry Trickimas</b><span class="m">Seoul, Korea · 2026</span></a><a class="card" href="../work/monchhichi.html"><span class="img"><img src="../assets/img/monchhichi/card.jpg" alt="" loading="lazy"></span><b>Baskin-Robbins × Monchhichi</b><span class="m">Seoul, Korea · 2026</span></a><a class="card" href="../work/pokemon-ditto.html"><span class="img"><img src="../assets/img/pokemon-ditto/card.jpg" alt="" loading="lazy"></span><b>Baskin-Robbins × Pokémon</b><span class="m">Seoul, Korea · 2026</span></a><a class="card" href="../work/one-piece-adventure.html"><span class="img"><img src="../assets/img/one-piece-adventure/card.jpg" alt="" loading="lazy"></span><b>Baskin-Robbins × One Piece</b><span class="m">Seoul, Korea · 2026</span></a><a class="card" href="../work/toy-story-lets-play.html"><span class="img"><img src="../assets/img/toy-story-lets-play/main-poster.jpg" alt="" loading="lazy"></span><b>Baskin-Robbins × Toy Story 5</b><span class="m">Seoul, Korea · 2026</span></a><a class="card" href="../work/bonjour-paris.html"><span class="img"><img src="../assets/img/bonjour-paris/01.jpg" alt="" loading="lazy"></span><b>Bonjour! Paris — Robin</b><span class="m">Seoul, Korea · 2025</span></a><a class="card" href="../work/baskin-robbins-popup.html"><span class="img"><img src="../assets/img/baskin-robbins-popup/01.png" alt="" loading="lazy"></span><b>Mangbingo Gacha Shop</b><span class="m">Seongsu, Seoul · 2025</span></a></div></section><section class="co" id="gffg" style="--acc:#2f8f6a"><div class="ticket"><span class="code">GFG</span><span class="route">2024 <svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg> 2025</span><span class="who"><b>GFFG</b>Creative Director</span><span class="cnt">8 projects</span></div><div class="grid"><a class="card" href="../work/knotted.html"><span class="img"><img src="../assets/img/knotted/01.jpeg?v=8" alt="" loading="lazy"></span><b>Knotted Gwangju Sangmu</b><span class="m">Gwangju, Korea · 2024</span></a><a class="card" href="../work/knotted-store-la.html"><span class="img"><img src="../assets/img/knotted-store-la/01.png" alt="" loading="lazy"></span><b>Knotted Westfield Century City</b><span class="m">Los Angeles, United States · 2024</span></a><a class="card" href="../work/retail-design-knotted-seoullo.html"><span class="img"><img src="../assets/img/retail-design-knotted-seoullo/01.png" alt="" loading="lazy"></span><b>Knotted Seoullo</b><span class="m">Seoul Station · 2024</span></a><a class="card" href="../work/retail-design-knotted-guui.html"><span class="img"><img src="../assets/img/retail-design-knotted-guui/01.png" alt="" loading="lazy"></span><b>Knotted Guui</b><span class="m">Guui, Seoul · 2024</span></a><a class="card" href="../work/clap-pizza.html"><span class="img"><img src="../assets/img/clap-pizza/01.jpeg?v=8" alt="" loading="lazy"></span><b>Clap Pizza Gwangju</b><span class="m">Gwangju, Korea · 2024</span></a><a class="card" href="../work/gffg-graphic-works.html"><span class="img"><img src="../assets/img/gffg-graphic-works/01.png?v=8" alt="" loading="lazy"></span><b>Knotted 2025 Campaigns</b><span class="m">Seoul, Korea · 2025</span></a><a class="card" href="../work/knotted-goods-proposal.html"><span class="img"><img src="../assets/img/knotted-goods-proposal/01.jpg?v=8" alt="" loading="lazy"></span><b>Knotted Lifestyle Expansion</b><span class="m">Seoul, Korea · 2024</span></a><a class="card" href="../work/project-three.html"><span class="img"><img src="../assets/img/project-three/01.png?v=8" alt="" loading="lazy"></span><b>Knotted Merchandise Collection</b><span class="m">Seoul, Korea · 2024–2025</span></a></div></section><section class="co" id="disney" style="--acc:#2b5cff"><div class="ticket"><span class="code">DIS</span><span class="route">2022 <svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg> 2023</span><span class="who"><b>The Walt Disney Company</b>Creative Manager, APAC</span><span class="cnt">4 projects</span></div><div class="grid"><a class="card" href="../work/toysrus.html"><span class="img"><img src="../assets/img/toysrus/01.jpeg?v=8" alt="" loading="lazy"></span><b>Disney at Toys “R” Us</b><span class="m">Seoul, Korea · 2022–2023</span></a><a class="card" href="../work/d100-hyundai.html"><span class="img"><img src="../assets/img/d100-hyundai/01.jpeg?v=8" alt="" loading="lazy"></span><b>Disney D100 — Hyundai Pangyo</b><span class="m">Pangyo, Korea · 2023</span></a><a class="card" href="../work/korea-kickoff.html"><span class="img"><img src="../assets/img/korea-kickoff/06.jpg" alt="" loading="lazy"></span><b>Disney CPGP Korea Kickoff</b><span class="m">Seoul, Korea · 2022</span></a><a class="card" href="../work/graphic.html"><span class="img"><img src="../assets/img/graphic/01.jpg?v=8" alt="" loading="lazy"></span><b>National Geographic Retail Toolkit</b><span class="m">APAC region · 2022–2023</span></a></div></section><section class="co" id="hanbul" style="--acc:#e6a700"><div class="ticket"><span class="code">HNB</span><span class="route">2020 <svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg> 2022</span><span class="who"><b>IT’S HANBUL</b>Creative Director</span><span class="cnt">2 projects</span></div><div class="grid"><a class="card" href="../work/chasinrabbits.html"><span class="img"><img src="../assets/img/chasinrabbits/01.jpg?v=8" alt="" loading="lazy"></span><b>Chasin’ Rabbits</b><span class="m">Seoul, Korea · 2020–2022</span></a><a class="card" href="../work/enature.html"><span class="img"><img src="../assets/img/enature/01.png?v=8" alt="" loading="lazy"></span><b>enature</b><span class="m">Seoul, Korea · 2020–2022</span></a></div></section><section class="co" id="toun28" style="--acc:#a14be0"><div class="ticket"><span class="code">T28</span><span class="route">2019 <svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg> 2020</span><span class="who"><b>Toun28</b>Art Director</span><span class="cnt">3 projects</span></div><div class="grid"><a class="card" href="../work/toun28.html"><span class="img"><img src="../assets/img/toun28/06.jpeg" alt="" loading="lazy"></span><b>Toun28 Main VMD</b><span class="m">Seoul, Korea · 2019–2020</span></a><a class="card" href="../work/toun28-small-vmds.html"><span class="img"><img src="../assets/img/toun28-small-vmds/12.jpeg" alt="" loading="lazy"></span><b>Toun28 Retail VMD Stands</b><span class="m">Aritaum, Starfield, Thingool · 2019–2020</span></a><a class="card" href="../work/officedesign.html"><span class="img"><img src="../assets/img/officedesign/02.jpeg" alt="" loading="lazy"></span><b>Toun28 Office</b><span class="m">Seoul, Korea · 2019–2020</span></a></div></section><section class="co" id="independent" style="--acc:#ff6a1a"><div class="ticket"><span class="code">IND</span><span class="route">2014 <svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg> 2018</span><span class="who"><b>Projects</b>Designer</span><span class="cnt">3 projects</span></div><div class="grid"><a class="card" href="../work/moving-capsule.html"><span class="img"><img src="../assets/img/moving-capsule/01.png?v=8" alt="" loading="lazy"></span><b>Moving Capsule</b><span class="m">La Triennale di Milano · 2017</span></a><a class="card" href="../work/landscape.html"><span class="img"><img src="../assets/img/landscape/09.jpg" alt="" loading="lazy"></span><b>Transbay Transit Center Roof Garden</b><span class="m">San Francisco, California · 2016</span></a><a class="card" href="../work/harvard-passport.html"><span class="img"><img src="../assets/img/harvard-passport/01.jpeg?v=8" alt="" loading="lazy"></span><b>Passport to the Harvard Libraries</b><span class="m">Cambridge, Massachusetts · 2017</span></a></div></section>
+  <section class="end"><h2>Next stop?</h2><a href="mailto:awonjs@gmail.com">awonjs@gmail.com ↗</a></section>
+</main>
+<script>
+// hovering a sticker highlights its line in the list, and the other way round
+document.querySelectorAll('[data-n]').forEach(function (el) {
+  var n = el.dataset.n;
+  el.addEventListener('mouseenter', function () { document.querySelectorAll('[data-n="' + n + '"]').forEach(function (x) { x.classList.add('on'); }); });
+  el.addEventListener('mouseleave', function () { document.querySelectorAll('[data-n="' + n + '"]').forEach(function (x) { x.classList.remove('on'); }); });
+});
+</script>
+</body>
+</html>
