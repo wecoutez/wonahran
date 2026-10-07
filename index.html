@@ -107,13 +107,23 @@ html.gated, html.gated body { overflow: hidden; }
   .side { position: absolute; top: 12%; height: 78%; width: calc(var(--dz) * 2px); margin-left: calc(var(--dz) * -1px); border-radius: 14px;
     background: repeating-linear-gradient(90deg, #c9ccd0 0 6px, #eef0f2 6px 9px, #b6babf 9px 11px, #dfe2e5 11px 18px), linear-gradient(#e4e6e8, #c3c7cb);
     background-blend-mode: multiply; box-shadow: inset 0 0 0 2px #b3b7bc; }
-  .side.l { left: 5.5%; transform: rotateY(-90deg); } .side.r { left: 95.5%; transform: rotateY(90deg); }
+  .side.l { left: 7%; transform: rotateY(-90deg); } .side.r { left: 94%; transform: rotateY(90deg); }
+
+  .front { transform-style: preserve-3d; }
+  .front .shell { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 2px 2px rgba(0,0,0,.08)); }
+  .stickers { position: absolute; inset: 0; transform-style: preserve-3d; }
+  .stk { position: absolute; display: block; transform: translateZ(var(--z)) rotate(var(--r)); transform-style: preserve-3d; transition: transform .45s cubic-bezier(.34,1.56,.64,1); }
+  .stk img { width: 100%; height: auto; filter: drop-shadow(0 4px 5px rgba(0,0,0,.22)); transition: filter .3s; }
+  .stk:hover, .stk.on { transform: translateZ(calc(var(--z) + 46px)) rotate(0deg) scale(1.12); z-index: 5; }
+  .stk:hover img, .stk.on img { filter: drop-shadow(0 18px 18px rgba(0,0,0,.28)); }
+  .stk i { position: absolute; left: -6px; top: -6px; font-style: normal; display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--yellow); color: var(--ink); font-size: 12px; font-weight: 700; box-shadow: 0 2px 6px rgba(0,0,0,.3); }
+  .box .side { top: 13%; height: 76%; }
   .floor { position: absolute; left: 50%; bottom: 46px; width: 62%; max-width: 300px; height: 26px; transform: translateX(-50%); border-radius: 50%;
     background: radial-gradient(closest-side, rgba(0,0,0,.28), rgba(0,0,0,.08) 60%, transparent); filter: blur(4px); pointer-events: none; }
   .spin-hint { position: absolute; left: 0; right: 0; bottom: 6px; text-align: center; margin: 0; }
   .hot { pointer-events: none; position: absolute; transform: rotate(var(--r)); border-radius: 8px; transition: box-shadow .2s; }
   .hot i { position: absolute; left: -8px; top: -8px; box-shadow: 0 2px 6px rgba(0,0,0,.3); transform: rotate(calc(var(--r) * -1)); }
-  .facing .hot { pointer-events: auto; }
+  
   .hot:hover, .hot.on { box-shadow: 0 0 0 4px var(--yellow); }
 
   /* work: a slim ticket per company + a plain grid */
@@ -124,12 +134,12 @@ html.gated, html.gated body { overflow: hidden; }
   .jump a:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
   .co { margin-top: 44px; scroll-margin-top: 80px; }
   .ticket { position: relative; display: grid; grid-template-columns: auto auto 1fr auto; gap: 24px; align-items: center; background: #fff; border: 1px solid #e6e6e6; border-radius: 14px; padding: 14px 20px; margin-bottom: 14px; border-left: 6px solid var(--acc); }
-  .ticket .code { font-size: 28px; font-weight: 300; letter-spacing: -.04em; color: var(--acc); }
-  .ticket .route { display: inline-flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 500; }
+  .ticket .code { font-size: 28px; font-weight: 700; letter-spacing: -.04em; color: var(--acc); }
+  .ticket .route { display: inline-flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 700; }
   .ticket svg { width: 18px; fill: var(--acc); transform: rotate(90deg); }
-  .ticket .who b { display: block; font-size: 18px; font-weight: 600; letter-spacing: -.02em; }
-  .ticket .who { color: var(--dim); font-size: 13px; }
-  .ticket .cnt { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--dim); padding-left: 20px; border-left: 2px dashed #ddd; }
+  .ticket .who b { display: block; font-size: 19px; font-weight: 700; letter-spacing: -.02em; }
+  .ticket .who { color: #555; font-size: 13px; font-weight: 500; }
+  .ticket .cnt { font-weight: 600; color: var(--ink) !important; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--dim); padding-left: 20px; border-left: 2px dashed #ddd; }
   .grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
   .card .img { position: relative; display: block; aspect-ratio: 4/3; border-radius: 12px; overflow: hidden; background: #f2f2f2; }
   .card img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
@@ -164,14 +174,13 @@ html.gated, html.gated body { overflow: hidden; }
     <div class="ctas"><a href="#work"><span class="en">See all work</span><span class="ko">전체 작업 보기</span></a><a href="mailto:awonjs@gmail.com"><span class="en">Say hello</span><span class="ko">연락하기</span></a></div>
     <ul class="legend"><li><a data-n="1" href="work/one-piece-adventure.html"><i>1</i>Baskin-Robbins × One Piece</a></li><li><a data-n="2" href="work/monchhichi.html"><i>2</i>Baskin-Robbins × Monchhichi</a></li><li><a data-n="3" href="work/retail-design-knotted-seoullo.html"><i>3</i>Knotted Seoullo</a></li><li><a data-n="4" href="work/pokemon-ditto.html"><i>4</i>Baskin-Robbins × Pokémon</a></li><li><a data-n="5" href="work/toy-story-lets-play.html"><i>5</i>Baskin-Robbins × Toy Story 5</a></li><li><a data-n="6" href="work/toysrus.html"><i>6</i>Disney at Toys “R” Us</a></li><li><a data-n="7" href="work/bonjour-paris.html"><i>7</i>Bonjour! Paris — Robin</a></li><li><a data-n="8" href="work/chasinrabbits.html"><i>8</i>Chasin’ Rabbits</a></li></ul>
   </div>
-  <div class="stage3d" aria-label="A suitcase covered in project stickers, slowly turning">
+  <div class="stage3d" aria-label="A suitcase covered in project stickers">
       <div class="box" id="box">
-        <div class="face front"><img src="assets/img/home/case-front.webp" alt="Suitcase front with project stickers"><a class="hot" data-n="1" href="work/one-piece-adventure.html" style="left:11.80%;top:10.99%;width:54.26%;height:22.12%;--r:3deg" aria-label="Baskin-Robbins × One Piece"><i>1</i></a><a class="hot" data-n="2" href="work/monchhichi.html" style="left:72.76%;top:11.72%;width:18.11%;height:23.82%;--r:8deg" aria-label="Baskin-Robbins × Monchhichi"><i>2</i></a><a class="hot" data-n="3" href="work/retail-design-knotted-seoullo.html" style="left:53.07%;top:31.44%;width:32.48%;height:22.24%;--r:-5deg" aria-label="Knotted Seoullo"><i>3</i></a><a class="hot" data-n="4" href="work/pokemon-ditto.html" style="left:9.84%;top:50.31%;width:29.58%;height:20.79%;--r:4deg" aria-label="Baskin-Robbins × Pokémon"><i>4</i></a><a class="hot" data-n="5" href="work/toy-story-lets-play.html" style="left:74.19%;top:49.01%;width:18.83%;height:26.55%;--r:7deg" aria-label="Baskin-Robbins × Toy Story 5"><i>5</i></a><a class="hot" data-n="6" href="work/toysrus.html" style="left:37.15%;top:53.85%;width:32.14%;height:13.70%;--r:-3deg" aria-label="Disney at Toys “R” Us"><i>6</i></a><a class="hot" data-n="7" href="work/bonjour-paris.html" style="left:12.35%;top:70.46%;width:24.56%;height:19.93%;--r:-6deg" aria-label="Bonjour! Paris — Robin"><i>7</i></a><a class="hot" data-n="8" href="work/chasinrabbits.html" style="left:41.70%;top:71.77%;width:23.04%;height:18.89%;--r:5deg" aria-label="Chasin’ Rabbits"><i>8</i></a></div>
-        <div class="face back"><img src="assets/img/home/case-back.webp" alt=""></div>
+        <div class="face front"><img class="shell" src="assets/img/home/case-empty.webp" alt="Silver suitcase" draggable="false"><div class="stickers"><a class="stk" data-n="1" href="work/one-piece-adventure.html" style="left:11.80%;top:10.99%;width:54.26%;--r:3deg;--z:14px" aria-label="Baskin-Robbins × One Piece"><img src="assets/img/home/stk/op.webp" alt="" draggable="false"><i>1</i></a><a class="stk" data-n="2" href="work/monchhichi.html" style="left:72.76%;top:11.72%;width:18.11%;--r:8deg;--z:20px" aria-label="Baskin-Robbins × Monchhichi"><img src="assets/img/home/stk/mon.webp" alt="" draggable="false"><i>2</i></a><a class="stk" href="#work" style="left:8.93%;top:33.03%;width:38.54%;--r:-4deg;--z:26px" aria-label="All work"><img src="assets/img/home/stk/red.webp" alt="" draggable="false"></a><a class="stk" data-n="3" href="work/retail-design-knotted-seoullo.html" style="left:53.07%;top:31.44%;width:32.48%;--r:-5deg;--z:32px" aria-label="Knotted Seoullo"><img src="assets/img/home/stk/kn.webp" alt="" draggable="false"><i>3</i></a><a class="stk" data-n="4" href="work/pokemon-ditto.html" style="left:9.84%;top:50.31%;width:29.58%;--r:4deg;--z:14px" aria-label="Baskin-Robbins × Pokémon"><img src="assets/img/home/stk/ditto.webp" alt="" draggable="false"><i>4</i></a><a class="stk" data-n="5" href="work/toy-story-lets-play.html" style="left:74.19%;top:49.01%;width:18.83%;--r:7deg;--z:20px" aria-label="Baskin-Robbins × Toy Story 5"><img src="assets/img/home/stk/woody.webp" alt="" draggable="false"><i>5</i></a><a class="stk" data-n="6" href="work/toysrus.html" style="left:37.15%;top:53.85%;width:32.14%;--r:-3deg;--z:26px" aria-label="Disney at Toys “R” Us"><img src="assets/img/home/stk/tr.webp" alt="" draggable="false"><i>6</i></a><a class="stk" data-n="7" href="work/bonjour-paris.html" style="left:12.35%;top:70.46%;width:24.56%;--r:-6deg;--z:32px" aria-label="Bonjour! Paris — Robin"><img src="assets/img/home/stk/bj.webp" alt="" draggable="false"><i>7</i></a><a class="stk" data-n="8" href="work/chasinrabbits.html" style="left:41.70%;top:71.77%;width:23.04%;--r:5deg;--z:14px" aria-label="Chasin’ Rabbits"><img src="assets/img/home/stk/cr.webp" alt="" draggable="false"><i>8</i></a><a class="stk" href="mailto:awonjs@gmail.com" style="left:70.27%;top:76.54%;width:15.96%;--r:-10deg;--z:20px" aria-label="Contact"><img src="assets/img/home/stk/blu.webp" alt="" draggable="false"></a></div></div>
         <div class="side l"></div><div class="side r"></div>
       </div>
       <span class="floor" id="floor"></span>
-      <p class="spin-hint cap"><span class="en">hover to stop · drag to turn</span><span class="ko">마우스를 올리면 멈춤 · 끌어서 돌리기</span></p>
+      <p class="spin-hint cap"><span class="en">move your mouse · tap a sticker</span><span class="ko">마우스를 움직여 보세요 · 스티커를 누르면 열려요</span></p>
     </div>
 </section>
 
@@ -182,31 +191,33 @@ html.gated, html.gated body { overflow: hidden; }
   <section class="end"><h2><span class="en">Next stop?</span><span class="ko">다음 목적지는?</span></h2><a href="mailto:awonjs@gmail.com">awonjs@gmail.com ↗</a></section>
 </main>
 <script>
-// turn the suitcase: slow idle spin, eases to the front on hover/legend, drag to turn
+// suitcase in 3D: it leans toward the mouse (or the phone's tilt), with a slow idle sway; drag to turn further
 (function () {
   var box = document.getElementById('box'), floor = document.getElementById('floor'), stage = box.parentNode;
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var a = reduce ? 0 : -24, target = null, hold = false, drag = null, last = performance.now();
-  function size() { box.style.setProperty('--dz', (box.offsetWidth * .17).toFixed(1)); }
+  var ry = -18, rx = 4, ty = -18, tx = 4, mouse = false, drag = null, t0 = performance.now();
+  function size() { box.style.setProperty('--dz', (box.offsetWidth * .11).toFixed(1)); }
   size(); addEventListener('resize', size);
-  function front() { target = Math.round(a / 360) * 360; }
-  stage.addEventListener('mouseenter', function () { hold = true; front(); });
-  stage.addEventListener('mouseleave', function () { hold = false; target = null; });
-  document.querySelectorAll('.legend a').forEach(function (l) { l.addEventListener('mouseenter', function () { hold = true; front(); }); l.addEventListener('mouseleave', function () { hold = false; target = null; }); });
-  stage.addEventListener('pointerdown', function (e) { if (e.target.closest('.hot')) return; drag = { x: e.clientX, a: a }; target = null; stage.setPointerCapture(e.pointerId); });
-  stage.addEventListener('pointermove', function (e) { if (drag) a = drag.a + (e.clientX - drag.x) * .5; });
-  stage.addEventListener('pointerup', function () { drag = null; if (hold) front(); });
+  addEventListener('pointermove', function (e) {
+    if (drag) { ty = drag.ry + (e.clientX - drag.x) * .45; return; }
+    if (e.pointerType !== 'mouse') return;
+    mouse = true;
+    var r = stage.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+    ty = Math.max(-38, Math.min(38, (e.clientX - cx) / innerWidth * 80));
+    tx = Math.max(-14, Math.min(14, -(e.clientY - cy) / innerHeight * 30));
+  }, { passive: true });
+  stage.addEventListener('pointerdown', function (e) { if (e.target.closest('.stk')) return; drag = { x: e.clientX, ry: ty }; stage.setPointerCapture(e.pointerId); });
+  addEventListener('pointerup', function () { drag = null; });
+  addEventListener('deviceorientation', function (e) { if (e.gamma == null) return; mouse = true; ty = Math.max(-30, Math.min(30, e.gamma * .9)); tx = Math.max(-12, Math.min(12, (e.beta - 45) * -.3)); });
+  document.querySelectorAll('.legend a').forEach(function (l) { l.addEventListener('mouseenter', function () { ty = 0; tx = 0; }); });
   function tick(t) {
-    var dt = Math.min(50, t - last); last = t;
-    if (!drag) {
-      if (target !== null) a += (target - a) * Math.min(1, dt / 160);
-      else if (!hold && !reduce) a += dt * 0.024;   // one turn every 15 s
-    }
-    box.style.transform = 'rotateY(' + a.toFixed(2) + 'deg)';
-    var c = Math.abs(Math.cos(a * Math.PI / 180));
-    floor.style.width = (40 + 22 * c) + '%';
-    var facing = Math.cos(a * Math.PI / 180) > .85;
-    box.classList.toggle('facing', facing);
+    var s = (t - t0) / 1000;
+    var gy = ty, gx = tx;
+    if (!mouse && !drag && !reduce) { gy = Math.sin(s * .6) * 24; gx = 4 + Math.sin(s * .9) * 3; }
+    if (reduce && !drag) { gy = ty = 0; gx = tx = 0; }
+    ry += (gy - ry) * .08; rx += (gx - rx) * .08;
+    box.style.transform = 'rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg)';
+    floor.style.transform = 'translateX(calc(-50% + ' + (ry * -1.2).toFixed(1) + 'px)) scaleX(' + (1 - Math.abs(ry) / 160).toFixed(3) + ')';
     requestAnimationFrame(tick);
   }
   requestAnimationFrame(tick);
